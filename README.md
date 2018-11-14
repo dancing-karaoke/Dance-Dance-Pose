@@ -1,4 +1,4 @@
-# Boilermaker
+# Capstone Testing
 
 _Good things come in pairs_
 
