@@ -8,8 +8,8 @@ const App = () => {
   return (
     <div>
       <Navbar />
-      <Webcam />
       <Routes />
+      <Webcam />
     </div>
   )
 }

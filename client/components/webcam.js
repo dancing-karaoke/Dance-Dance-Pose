@@ -4,8 +4,8 @@ import {isMobile, drawKeypoints, drawSkeleton} from './utils'
 
 export default class PoseNet extends React.Component {
   static defaultProps = {
-    videoWidth: 600,
-    videoHeight: 500,
+    videoWidth: 1200,
+    videoHeight: 1000,
     flipHorizontal: true,
     algorithm: 'single-pose',
     mobileNetArchitecture: isMobile() ? 0.5 : 1.01,
@@ -26,6 +26,7 @@ export default class PoseNet extends React.Component {
   constructor(props) {
     super(props, PoseNet.defaultProps)
     this.state = {loading: true}
+    this.generateRandomCoordinates = this.generateRandomCoordinates.bind(this)
   }
 
   getCanvas = elem => {
@@ -36,11 +37,6 @@ export default class PoseNet extends React.Component {
     this.video = elem
   }
 
-  async componentWillMount() {
-    // Loads the pre-trained PoseNet model
-    this.net = await posenet.load(this.props.mobileNetArchitecture)
-  }
-
   async componentDidMount() {
     try {
       await this.setupCamera()
@@ -49,7 +45,7 @@ export default class PoseNet extends React.Component {
     } finally {
       this.setState({loading: false})
     }
-
+    this.net = await posenet.load(this.props.mobileNetArchitecture)
     this.detectPose()
   }
 
@@ -85,6 +81,16 @@ export default class PoseNet extends React.Component {
         resolve(video)
       }
     })
+  }
+
+  generateRandomCoordinates() {
+    const xBubble = Math.random() * 1300
+    const yBubble = Math.random() * 800
+    const xMin = xBubble * 0.9
+    const xMax = xBubble * 1.1
+    const yMin = yBubble * 0.9
+    const yMax = yBubble * 1.1
+    //this we should setState
   }
 
   detectPose() {
@@ -124,17 +130,6 @@ export default class PoseNet extends React.Component {
       let poses = []
 
       switch (algorithm) {
-        case 'single-pose':
-          const pose = await net.estimateSinglePose(
-            video,
-            imageScaleFactor,
-            flipHorizontal,
-            outputStride
-          )
-
-          poses.push(pose)
-
-          break
         case 'multi-pose':
           poses = await net.estimateMultiplePoses(
             video,
@@ -145,6 +140,17 @@ export default class PoseNet extends React.Component {
             minPartConfidence,
             nmsRadius
           )
+
+          break
+        default:
+          const pose = await net.estimateSinglePose(
+            video,
+            imageScaleFactor,
+            flipHorizontal,
+            outputStride
+          )
+          console.log('POSE', pose)
+          poses.push(pose)
 
           break
       }
