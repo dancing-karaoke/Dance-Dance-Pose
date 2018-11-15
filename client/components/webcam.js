@@ -1,12 +1,12 @@
 import * as posenet from '@tensorflow-models/posenet'
 import React, {Component} from 'react'
 import {isMobile, drawKeypoints, drawSkeleton} from './utils'
-import Bubble from './'
+import Bubble from './bubble'
 import {connect} from 'react-redux'
 
 let counter = 0
 
-export class PoseNet extends React.Component {
+class PoseNet extends React.Component {
   static defaultProps = {
     videoWidth: 1200,
     videoHeight: 1000,
@@ -34,8 +34,7 @@ export class PoseNet extends React.Component {
   constructor(props) {
     super(props, PoseNet.defaultProps)
     this.state = {loading: true}
-    this.generateRandomCoordinates = this.generateRandomCoordinates.bind(this)
-    this.emilinateBubble = this.eliminateBubble.bind(this)
+    // this.emilinateBubble = this.eliminateBubble.bind(this)
   }
 
   getCanvas = elem => {
@@ -92,28 +91,14 @@ export class PoseNet extends React.Component {
     })
   }
 
-  generateRandomCoordinates() {
-    const xBubble = Math.random() * 1300
-    const yBubble = Math.random() * 800
-
-    this.setState = {
-      xBubble: xBubble,
-      yBubble: yBubble,
-      xMin: xBubble * 0.9,
-      xMa: xBubble * 1.1,
-      yMin: yBubble * 0.9,
-      yMax: yBubble * 1.1
-    }
-  }
-
-  eliminateBubble() {
-    this.setState = {
-      xMin: undefined,
-      xMa: undefined,
-      yMin: undefined,
-      yMax: undefined
-    }
-  }
+  // eliminateBubble() {
+  //   this.setState = {
+  //     xMin: undefined,
+  //     xMa: undefined,
+  //     yMin: undefined,
+  //     yMax: undefined
+  //   }
+  // }
 
   detectPose() {
     const {videoWidth, videoHeight} = this.props
@@ -173,9 +158,13 @@ export class PoseNet extends React.Component {
           )
           // index 10 is rightWrist
           // index 9 is left Wrist
+          const xMin = this.props.xBubble * 0.9
+          const xMax = this.props.xBubble * 1.1
+          const yMin = this.props.yBubble * 0.9
+          const yMax = this.props.yBubble * 1.1
           if (
-            this.state.xMin < pose.keypoints[10].position.x < this.state.xMax &&
-            this.state.yMin < pose.keypoints[10].position.y < this.state.yMax
+            xMin < pose.keypoints[10].position.x < xMax &&
+            yMin < pose.keypoints[10].position.y < yMax
           ) {
             counter = counter++
             eliminateBubble()
@@ -226,14 +215,12 @@ export class PoseNet extends React.Component {
     ) : (
       ''
     )
+    console.log('IN WEBCAM COMP PROPS', this.props, 'STATE', this.state)
     return (
       <div className="PoseNet">
         {loading}
         <video id="notShow" playsInline ref={this.getVideo} />
-        <canvas ref={this.getCanvas} />
-        <div className="bubble">
-          {this.props.render(this.state.xBubble, this.state.yBubble)}
-        </div>
+        <canvas id="notShow2" ref={this.getCanvas} />
         <Bubble
           className="bubble"
           render={({x, y}) => (
@@ -249,4 +236,9 @@ export class PoseNet extends React.Component {
   }
 }
 
-export default connect(null, null)(Bubble)
+const mapState = state => ({
+  xBubble: state.bubble.xCoordinate,
+  yBubble: state.bubble.yCoordinate
+})
+
+export default connect(mapState)(PoseNet)
