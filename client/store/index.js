@@ -6,9 +6,7 @@ import user from './user'
 import bubble from './bubble'
 
 const reducer = combineReducers({user, bubble})
-const middleware = composeWithDevTools(
-  applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
-)
+const middleware = composeWithDevTools(applyMiddleware(thunkMiddleware))
 const store = createStore(reducer, middleware)
 
 export default store

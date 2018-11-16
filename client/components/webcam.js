@@ -3,8 +3,13 @@ import React, {Component} from 'react'
 import {isMobile, drawKeypoints, drawSkeleton} from './utils'
 import Bubble from './bubble'
 import {connect} from 'react-redux'
+import {getXCoordinate, getYCoordinate} from '../store/bubble'
 
 let counter = 0
+
+const KEY = {
+  P: 80
+}
 
 class PoseNet extends React.Component {
   static defaultProps = {
@@ -16,25 +21,55 @@ class PoseNet extends React.Component {
     showVideo: true,
     showSkeleton: true,
     showPoints: true,
-    minPoseConfidence: 0.1,
+    minPoseConfidence: 0.6,
     minPartConfidence: 0.5,
     maxPoseDetections: 2,
     nmsRadius: 20.0,
-    outputStride: 16,
-    imageScaleFactor: 0.5,
+    outputStride: 32,
+    imageScaleFactor: 0.2,
     skeletonColor: 'aqua',
     skeletonLineWidth: 2,
-    loadingText: 'Loading pose detector...',
-    xMin: undefined,
-    xMax: undefined,
-    yMin: undefined,
-    yMax: undefined
+    scoreThreshold: 0.8,
+    loadingText: 'Loading pose detector...'
   }
 
   constructor(props) {
     super(props, PoseNet.defaultProps)
-    this.state = {loading: true}
-    // this.emilinateBubble = this.eliminateBubble.bind(this)
+    this.state = {
+      keys: {
+        up: 0,
+        down: 0
+      },
+      loading: true,
+      xMin: 0,
+      xMax: 0,
+      yMin: 0,
+      yMax: 0
+    }
+    this.generateRandomCoordinates = this.generateRandomCoordinates.bind(this)
+    this.emilinateBubble = this.eliminateBubble.bind(this)
+    this.handleKeys = this.handleKeys.bind(this)
+  }
+
+  handleKeys(value, e) {
+    if (e.keyCode === KEY.P && e.type === 'keydown') {
+      console.log(
+        'COUNTER',
+        counter,
+        // 'POSE',
+        // pose.keypoints[10].position,
+        'XMINETC',
+        this.state
+      )
+    }
+
+    let keys = this.state.keys
+
+    if (e.keyCode === KEY.UP || e.keyCode === KEY.W) keys.up = value
+
+    this.setState({
+      keys: keys
+    })
   }
 
   getCanvas = elem => {
@@ -55,6 +90,8 @@ class PoseNet extends React.Component {
     }
     this.net = await posenet.load(this.props.mobileNetArchitecture)
     this.detectPose()
+    window.addEventListener('keyup', this.handleKeys.bind(this, false))
+    window.addEventListener('keydown', this.handleKeys.bind(this, true))
   }
 
   async setupCamera() {
@@ -91,15 +128,6 @@ class PoseNet extends React.Component {
     })
   }
 
-  // eliminateBubble() {
-  //   this.setState = {
-  //     xMin: undefined,
-  //     xMa: undefined,
-  //     yMin: undefined,
-  //     yMax: undefined
-  //   }
-  // }
-
   detectPose() {
     const {videoWidth, videoHeight} = this.props
     const canvas = this.canvas
@@ -127,7 +155,8 @@ class PoseNet extends React.Component {
       showPoints,
       showSkeleton,
       skeletonColor,
-      skeletonLineWidth
+      skeletonLineWidth,
+      scoreThreshold
     } = this.props
 
     const net = this.net
@@ -145,7 +174,8 @@ class PoseNet extends React.Component {
             outputStride,
             maxPoseDetections,
             minPartConfidence,
-            nmsRadius
+            nmsRadius,
+            scoreThreshold
           )
 
           break
@@ -154,20 +184,26 @@ class PoseNet extends React.Component {
             video,
             imageScaleFactor,
             flipHorizontal,
-            outputStride
+            outputStride,
+            scoreThreshold
           )
           // index 10 is rightWrist
           // index 9 is left Wrist
-          const xMin = this.props.xBubble * 0.9
-          const xMax = this.props.xBubble * 1.1
-          const yMin = this.props.yBubble * 0.9
-          const yMax = this.props.yBubble * 1.1
+
+          this.setState({
+            xMin: this.props.xBubble * 0.85,
+            xMax: this.props.xBubble * 1.15,
+            yMin: this.props.yBubble * 0.85,
+            yMax: this.props.yBubble * 1.15
+          })
+
           if (
-            xMin < pose.keypoints[10].position.x < xMax &&
-            yMin < pose.keypoints[10].position.y < yMax
+            this.state.xMin < pose.keypoints[10].position.x < this.state.xMax &&
+            this.state.yMin < pose.keypoints[10].position.y < this.state.yMax
           ) {
-            counter = counter++
-            eliminateBubble()
+            counter++
+            this.eliminateBubble()
+            // this.handleKeys()
           }
           poses.push(pose)
           break
@@ -209,18 +245,37 @@ class PoseNet extends React.Component {
     poseDetectionFrameInner()
   }
 
+  generateRandomCoordinates() {
+    const xBubble = Math.random() * 1300
+    const yBubble = Math.random() * 800
+    this.props.addX(xBubble)
+    this.props.addY(yBubble)
+  }
+
+  eliminateBubble() {
+    this.setState({
+      xMin: null,
+      xMax: null,
+      yMin: null,
+      yMax: null
+    })
+    this.props.addX(null)
+    this.props.addY(null)
+    this.generateRandomCoordinates()
+  }
+
   render() {
     const loading = this.state.loading ? (
       <div className="PoseNet__loading">{this.props.loadingText}</div>
     ) : (
       ''
     )
-    console.log('IN WEBCAM COMP PROPS', this.props, 'STATE', this.state)
+    // console.log('IN WEBCAM COMP PROPS', this.props, 'STATE', this.state)
     return (
       <div className="PoseNet">
         {loading}
         <video id="notShow" playsInline ref={this.getVideo} />
-        <canvas id="notShow2" ref={this.getCanvas} />
+        <canvas ref={this.getCanvas} />
         <Bubble
           className="bubble"
           render={({x, y}) => (
@@ -230,6 +285,7 @@ class PoseNet extends React.Component {
               style={{position: 'absolute', top: y, left: x}}
             />
           )}
+          generateRandomCoordinates={this.generateRandomCoordinates}
         />
       </div>
     )
@@ -241,4 +297,11 @@ const mapState = state => ({
   yBubble: state.bubble.yCoordinate
 })
 
-export default connect(mapState)(PoseNet)
+const mapDispatch = dispatch => {
+  return {
+    addX: num => dispatch(getXCoordinate(num)),
+    addY: yBubble => dispatch(getYCoordinate(yBubble))
+  }
+}
+
+export default connect(mapState, mapDispatch)(PoseNet)
