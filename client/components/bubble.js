@@ -17,17 +17,17 @@ class Bubble extends Component {
     })
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   // console.log('TOUCHED COMPDID UPDATE', this.state)
+  componentDidUpdate(prevProps, prevState) {
+    // console.log('TOUCHED COMPDID UPDATE', this.state)
 
-  //   if (prevProps.xBubble !== this.props.xBubble) {
-  //     this.setState({
-  //       x: this.props.xBubble,
-  //       y: this.props.yBubble
-  //     })
-  //   }
-  //   // console.log('TOUCHED COMPDID UPDATE', this.state)
-  // }
+    if (prevProps.xBubble !== this.props.xBubble) {
+      this.setState({
+        x: this.props.xBubble,
+        y: this.props.yBubble
+      })
+    }
+    // console.log('TOUCHED COMPDID UPDATE', this.state)
+  }
 
   // generateRandomCoordinates() {
   //   const xBubble = Math.random() * 1300
@@ -49,6 +49,8 @@ class Bubble extends Component {
 
   render() {
     // console.log('IN BUBBLE COMP PROPS', this.props, 'STATE', this.state)
+    // console.log('INNT', this.props.xBubble, this.props.yBubble)
+
     return <div className="bubble">{this.props.render(this.state)}</div>
   }
 }

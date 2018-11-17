@@ -21,12 +21,12 @@ class PoseNet extends React.Component {
     showVideo: true,
     showSkeleton: true,
     showPoints: true,
-    minPoseConfidence: 0.6,
+    minPoseConfidence: 0.3,
     minPartConfidence: 0.5,
     maxPoseDetections: 2,
     nmsRadius: 20.0,
     outputStride: 32,
-    imageScaleFactor: 0.2,
+    imageScaleFactor: 0.25,
     skeletonColor: 'aqua',
     skeletonLineWidth: 2,
     scoreThreshold: 0.8,
@@ -92,6 +92,7 @@ class PoseNet extends React.Component {
     this.detectPose()
     window.addEventListener('keyup', this.handleKeys.bind(this, false))
     window.addEventListener('keydown', this.handleKeys.bind(this, true))
+    console.log('COMPONENTDIDMOUNT', this.state)
   }
 
   async setupCamera() {
@@ -191,19 +192,22 @@ class PoseNet extends React.Component {
           // index 9 is left Wrist
 
           this.setState({
-            xMin: this.props.xBubble * 0.85,
-            xMax: this.props.xBubble * 1.15,
-            yMin: this.props.yBubble * 0.85,
-            yMax: this.props.yBubble * 1.15
+            xMin: this.props.xBubble * 0.7,
+            xMax: this.props.xBubble * 1.3,
+            yMin: this.props.yBubble * 0.7,
+            yMax: this.props.yBubble * 1.3
           })
 
           if (
-            this.state.xMin < pose.keypoints[10].position.x < this.state.xMax &&
-            this.state.yMin < pose.keypoints[10].position.y < this.state.yMax
+            this.state.xMin < pose.keypoints[10].position.x &&
+            pose.keypoints[10].position.x < this.state.xMax &&
+            this.state.yMin < pose.keypoints[10].position.y &&
+            pose.keypoints[10].position.y < this.state.yMax
+            // pose.keypoints[10].score > 0.5
           ) {
             counter++
+            console.log('POSE', pose)
             this.eliminateBubble()
-            // this.handleKeys()
           }
           poses.push(pose)
           break
@@ -270,12 +274,11 @@ class PoseNet extends React.Component {
     ) : (
       ''
     )
-    // console.log('IN WEBCAM COMP PROPS', this.props, 'STATE', this.state)
+    // console.log('VALUES', x, y)
     return (
       <div className="PoseNet">
         {loading}
         <video id="notShow" playsInline ref={this.getVideo} />
-        <canvas ref={this.getCanvas} />
         <Bubble
           className="bubble"
           render={({x, y}) => (
@@ -287,6 +290,7 @@ class PoseNet extends React.Component {
           )}
           generateRandomCoordinates={this.generateRandomCoordinates}
         />
+        <canvas ref={this.getCanvas} />
       </div>
     )
   }
