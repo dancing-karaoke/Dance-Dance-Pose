@@ -53,14 +53,7 @@ class PoseNet extends React.Component {
 
   handleKeys(value, e) {
     if (e.keyCode === KEY.P && e.type === 'keydown') {
-      console.log(
-        'COUNTER',
-        counter,
-        // 'POSE',
-        // pose.keypoints[10].position,
-        'XMINETC',
-        this.state
-      )
+      console.log('COUNTER', counter, 'STATE', this.state)
     }
 
     let keys = this.state.keys
@@ -265,7 +258,7 @@ class PoseNet extends React.Component {
     })
     this.props.addX(null)
     this.props.addY(null)
-    this.generateRandomCoordinates()
+    // this.generateRandomCoordinates()
   }
 
   render() {
@@ -274,7 +267,6 @@ class PoseNet extends React.Component {
     ) : (
       ''
     )
-    // console.log('VALUES', x, y)
     return (
       <div className="PoseNet">
         {loading}

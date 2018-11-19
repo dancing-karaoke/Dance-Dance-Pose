@@ -1,4 +1,5 @@
 import * as posenet from '@tensorflow-models/posenet'
+import beats from '../../beats'
 
 function isAndroid() {
   return /Android/i.test(navigator.userAgent)
@@ -67,3 +68,11 @@ export function drawSkeleton(
     )
   })
 }
+
+function beatToBubble(array) {
+  let output = []
+  array.map(x => output.push(x.start))
+  return output
+}
+
+export const beatsToDisplay = beatToBubble(beats)
