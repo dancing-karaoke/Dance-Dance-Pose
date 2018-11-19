@@ -6,7 +6,7 @@ import {Login, Signup, UserHome} from './components'
 import {me} from './store'
 import Sing from './components/Sing'
 import Webcam from './components/webcam'
-import PlaySong from './components/Playsong'
+import Main from './components/Main'
 
 /**
  * COMPONENT
@@ -26,7 +26,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/webcam" component={Webcam} />
         <Route path="/sing" component={Sing} />
-        <Route path="/playsong" component={PlaySong} />
+        <Route path="/main" component={Main} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

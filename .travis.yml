@@ -16,12 +16,12 @@ install:
 before_script:
   - psql -c 'create database "dance-dance-pose-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 
-# before_deploy:
-#   - npm run build-client # make the bundle
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+before_deploy:
+  - npm run build-client # make the bundle
+  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+deploy:
+  skip_cleanup: true # prevents travis from deleting the build
+  provider: heroku
+  app: dance-dance-pose # see README
+  api_key:
+    secure: vHJaqQHLk2CRxYCddW1pGTKNsjC5FEQLW15LXACXZozo+IXW9wu++kqQ3OQgLi0eJzf+xGPLP4jtFNED3H1Sn4MnfTv6tCtoDkbUpX/mqf36mjvHGNsWHemvmxDi4fQKhv4nK1nH/jv4YJ3BP0rA9HyUWjgXtz5/7rbKnkFiDd3Cf1bGVtQ41rnffUyNf8dbzK8NGtsd5p+LzxmTapAV8KydnMsyCT4scdnK4Yw4b7qZY9g2CLs8SJqSNY61Tev8t9vZzlEjAHC4kzBWxvF6G0CTAReq0PdMXbwTRYDqH19REFYPqKGdEa3uWV1WL/d+oB+UunyIkkZ6UPw2sg/VbtO9oeO2XJUORLEiCgxnjfBKxK9dJ0pqJCnavUA+s/quTdvzHKRNFx9OuKPWnIgIIDlsf6Vo6D82RmpzWXZVFXvDdWiqIqpsK84MHZoVyfMY4roKFgORE11NaQ5MC+BLakYlI4UUtiDq2e0DzSCjNPp4mHgh47Kb8nkToOpZxyMV7RRHz+m2Vayx0mPqMDD2z02/AO+qmgzVexg1GfzX3DSYXvuPc5yldiZKApFxydpt/oH2vuTCr7tjTCVY/K9f9Isppa4MNgzhoLZT2KLX8pPYajWXRXtvBVAV6uzRFBoOR8BEjBmRNz9amVRPFtlOlhBk5/0zrlyoOrElwHaXgO8= # see README

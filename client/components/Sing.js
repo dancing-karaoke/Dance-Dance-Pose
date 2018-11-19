@@ -31,6 +31,7 @@ class Sing extends Component {
         9.5: 'E',
         10: 'C'
       }
+      // song: new Wad({source: '/adele.mp3'})
     }
     this.pitchLogger = this.pitchLogger.bind(this)
     this.handlePitchLogger = this.handlePitchLogger.bind(this)
@@ -46,7 +47,13 @@ class Sing extends Component {
     if (this.state.trackingPitch === true) {
       let voice = new Wad({source: 'mic'}) // At this point, your browser will ask for permission to access your microphone.
       let tuner = new Wad.Poly()
+      let song = this.props.song
+
+      song.play()
+
       let currentTime = tuner.destination.context.currentTime.toFixed(1)
+      console.log(song.destination.context.currentTime - currentTime)
+
       tuner.setVolume(0) // If you're not using headphones, you can eliminate microphone feedback by muting the output from the tuner.
       tuner.add(voice)
 
