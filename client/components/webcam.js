@@ -272,15 +272,6 @@ class PoseNet extends React.Component {
         {loading}
         <video id="notShow" playsInline ref={this.getVideo} />
         <Bubble
-          /*className="bubble"
-          render={({x, y}) => (
-            <img
-
-              src="http://pngimg.com/uploads/cat/cat_PNG132.png"
-              width="100"
-              style={{position: 'absolute', bottom: y, left: x}}
-            />
-          )}*/
           yBubble={this.props.yBubble}
           xBubble={this.props.xBubble}
           generateRandomCoordinates={this.generateRandomCoordinates}

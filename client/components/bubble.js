@@ -25,7 +25,19 @@ class Bubble extends Component {
   }
 
   render() {
-    return <div className="bubble">{this.props.render(this.state)}</div>
+    return (
+      <div className="bubble">
+        <img
+          src="http://pngimg.com/uploads/cat/cat_PNG132.png"
+          width="100"
+          style={{
+            position: 'absolute',
+            bottom: this.state.y,
+            left: this.state.x
+          }}
+        />
+      </div>
+    )
   }
 }
 
