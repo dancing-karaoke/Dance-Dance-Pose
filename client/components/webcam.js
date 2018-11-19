@@ -203,7 +203,7 @@ class PoseNet extends React.Component {
             // pose.keypoints[10].score > 0.5
           ) {
             counter++
-            console.log('POSE', pose)
+            console.log('COUNTER', counter)
             this.eliminateBubble()
           }
           poses.push(pose)
@@ -262,24 +262,40 @@ class PoseNet extends React.Component {
 
   handleTimer() {
     let tuner = new Wad.Poly()
+
     console.log('TIME', tuner.destination.context.currentTime.toFixed(1))
-    console.log('THIS>SSTATE', this.state.time)
+    console.log('THIS>SSTATE', this.state.time.getSeconds())
     console.log('BEATS', beatsToDisplay)
-    while (
-      tuner.destination.context.currentTime.toFixed(1) <=
-      (this.state.time.getSeconds() + beatsToDisplay[length - 1]).toFixed(1)
+    if (
+      tuner.destination.context.currentTime.toFixed(1) ===
+      (this.state.time.getSeconds() + beatsToDisplay[0]).toFixed(1)
     ) {
-      let counterTimeBubble = 1
-      if (
-        tuner.destination.context.currentTime.toFixed(1) ===
-        this.state.time.getSeconds() +
-          beatsToDisplay[counterTimeBubble].toFixed(1)
-      ) {
-        this.eliminateBubble()
-        counterTimeBubble++
-      }
+      this.generateRandomCoordinates()
+    } else if (
+      tuner.destination.context.currentTime.toFixed(1) >
+      (this.state.time.getSeconds() + beatsToDisplay[0]).toFixed(1)
+    ) {
+      setInterval(this.generateRandomCoordinates, 1000)
     }
   }
+
+  // while (tuner.destination.context.currentTime.toFixed(1) <= 30) {
+  // (
+  //   this.state.time.getSeconds() + beatsToDisplay[beatsToDisplay.length - 1]
+  // ).toFixed(1)
+  //     // ) {
+  //     console.log('HERE IN WHILE LOOP')
+  //     let counterTimeBubble = 1
+  //     if (
+  //       tuner.destination.context.currentTime.toFixed(1) ===
+  //       this.state.time.getSeconds() +
+  //         beatsToDisplay[counterTimeBubble].toFixed(1)
+  //     ) {
+  //       this.eliminateBubble()
+  //       counterTimeBubble++
+  //     }
+  //   }
+  // }
 
   eliminateBubble() {
     this.setState({

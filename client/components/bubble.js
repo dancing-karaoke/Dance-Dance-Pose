@@ -8,7 +8,7 @@ class Bubble extends Component {
   }
 
   componentDidMount() {
-    this.props.generateRandomCoordinates()
+    // this.props.generateRandomCoordinates()
     this.setState({
       x: this.props.xBubble,
       y: this.props.yBubble
@@ -31,8 +31,8 @@ class Bubble extends Component {
     return (
       <div className="bubble">
         <img
-          src="http://pngimg.com/uploads/cat/cat_PNG132.png"
-          width="100"
+          src="./bubble.gif"
+          width="500"
           style={{
             position: 'absolute',
             bottom: this.state.y,
