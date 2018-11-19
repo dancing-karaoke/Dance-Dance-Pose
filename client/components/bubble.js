@@ -16,7 +16,10 @@ class Bubble extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.xBubble !== this.props.xBubble) {
+    if (
+      prevProps.yBubble !== this.props.yBubble ||
+      prevProps.xBubble !== this.props.xBubble
+    ) {
       this.setState({
         x: this.props.xBubble,
         y: this.props.yBubble
@@ -47,8 +50,3 @@ const mapState = state => ({
 })
 
 export default connect(mapState)(Bubble)
-
-let startTime = new Date()
-let endTime = new Date()
-let timeDiff = endTime - startTime
-timeDiff /= 1000

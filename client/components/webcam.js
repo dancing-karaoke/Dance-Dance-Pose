@@ -27,7 +27,7 @@ class PoseNet extends React.Component {
     maxPoseDetections: 2,
     nmsRadius: 20.0,
     outputStride: 32,
-    imageScaleFactor: 0.25,
+    imageScaleFactor: 0.2,
     skeletonColor: 'aqua',
     skeletonLineWidth: 2,
     scoreThreshold: 0.8,
@@ -45,11 +45,14 @@ class PoseNet extends React.Component {
       xMin: 0,
       xMax: 0,
       yMin: 0,
-      yMax: 0
+      yMax: 0,
+      time: ''
     }
     this.generateRandomCoordinates = this.generateRandomCoordinates.bind(this)
     this.emilinateBubble = this.eliminateBubble.bind(this)
     this.handleKeys = this.handleKeys.bind(this)
+    this.startTimer = this.startTimer.bind(this)
+    this.handleTimer = this.handleTimer.bind(this)
   }
 
   handleKeys(value, e) {
@@ -250,22 +253,26 @@ class PoseNet extends React.Component {
     this.props.addY(yBubble)
   }
 
-  startTimer() {
+  async startTimer() {
     let startTime = new Date()
-    return startTime
+    console.log('DATE', startTime)
+    await this.setState({time: startTime})
+    this.handleTimer()
   }
 
   handleTimer() {
     let tuner = new Wad.Poly()
     console.log('TIME', tuner.destination.context.currentTime.toFixed(1))
+    console.log('THIS>SSTATE', this.state.time)
+    console.log('BEATS', beatsToDisplay)
     while (
       tuner.destination.context.currentTime.toFixed(1) <=
-      this.startTimer().getSeconds() + beatsToDisplay[length - 1].toFixed(1)
+      (this.state.time.getSeconds() + beatsToDisplay[length - 1]).toFixed(1)
     ) {
       let counterTimeBubble = 1
       if (
         tuner.destination.context.currentTime.toFixed(1) ===
-        this.startTimer().getSeconds() +
+        this.state.time.getSeconds() +
           beatsToDisplay[counterTimeBubble].toFixed(1)
       ) {
         this.eliminateBubble()
@@ -296,7 +303,7 @@ class PoseNet extends React.Component {
       <div className="PoseNet">
         {loading}
         <video id="notShow" playsInline ref={this.getVideo} />
-        <button onClick={this.handleTimer}> Start Game </button>
+        <button onClick={this.startTimer}> Start Game </button>
 
         <Bubble
           /*className="bubble"
