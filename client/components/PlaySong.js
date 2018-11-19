@@ -1,11 +1,10 @@
 import React, {Component} from 'react'
-// import testSong from '../../public/songs/adele.mp3'
 
 class PlaySong extends Component {
   constructor() {
     super()
     this.state = {
-      // audio: new Audio(testSong),
+      audio: new Audio('/adele.mp3'),
       play: false,
       pause: false
     }
@@ -22,6 +21,7 @@ class PlaySong extends Component {
   }
 
   render() {
+    console.log(this.state.audio)
     return (
       <div>
         <button onClick={this.play}>Play</button>
