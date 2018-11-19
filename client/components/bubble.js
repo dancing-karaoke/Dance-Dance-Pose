@@ -47,3 +47,8 @@ const mapState = state => ({
 })
 
 export default connect(mapState)(Bubble)
+
+let startTime = new Date()
+let endTime = new Date()
+let timeDiff = endTime - startTime
+timeDiff /= 1000

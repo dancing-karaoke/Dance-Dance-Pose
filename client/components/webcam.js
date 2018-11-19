@@ -1,9 +1,10 @@
 import * as posenet from '@tensorflow-models/posenet'
 import React, {Component} from 'react'
-import {isMobile, drawKeypoints, drawSkeleton} from './utils'
+import {isMobile, drawKeypoints, drawSkeleton, beatsToDisplay} from './utils'
 import Bubble from './bubble'
 import {connect} from 'react-redux'
 import {getXCoordinate, getYCoordinate} from '../store/bubble'
+import Wad from 'web-audio-daw'
 
 let counter = 0
 
@@ -249,6 +250,30 @@ class PoseNet extends React.Component {
     this.props.addY(yBubble)
   }
 
+  startTimer() {
+    let startTime = new Date()
+    return startTime
+  }
+
+  handleTimer() {
+    let tuner = new Wad.Poly()
+    console.log('TIME', tuner.destination.context.currentTime.toFixed(1))
+    while (
+      tuner.destination.context.currentTime.toFixed(1) <=
+      this.startTimer().getSeconds() + beatsToDisplay[length - 1].toFixed(1)
+    ) {
+      let counterTimeBubble = 1
+      if (
+        tuner.destination.context.currentTime.toFixed(1) ===
+        this.startTimer().getSeconds() +
+          beatsToDisplay[counterTimeBubble].toFixed(1)
+      ) {
+        this.eliminateBubble()
+        counterTimeBubble++
+      }
+    }
+  }
+
   eliminateBubble() {
     this.setState({
       xMin: null,
@@ -258,7 +283,7 @@ class PoseNet extends React.Component {
     })
     this.props.addX(null)
     this.props.addY(null)
-    // this.generateRandomCoordinates()
+    this.generateRandomCoordinates()
   }
 
   render() {
@@ -271,7 +296,18 @@ class PoseNet extends React.Component {
       <div className="PoseNet">
         {loading}
         <video id="notShow" playsInline ref={this.getVideo} />
+        <button onClick={this.handleTimer}> Start Game </button>
+
         <Bubble
+          /*className="bubble"
+          render={({x, y}) => (
+            <img
+
+              src="http://pngimg.com/uploads/cat/cat_PNG132.png"
+              width="100"
+              style={{position: 'absolute', bottom: y, left: x}}
+            />
+          )}*/
           yBubble={this.props.yBubble}
           xBubble={this.props.xBubble}
           generateRandomCoordinates={this.generateRandomCoordinates}
