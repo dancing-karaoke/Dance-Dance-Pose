@@ -20,7 +20,10 @@ class Bubble extends Component {
   componentDidUpdate(prevProps, prevState) {
     // console.log('TOUCHED COMPDID UPDATE', this.state)
 
-    if (prevProps.xBubble !== this.props.xBubble) {
+    if (
+      prevProps.yBubble !== this.props.yBubble ||
+      prevProps.xBubble !== this.props.xBubble
+    ) {
       this.setState({
         x: this.props.xBubble,
         y: this.props.yBubble
@@ -49,9 +52,22 @@ class Bubble extends Component {
 
   render() {
     // console.log('IN BUBBLE COMP PROPS', this.props, 'STATE', this.state)
-    // console.log('INNT', this.props.xBubble, this.props.yBubble)
+    console.log('INNT', this.state.x, this.state.y)
 
-    return <div className="bubble">{this.props.render(this.state)}</div>
+    return (
+      <div className="bubble">
+        {/*{this.props.render(this.state)}*/}
+        <img
+          src="http://pngimg.com/uploads/cat/cat_PNG132.png"
+          width="100"
+          style={{
+            position: 'absolute',
+            bottom: this.state.y,
+            left: this.state.x
+          }}
+        />
+      </div>
+    )
   }
 }
 

@@ -274,20 +274,24 @@ class PoseNet extends React.Component {
     ) : (
       ''
     )
-    // console.log('VALUES', x, y)
+    // console.log('VALUES', this.props.xBubble, this.props.yBubble)
+
     return (
       <div className="PoseNet">
         {loading}
         <video id="notShow" playsInline ref={this.getVideo} />
         <Bubble
-          className="bubble"
+          /*className="bubble"
           render={({x, y}) => (
             <img
+
               src="http://pngimg.com/uploads/cat/cat_PNG132.png"
               width="100"
-              style={{position: 'absolute', top: y, left: x}}
+              style={{position: 'absolute', bottom: y, left: x}}
             />
-          )}
+          )}*/
+          yBubble={this.props.yBubble}
+          xBubble={this.props.xBubble}
           generateRandomCoordinates={this.generateRandomCoordinates}
         />
         <canvas ref={this.getCanvas} />
