@@ -6,14 +6,15 @@ import Bubble from './bubble'
 import {connect} from 'react-redux'
 import {getXCoordinate, getYCoordinate, getDanceScore} from '../store/bubble'
 import Wad from 'web-audio-daw'
+
 // import { beats } from '../../beats';
 
 let counter = 0
 
 class PoseNet extends React.Component {
   static defaultProps = {
-    videoWidth: 1200,
-    videoHeight: 1000,
+    videoWidth: 1400,
+    videoHeight: 800,
     flipHorizontal: true,
     algorithm: 'single-pose',
     mobileNetArchitecture: isMobile() ? 0.5 : 1.01,
@@ -261,29 +262,7 @@ class PoseNet extends React.Component {
       this.setState({counterBeatInterval: counterBeat})
       return this.handleTimer(counterBeat)
     }
-    // return this.handleTimer(counterBeat)
   }
-  //   const firstBeat = beatsToDisplay[0].toFixed(1) * 1000
-  //   setTimeout(setInterval(this.generateRandomCoordinates, 2000), firstBeat)
-  // }
-
-  // while (tuner.destination.context.currentTime.toFixed(1) <= 30) {
-  // (
-  //   this.state.time.getSeconds() + beatsToDisplay[beatsToDisplay.length - 1]
-  // ).toFixed(1)
-  //     // ) {
-  //     console.log('HERE IN WHILE LOOP')
-  //     let counterTimeBubble = 1
-  //     if (
-  //       tuner.destination.context.currentTime.toFixed(1) ===
-  //       this.state.time.getSeconds() +
-  //         beatsToDisplay[counterTimeBubble].toFixed(1)
-  //     ) {
-  //       this.eliminateBubble()
-  //       counterTimeBubble++
-  //     }
-  //   }
-  // }
 
   eliminateBubble() {
     this.setState({

@@ -25,6 +25,7 @@ class Main extends Component {
         <button onClick={this.danceDancePoseTime}> LET'S GO </button>
         <Sing onRef={ref => (this.sing = ref)} song={this.state.song} />
         <Webcam onRef={ref => (this.dance = ref)} song={this.state.song} />
+
       </div>
     )
   }

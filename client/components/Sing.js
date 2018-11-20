@@ -212,11 +212,20 @@ class Sing extends Component {
   render() {
     return (
       <div>
-        <p>Current Note: {this.state.currentNote}</p>
-        <p>Score: {this.state.score}</p>
-        <p>Current Time: {this.state.currentTime}</p>
-        <p>Target Note: {this.state.adeleNotes[this.state.currentTime]}</p>
-        <div id="subtitles" />
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 450,
+            left: 40
+          }}
+        >
+          <button onClick={this.handlePitchLogger}> Start Game </button>
+          <p>Current Note: {this.state.currentNote}</p>
+          <p>Score: {this.state.score}</p>
+          <p>Current Time: {this.state.currentTime}</p>
+          <p>Target Note: {this.state.adeleNotes[this.state.currentTime]}</p>
+          <div id="subtitles" />
+        </div>
       </div>
     )
   }
