@@ -43,7 +43,9 @@ class PoseNet extends React.Component {
       xMax: 0,
       yMin: 0,
       yMax: 0,
-      time: ''
+      windowTime: this.props.song.destination.context.currentTime,
+      time: 0,
+      counterBeatInterval: 0
     }
     this.generateRandomCoordinates = this.generateRandomCoordinates.bind(this)
     this.emilinateBubble = this.eliminateBubble.bind(this)
@@ -230,37 +232,35 @@ class PoseNet extends React.Component {
 
   async startTimer() {
     let startTime = new Date()
-    await this.setState({time: startTime})
-    // let beatsToDisplay2 = beatsToDisplay
-    this.handleTimer()
+    await this.setState({
+      time: startTime,
+      windowTime: this.props.song.destination.context.currentTime
+    })
+    const bumpingBeats = setInterval(() => {
+      if (this.state.counterBeatInterval < beatsToDisplay.length) {
+        this.handleTimer()
+      } else {
+        clearInterval(bumpingBeats)
+      }
+    }, 500)
   }
 
-  handleTimer(counterBeat = 4) {
-    console.log('HANDLETIMER', counterBeat, 'length', beatsToDisplay.length)
-    let tuner = new Wad.Poly()
-    if (counter === beatsToDisplay.length) {
-      console.log('befoReEliminate', counterBeat)
-      this.eliminateBubble()
-    } else {
-      const beatTime = beatsToDisplay[counterBeat]
-      console.log(
-        'BEATTIME',
-        beatTime,
-        'DESTTIME',
-        tuner.destination.context.currentTime.toFixed(1),
-        'START',
-        this.state.time.getSeconds()
-      )
-      if (
-        tuner.destination.context.currentTime.toFixed(1) ===
-        this.state.time.getSeconds() + beatTime.toFixed(1)
-      ) {
-        this.generateRandomCoordinates()
-        counterBeat++
-        console.log('HANDLETIMER', counterBeat)
-        return this.handleTimer(counterBeat)
-      }
+  handleTimer(counterBeat = 1) {
+    const beatTime = beatsToDisplay[counterBeat]
+    console.log('COUNTERBEAT', counterBeat)
+    console.log('COUNTERBEATJOE', beatTime)
+
+    if (
+      this.props.song.destination.context.currentTime - this.state.windowTime >
+      beatTime
+    ) {
+      console.log('INSIDE IF')
+      this.generateRandomCoordinates()
+      counterBeat = counterBeat + 3
+      this.setState({counterBeatInterval: counterBeat})
+      return this.handleTimer(counterBeat)
     }
+    // return this.handleTimer(counterBeat)
   }
   //   const firstBeat = beatsToDisplay[0].toFixed(1) * 1000
   //   setTimeout(setInterval(this.generateRandomCoordinates, 2000), firstBeat)
