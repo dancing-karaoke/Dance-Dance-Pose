@@ -90,6 +90,10 @@ class Sing extends Component {
     this.createSubtitle = this.createSubtitle.bind(this)
   }
 
+  componentDidMount() {
+    this.props.onRef(this)
+  }
+
   handlePitchLogger() {
     this.setState({trackingPitch: true}, function() {
       this.pitchLogger()
@@ -208,7 +212,6 @@ class Sing extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.handlePitchLogger}> Start Game </button>
         <p>Current Note: {this.state.currentNote}</p>
         <p>Score: {this.state.score}</p>
         <p>Current Time: {this.state.currentTime}</p>
