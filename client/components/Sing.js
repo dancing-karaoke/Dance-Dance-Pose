@@ -78,8 +78,9 @@ class Sing extends Component {
 
           let note
           if (!results[time]) {
+            // remove numbers and only keep letter note and if it is sharp or flat
             tuner.noteName
-              ? (note = tuner.noteName[0])
+              ? (note = tuner.noteName.replace(/[0-9]/g, ''))
               : (note = 'no note detected')
             results[time] = note
             this.setState({currentNote: note})
