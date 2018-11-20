@@ -275,7 +275,7 @@ class PoseNet extends React.Component {
       tuner.destination.context.currentTime.toFixed(1) >
       (this.state.time.getSeconds() + beatsToDisplay[0]).toFixed(1)
     ) {
-      setInterval(this.generateRandomCoordinates, 1000)
+      setInterval(this.generateRandomCoordinates, 2000)
     }
   }
 

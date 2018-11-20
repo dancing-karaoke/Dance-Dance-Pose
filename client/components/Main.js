@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Wad from 'web-audio-daw'
 import Sing from './Sing'
+import Webcam from './webcam'
 
 class Main extends Component {
   constructor(props) {
@@ -11,7 +12,12 @@ class Main extends Component {
   }
 
   render() {
-    return <Sing song={this.state.song} />
+    return (
+      <div>
+        <Sing song={this.state.song} />
+        <Webcam song={this.state.song} />
+      </div>
+    )
   }
 }
 
