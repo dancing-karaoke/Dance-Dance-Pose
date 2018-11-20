@@ -8,7 +8,6 @@ class Bubble extends Component {
   }
 
   componentDidMount() {
-    // this.props.generateRandomCoordinates()
     this.setState({
       x: this.props.xBubble,
       y: this.props.yBubble

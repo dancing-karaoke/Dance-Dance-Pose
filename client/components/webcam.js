@@ -1,16 +1,14 @@
 import * as posenet from '@tensorflow-models/posenet'
 import React, {Component} from 'react'
 import {isMobile, drawKeypoints, drawSkeleton, beatsToDisplay} from './utils'
+import {defaultProps} from './utils2'
 import Bubble from './bubble'
 import {connect} from 'react-redux'
 import {getXCoordinate, getYCoordinate, getDanceScore} from '../store/bubble'
 import Wad from 'web-audio-daw'
+// import { beats } from '../../beats';
 
 let counter = 0
-
-const KEY = {
-  P: 80
-}
 
 class PoseNet extends React.Component {
   static defaultProps = {
@@ -49,23 +47,8 @@ class PoseNet extends React.Component {
     }
     this.generateRandomCoordinates = this.generateRandomCoordinates.bind(this)
     this.emilinateBubble = this.eliminateBubble.bind(this)
-    this.handleKeys = this.handleKeys.bind(this)
     this.startTimer = this.startTimer.bind(this)
     this.handleTimer = this.handleTimer.bind(this)
-  }
-
-  handleKeys(value, e) {
-    if (e.keyCode === KEY.P && e.type === 'keydown') {
-      console.log('COUNTER', counter, 'STATE', this.state)
-    }
-
-    let keys = this.state.keys
-
-    if (e.keyCode === KEY.UP || e.keyCode === KEY.W) keys.up = value
-
-    this.setState({
-      keys: keys
-    })
   }
 
   getCanvas = elem => {
@@ -86,8 +69,6 @@ class PoseNet extends React.Component {
     }
     this.net = await posenet.load(this.props.mobileNetArchitecture)
     this.detectPose()
-    window.addEventListener('keyup', this.handleKeys.bind(this, false))
-    window.addEventListener('keydown', this.handleKeys.bind(this, true))
   }
 
   async setupCamera() {
@@ -95,11 +76,9 @@ class PoseNet extends React.Component {
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
       throw 'Browser API navigator.mediaDevices.getUserMedia not available'
     }
-
     const {videoWidth, videoHeight} = this.props
     const video = this.video
     const mobile = isMobile()
-
     video.width = videoWidth
     video.height = videoHeight
 
@@ -173,7 +152,7 @@ class PoseNet extends React.Component {
           )
 
           break
-        default:
+        case 'single-pose':
           const pose = await net.estimateSinglePose(
             video,
             imageScaleFactor,
@@ -251,29 +230,41 @@ class PoseNet extends React.Component {
 
   async startTimer() {
     let startTime = new Date()
-    console.log('DATE', startTime)
     await this.setState({time: startTime})
+    // let beatsToDisplay2 = beatsToDisplay
     this.handleTimer()
   }
 
-  handleTimer() {
+  handleTimer(counterBeat = 4) {
+    console.log('HANDLETIMER', counterBeat, 'length', beatsToDisplay.length)
     let tuner = new Wad.Poly()
-
-    console.log('TIME', tuner.destination.context.currentTime.toFixed(1))
-    console.log('THIS>SSTATE', this.state.time.getSeconds())
-    // console.log('BEATS', beatsToDisplay)
-    // if (
-    //   tuner.destination.context.currentTime.toFixed(1) ===
-    //   (this.state.time.getSeconds() + beatsToDisplay[0]).toFixed(1)
-    // ) {
-    //   this.generateRandomCoordinates()
-    // } else if (
-    //   tuner.destination.context.currentTime.toFixed(1) >
-    //   (this.state.time.getSeconds() + beatsToDisplay[0]).toFixed(1)
-    // )
-    const firstBeat = beatsToDisplay[0].toFixed(1) * 1000
-    setTimeout(setInterval(this.generateRandomCoordinates, 2000), firstBeat)
+    if (counter === beatsToDisplay.length) {
+      console.log('befoReEliminate', counterBeat)
+      this.eliminateBubble()
+    } else {
+      const beatTime = beatsToDisplay[counterBeat]
+      console.log(
+        'BEATTIME',
+        beatTime,
+        'DESTTIME',
+        tuner.destination.context.currentTime.toFixed(1),
+        'START',
+        this.state.time.getSeconds()
+      )
+      if (
+        tuner.destination.context.currentTime.toFixed(1) ===
+        this.state.time.getSeconds() + beatTime.toFixed(1)
+      ) {
+        this.generateRandomCoordinates()
+        counterBeat++
+        console.log('HANDLETIMER', counterBeat)
+        return this.handleTimer(counterBeat)
+      }
+    }
   }
+  //   const firstBeat = beatsToDisplay[0].toFixed(1) * 1000
+  //   setTimeout(setInterval(this.generateRandomCoordinates, 2000), firstBeat)
+  // }
 
   // while (tuner.destination.context.currentTime.toFixed(1) <= 30) {
   // (
@@ -302,7 +293,7 @@ class PoseNet extends React.Component {
     })
     this.props.addX(null)
     this.props.addY(null)
-    this.generateRandomCoordinates()
+    // this.generateRandomCoordinates()
   }
 
   render() {
@@ -319,20 +310,7 @@ class PoseNet extends React.Component {
         {this.state.time === '' ? (
           <h2 />
         ) : (
-          <Bubble
-            /*className="bubble"
-          render={({x, y}) => (
-            <img
-
-              src="http://pngimg.com/uploads/cat/cat_PNG132.png"
-              width="100"
-              style={{position: 'absolute', bottom: y, left: x}}
-            />
-          )}*/
-            yBubble={this.props.yBubble}
-            xBubble={this.props.xBubble}
-            generateRandomCoordinates={this.generateRandomCoordinates}
-          />
+          <Bubble yBubble={this.props.yBubble} xBubble={this.props.xBubble} />
         )}
         <canvas ref={this.getCanvas} />
       </div>

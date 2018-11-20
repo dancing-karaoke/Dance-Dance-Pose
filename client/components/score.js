@@ -7,27 +7,7 @@ class Score extends Component {
     this.state = {x: 20, y: 150}
   }
 
-  // componentDidMount() {
-  //   this.setState({
-  //     x: this.props.singScore,
-  //     y: this.props.danceScore
-  //   })
-  // }
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (
-  //     prevProps.danceScore !== this.props.danceScore ||
-  //     prevProps.singScore !== this.props.singScore
-  //   ) {
-  //     this.setState({
-  //       x: this.props.singScore,
-  //       y: this.props.danceScore
-  //     })
-  //   }
-  // }
-
   render() {
-    console.log('THIS>PROPS', this.props)
     return (
       <div
         style={{
