@@ -220,7 +220,6 @@ class PoseNet extends React.Component {
 
       requestAnimationFrame(poseDetectionFrameInner)
     }
-
     poseDetectionFrameInner()
   }
 
@@ -243,25 +242,55 @@ class PoseNet extends React.Component {
       } else {
         clearInterval(bumpingBeats)
       }
-    }, 500)
+    }, 100)
   }
 
-  handleTimer(counterBeat = 1) {
-    const beatTime = beatsToDisplay[counterBeat]
-    console.log('COUNTERBEAT', counterBeat)
-    console.log('COUNTERBEATJOE', beatTime)
+  handleTimer() {
+    const beatTime = beatsToDisplay[this.state.counterBeatInterval]
+    // console.log('COUNTERBEAT', counterBeat)
+    // console.log('beatTime', beatTime)
+    // console.log('currentTime - this.state.windowTime', this.props.song.destination.context.currentTime - this.state.windowTime)
 
     if (
       this.props.song.destination.context.currentTime - this.state.windowTime >
       beatTime
     ) {
-      console.log('INSIDE IF')
       this.generateRandomCoordinates()
-      counterBeat = counterBeat + 3
-      this.setState({counterBeatInterval: counterBeat})
-      return this.handleTimer(counterBeat)
+      this.setState({counterBeatInterval: this.state.counterBeatInterval + 9})
+    } else {
+      console.log(
+        'this.state.counterBeatInterval',
+        this.state.counterBeatInterval
+      )
     }
+
+    // counterBeat = counterBeat + 3
+
+    // while (this.state.counterBeatInterval < beatsToDisplay.length) {
+    //   console.log('INSIDEEEEEE')
+    //   this.generateRandomCoordinates()
+    //   // counterBeat = counterBeat + 3
+    //   this.setState({counterBeatInterval: this.state.counterBeatInterval + 3})
+    // }
   }
+
+  // handleTimer(counterBeat = 1) {
+  //   const beatTime = beatsToDisplay[counterBeat]
+  //   // console.log('COUNTERBEAT', counterBeat)
+  //   console.log('beatTime', beatTime)
+  //   console.log('currentTime - this.state.windowTime', this.props.song.destination.context.currentTime - this.state.windowTime)
+
+  //   if (
+  //     this.props.song.destination.context.currentTime - this.state.windowTime >
+  //     beatTime
+  //   ) {
+  //     // console.log('INSIDE IF')
+  //     this.generateRandomCoordinates()
+  //     counterBeat = counterBeat + 3
+  //     this.setState({counterBeatInterval: counterBeat})
+  //     return this.handleTimer(counterBeat)
+  //   }
+  // }
 
   eliminateBubble() {
     this.setState({
