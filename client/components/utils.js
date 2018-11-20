@@ -71,7 +71,6 @@ export function drawSkeleton(
 
 function beatToBubble(array) {
   let output = []
-  console.log('BEATS', array)
   array.map(x => output.push(x.start))
   return output
 }

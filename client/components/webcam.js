@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import {isMobile, drawKeypoints, drawSkeleton, beatsToDisplay} from './utils'
 import Bubble from './bubble'
 import {connect} from 'react-redux'
-import {getXCoordinate, getYCoordinate} from '../store/bubble'
+import {getXCoordinate, getYCoordinate, getDanceScore} from '../store/bubble'
 import Wad from 'web-audio-daw'
 
 let counter = 0
@@ -28,9 +28,8 @@ class PoseNet extends React.Component {
     nmsRadius: 20.0,
     outputStride: 32,
     imageScaleFactor: 0.2,
-    skeletonColor: 'aqua',
-    skeletonLineWidth: 2,
-    scoreThreshold: 0.8,
+    skeletonColor: 'coral',
+    skeletonLineWidth: 6,
     loadingText: 'Loading pose detector...'
   }
 
@@ -89,7 +88,6 @@ class PoseNet extends React.Component {
     this.detectPose()
     window.addEventListener('keyup', this.handleKeys.bind(this, false))
     window.addEventListener('keydown', this.handleKeys.bind(this, true))
-    console.log('COMPONENTDIDMOUNT', this.state)
   }
 
   async setupCamera() {
@@ -153,8 +151,7 @@ class PoseNet extends React.Component {
       showPoints,
       showSkeleton,
       skeletonColor,
-      skeletonLineWidth,
-      scoreThreshold
+      skeletonLineWidth
     } = this.props
 
     const net = this.net
@@ -172,8 +169,7 @@ class PoseNet extends React.Component {
             outputStride,
             maxPoseDetections,
             minPartConfidence,
-            nmsRadius,
-            scoreThreshold
+            nmsRadius
           )
 
           break
@@ -182,8 +178,7 @@ class PoseNet extends React.Component {
             video,
             imageScaleFactor,
             flipHorizontal,
-            outputStride,
-            scoreThreshold
+            outputStride
           )
           // index 10 is rightWrist
           // index 9 is left Wrist
@@ -203,6 +198,7 @@ class PoseNet extends React.Component {
             // pose.keypoints[10].score > 0.5
           ) {
             counter++
+            this.props.addScore(counter)
             console.log('COUNTER', counter)
             this.eliminateBubble()
           }
@@ -265,18 +261,18 @@ class PoseNet extends React.Component {
 
     console.log('TIME', tuner.destination.context.currentTime.toFixed(1))
     console.log('THIS>SSTATE', this.state.time.getSeconds())
-    console.log('BEATS', beatsToDisplay)
-    if (
-      tuner.destination.context.currentTime.toFixed(1) ===
-      (this.state.time.getSeconds() + beatsToDisplay[0]).toFixed(1)
-    ) {
-      this.generateRandomCoordinates()
-    } else if (
-      tuner.destination.context.currentTime.toFixed(1) >
-      (this.state.time.getSeconds() + beatsToDisplay[0]).toFixed(1)
-    ) {
-      setInterval(this.generateRandomCoordinates, 2000)
-    }
+    // console.log('BEATS', beatsToDisplay)
+    // if (
+    //   tuner.destination.context.currentTime.toFixed(1) ===
+    //   (this.state.time.getSeconds() + beatsToDisplay[0]).toFixed(1)
+    // ) {
+    //   this.generateRandomCoordinates()
+    // } else if (
+    //   tuner.destination.context.currentTime.toFixed(1) >
+    //   (this.state.time.getSeconds() + beatsToDisplay[0]).toFixed(1)
+    // )
+    const firstBeat = beatsToDisplay[0].toFixed(1) * 1000
+    setTimeout(setInterval(this.generateRandomCoordinates, 2000), firstBeat)
   }
 
   // while (tuner.destination.context.currentTime.toFixed(1) <= 30) {
@@ -320,9 +316,11 @@ class PoseNet extends React.Component {
         {loading}
         <video id="notShow" playsInline ref={this.getVideo} />
         <button onClick={this.startTimer}> Start Game </button>
-
-        <Bubble
-          /*className="bubble"
+        {this.state.time === '' ? (
+          <h2 />
+        ) : (
+          <Bubble
+            /*className="bubble"
           render={({x, y}) => (
             <img
 
@@ -331,10 +329,11 @@ class PoseNet extends React.Component {
               style={{position: 'absolute', bottom: y, left: x}}
             />
           )}*/
-          yBubble={this.props.yBubble}
-          xBubble={this.props.xBubble}
-          generateRandomCoordinates={this.generateRandomCoordinates}
-        />
+            yBubble={this.props.yBubble}
+            xBubble={this.props.xBubble}
+            generateRandomCoordinates={this.generateRandomCoordinates}
+          />
+        )}
         <canvas ref={this.getCanvas} />
       </div>
     )
@@ -349,7 +348,8 @@ const mapState = state => ({
 const mapDispatch = dispatch => {
   return {
     addX: num => dispatch(getXCoordinate(num)),
-    addY: yBubble => dispatch(getYCoordinate(yBubble))
+    addY: yBubble => dispatch(getYCoordinate(yBubble)),
+    addScore: danceScore => dispatch(getDanceScore(danceScore))
   }
 }
 

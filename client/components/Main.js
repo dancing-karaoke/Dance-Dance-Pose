@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Wad from 'web-audio-daw'
 import Sing from './Sing'
 import Webcam from './webcam'
+import Score from './score'
 
 class Main extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class Main extends Component {
   render() {
     return (
       <div>
+        <Score />
         <Sing song={this.state.song} />
         <Webcam song={this.state.song} />
       </div>
