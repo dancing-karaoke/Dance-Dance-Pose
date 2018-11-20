@@ -30,11 +30,31 @@ class Sing extends Component {
         9: 'D',
         9.5: 'E',
         10: 'C'
-      }
-      // song: new Wad({source: '/adele.mp3'})
+      },
+      syncData: [
+        [
+          {start: '3', end: '5', text: 'I'},
+          {start: '5', end: '5.5', text: 'heard'},
+          {start: '6.5', end: '7', text: 'that'},
+          {start: '7', end: '7.5', text: 'you'},
+          {start: '8', end: '9.5', text: 'settled'},
+          {start: '9.5', end: '10', text: 'down', finalWord: true}
+        ],
+        [
+          {start: '10.5', end: '11', text: 'that'},
+          {start: '12', end: '13', text: 'you'},
+          {start: '13', end: '14', text: 'found'},
+          {start: '14', end: '15', text: 'a'},
+          {start: '16', end: '17', text: 'girl'},
+          {start: '17', end: '18', text: 'and'},
+          {start: '18', end: '19', text: "you're"},
+          {start: '19', end: '20', text: 'married', finalWord: true}
+        ]
+      ]
     }
     this.pitchLogger = this.pitchLogger.bind(this)
     this.handlePitchLogger = this.handlePitchLogger.bind(this)
+    this.createSubtitle = this.createSubtitle.bind(this)
   }
 
   handlePitchLogger() {
@@ -43,22 +63,62 @@ class Sing extends Component {
     })
   }
 
+  createSubtitle = () => {
+    let fakeTime = this.props.song.destination.context.currentTime
+    let subtitles = document.getElementById('subtitles')
+    let element
+
+    let currentSection = 0
+
+    for (let i = 0; i < this.state.syncData[currentSection].length; i++) {
+      element = document.createElement('span')
+      element.innerText = this.state.syncData[currentSection][i].text + ' '
+      subtitles.appendChild(element)
+    }
+
+    setInterval(() => {
+      this.state.syncData[currentSection].forEach((ele, index, array) => {
+        if (
+          this.props.song.destination.context.currentTime - fakeTime >=
+            ele.start &&
+          this.props.song.destination.context.currentTime - fakeTime <= ele.end
+        ) {
+          subtitles.children[index].style.background = 'yellow'
+          if (ele.finalWord) {
+            currentSection++
+            // reset to next line
+            subtitles.innerText = ''
+            for (
+              let i = 0;
+              i < this.state.syncData[currentSection].length;
+              i++
+            ) {
+              element = document.createElement('span')
+              element.innerText =
+                this.state.syncData[currentSection][i].text + ' '
+              subtitles.appendChild(element)
+            }
+          }
+        }
+      })
+    }, 100)
+  }
+
   pitchLogger = () => {
     if (this.state.trackingPitch === true) {
-      let voice = new Wad({source: 'mic'}) // At this point, your browser will ask for permission to access your microphone.
+      let voice = new Wad({source: 'mic'}) // also asks for microphone permission
       let tuner = new Wad.Poly()
       let song = this.props.song
 
       song.play()
 
       let currentTime = tuner.destination.context.currentTime.toFixed(1)
-      console.log(song.destination.context.currentTime - currentTime)
 
-      tuner.setVolume(0) // If you're not using headphones, you can eliminate microphone feedback by muting the output from the tuner.
+      tuner.setVolume(0) // eliminate microphone feedback by muting the output from the tuner
       tuner.add(voice)
 
-      voice.play() // You must give your browser permission to access your microphone before calling play().
-      tuner.updatePitch() // The tuner is now calculating the pitch and note name of its input 60 times per second. These values are stored in <code>tuner.pitch</code> and <code>tuner.noteName</code>.
+      voice.play() // you must have browser permission to access microphone before calling play()
+      tuner.updatePitch() // the tuner is now calculating the pitch and note name
 
       let results = {}
 
@@ -96,8 +156,9 @@ class Sing extends Component {
         }
       }
       logPitch()
+      this.createSubtitle()
     }
-    // tuner.stopUpdatingPitch(); // Stop calculating the pitch if you don't need to know it anymore.
+    // tuner.stopUpdatingPitch(); // Stop calculating the pitch
   }
 
   render() {
@@ -108,6 +169,7 @@ class Sing extends Component {
         <p>Score: {this.state.score}</p>
         <p>Current Time: {this.state.currentTime}</p>
         <p>Target Note: {this.state.adeleNotes[this.state.currentTime]}</p>
+        <div id="subtitles" />
       </div>
     )
   }
