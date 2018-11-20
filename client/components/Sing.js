@@ -31,14 +31,27 @@ class Sing extends Component {
         9.5: 'E',
         10: 'C'
       },
-      syncData: [
+      lyricsData: [
+        // [
+        //   {start: '1', end: '1.5', text: '1'},
+        //   {start: '1.5', end: '2', text: '1', finalWord: true}
+        // ],
+        // [
+        //   {start: '2', end: '2.5', text: '2'},
+        //   {start: '2.5', end: '3', text: '2', finalWord: true}
+        // ],
+        // [
+        //   {start: '3', end: '3.5', text: '3'},
+        //   {start: '3.5', end: '4', text: '3', finalWord: true}
+        // ],
         [
           {start: '3', end: '5', text: 'I'},
           {start: '5', end: '5.5', text: 'heard'},
           {start: '6.5', end: '7', text: 'that'},
           {start: '7', end: '7.5', text: 'you'},
           {start: '8', end: '9.5', text: 'settled'},
-          {start: '9.5', end: '10', text: 'down', finalWord: true}
+          {start: '9.5', end: '10', text: 'down'},
+          {start: '10', end: '11', text: ' ', finalWord: true}
         ],
         [
           {start: '10.5', end: '11', text: 'that'},
@@ -49,6 +62,26 @@ class Sing extends Component {
           {start: '17', end: '18', text: 'and'},
           {start: '18', end: '19', text: "you're"},
           {start: '19', end: '20', text: 'married', finalWord: true}
+        ],
+        [
+          {start: '20', end: '21', text: 'whoa'},
+          {start: '21', end: '22', text: 'you'},
+          {start: '22', end: '23', text: 'made'},
+          {start: '23', end: '24', text: 'it'},
+          {start: '24', end: '25', text: 'so'},
+          {start: '25', end: '26', text: 'far'},
+          {start: '26', end: '27', text: 'end'},
+          {start: '27', end: '28', text: 'interval?', finalWord: true}
+        ],
+        [
+          {start: '28', end: '29', text: '###'},
+          {start: '21', end: '22', text: '###'},
+          {start: '22', end: '23', text: 'made'},
+          {start: '23', end: '24', text: 'it'},
+          {start: '24', end: '25', text: 'so'},
+          {start: '25', end: '26', text: 'far'},
+          {start: '26', end: '27', text: 'end'},
+          {start: '27', end: '28', text: 'interval?', finalWord: true}
         ]
       ]
     }
@@ -64,38 +97,49 @@ class Sing extends Component {
   }
 
   createSubtitle = () => {
-    let fakeTime = this.props.song.destination.context.currentTime
+    let windowTime = this.props.song.destination.context.currentTime
     let subtitles = document.getElementById('subtitles')
     let element
 
     let currentSection = 0
 
-    for (let i = 0; i < this.state.syncData[currentSection].length; i++) {
+    for (let i = 0; i < this.state.lyricsData[currentSection].length; i++) {
       element = document.createElement('span')
-      element.innerText = this.state.syncData[currentSection][i].text + ' '
+      element.innerText = this.state.lyricsData[currentSection][i].text + ' '
       subtitles.appendChild(element)
     }
 
-    setInterval(() => {
-      this.state.syncData[currentSection].forEach((ele, index, array) => {
+    const updateLyricsSection = setInterval(() => {
+      let stop = false
+      this.state.lyricsData[currentSection].forEach((ele, index, array) => {
         if (
-          this.props.song.destination.context.currentTime - fakeTime >=
+          this.props.song.destination.context.currentTime - windowTime >=
             ele.start &&
-          this.props.song.destination.context.currentTime - fakeTime <= ele.end
+          this.props.song.destination.context.currentTime - windowTime <=
+            ele.end
         ) {
           subtitles.children[index].style.background = 'yellow'
           if (ele.finalWord) {
             currentSection++
+
+            // break if on last Section
+            if (currentSection === this.state.lyricsData.length) {
+              stop = true
+              clearInterval(updateLyricsSection)
+            }
+
             // reset to next line
             subtitles.innerText = ''
+
+            // update subtitle div
             for (
               let i = 0;
-              i < this.state.syncData[currentSection].length;
+              !stop && i < this.state.lyricsData[currentSection].length;
               i++
             ) {
               element = document.createElement('span')
               element.innerText =
-                this.state.syncData[currentSection][i].text + ' '
+                this.state.lyricsData[currentSection][i].text + ' '
               subtitles.appendChild(element)
             }
           }
@@ -112,7 +156,7 @@ class Sing extends Component {
 
       song.play()
 
-      let currentTime = tuner.destination.context.currentTime.toFixed(1)
+      let windowTime = tuner.destination.context.currentTime.toFixed(1)
 
       tuner.setVolume(0) // eliminate microphone feedback by muting the output from the tuner
       tuner.add(voice)
@@ -126,21 +170,21 @@ class Sing extends Component {
         requestAnimationFrame(logPitch)
 
         if (
-          (tuner.destination.context.currentTime.toFixed(1) - currentTime) %
+          (tuner.destination.context.currentTime.toFixed(1) - windowTime) %
             0.5 ===
             0 &&
-          tuner.destination.context.currentTime.toFixed(1) - currentTime > 0
+          tuner.destination.context.currentTime.toFixed(1) - windowTime > 0
         ) {
           let time =
-            tuner.destination.context.currentTime.toFixed(1) - currentTime ||
-            tuner.destination.context.currentTime.toFixed(0) - currentTime
+            tuner.destination.context.currentTime.toFixed(1) - windowTime ||
+            tuner.destination.context.currentTime.toFixed(0) - windowTime
           this.setState({currentTime: time})
 
           let note
           if (!results[time]) {
-            // remove numbers and only keep letter note and if it is sharp or flat
+            // include sharps: replace(/[0-9]/g, '')
             tuner.noteName
-              ? (note = tuner.noteName.replace(/[0-9]/g, ''))
+              ? (note = tuner.noteName[0])
               : (note = 'no note detected')
             results[time] = note
             this.setState({currentNote: note})
