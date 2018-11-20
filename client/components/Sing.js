@@ -90,6 +90,10 @@ class Sing extends Component {
     this.createSubtitle = this.createSubtitle.bind(this)
   }
 
+  componentDidMount() {
+    this.props.onRef(this)
+  }
+
   handlePitchLogger() {
     this.setState({trackingPitch: true}, function() {
       this.pitchLogger()

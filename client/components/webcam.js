@@ -72,6 +72,7 @@ class PoseNet extends React.Component {
     }
     this.net = await posenet.load(this.props.mobileNetArchitecture)
     this.detectPose()
+    this.props.onRef(this)
   }
 
   async setupCamera() {
@@ -285,7 +286,6 @@ class PoseNet extends React.Component {
       <div className="PoseNet">
         {loading}
         <video id="notShow" playsInline ref={this.getVideo} />
-        <button onClick={this.startTimer}> Start Bubble </button>
         {this.state.time === '' ? (
           <h2 />
         ) : (
