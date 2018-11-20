@@ -1,15 +1,14 @@
 import * as posenet from '@tensorflow-models/posenet'
 import React, {Component} from 'react'
-import {isMobile, drawKeypoints, drawSkeleton} from './utils'
+import {isMobile, drawKeypoints, drawSkeleton, beatsToDisplay} from './utils'
+import {defaultProps} from './utils2'
 import Bubble from './bubble'
 import {connect} from 'react-redux'
-import {getXCoordinate, getYCoordinate} from '../store/bubble'
+import {getXCoordinate, getYCoordinate, getDanceScore} from '../store/bubble'
+import Wad from 'web-audio-daw'
+// import { beats } from '../../beats';
 
 let counter = 0
-
-const KEY = {
-  P: 80
-}
 
 class PoseNet extends React.Component {
   static defaultProps = {
@@ -26,10 +25,9 @@ class PoseNet extends React.Component {
     maxPoseDetections: 2,
     nmsRadius: 20.0,
     outputStride: 32,
-    imageScaleFactor: 0.25,
-    skeletonColor: 'aqua',
-    skeletonLineWidth: 2,
-    scoreThreshold: 0.8,
+    imageScaleFactor: 0.2,
+    skeletonColor: 'coral',
+    skeletonLineWidth: 6,
     loadingText: 'Loading pose detector...'
   }
 
@@ -44,32 +42,15 @@ class PoseNet extends React.Component {
       xMin: 0,
       xMax: 0,
       yMin: 0,
-      yMax: 0
+      yMax: 0,
+      windowTime: this.props.song.destination.context.currentTime,
+      time: 0,
+      counterBeatInterval: 0
     }
     this.generateRandomCoordinates = this.generateRandomCoordinates.bind(this)
     this.emilinateBubble = this.eliminateBubble.bind(this)
-    this.handleKeys = this.handleKeys.bind(this)
-  }
-
-  handleKeys(value, e) {
-    if (e.keyCode === KEY.P && e.type === 'keydown') {
-      console.log(
-        'COUNTER',
-        counter,
-        // 'POSE',
-        // pose.keypoints[10].position,
-        'XMINETC',
-        this.state
-      )
-    }
-
-    let keys = this.state.keys
-
-    if (e.keyCode === KEY.UP || e.keyCode === KEY.W) keys.up = value
-
-    this.setState({
-      keys: keys
-    })
+    this.startTimer = this.startTimer.bind(this)
+    this.handleTimer = this.handleTimer.bind(this)
   }
 
   getCanvas = elem => {
@@ -90,9 +71,6 @@ class PoseNet extends React.Component {
     }
     this.net = await posenet.load(this.props.mobileNetArchitecture)
     this.detectPose()
-    window.addEventListener('keyup', this.handleKeys.bind(this, false))
-    window.addEventListener('keydown', this.handleKeys.bind(this, true))
-    console.log('COMPONENTDIDMOUNT', this.state)
   }
 
   async setupCamera() {
@@ -100,11 +78,9 @@ class PoseNet extends React.Component {
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
       throw 'Browser API navigator.mediaDevices.getUserMedia not available'
     }
-
     const {videoWidth, videoHeight} = this.props
     const video = this.video
     const mobile = isMobile()
-
     video.width = videoWidth
     video.height = videoHeight
 
@@ -156,8 +132,7 @@ class PoseNet extends React.Component {
       showPoints,
       showSkeleton,
       skeletonColor,
-      skeletonLineWidth,
-      scoreThreshold
+      skeletonLineWidth
     } = this.props
 
     const net = this.net
@@ -175,18 +150,16 @@ class PoseNet extends React.Component {
             outputStride,
             maxPoseDetections,
             minPartConfidence,
-            nmsRadius,
-            scoreThreshold
+            nmsRadius
           )
 
           break
-        default:
+        case 'single-pose':
           const pose = await net.estimateSinglePose(
             video,
             imageScaleFactor,
             flipHorizontal,
-            outputStride,
-            scoreThreshold
+            outputStride
           )
           // index 10 is rightWrist
           // index 9 is left Wrist
@@ -206,7 +179,8 @@ class PoseNet extends React.Component {
             // pose.keypoints[10].score > 0.5
           ) {
             counter++
-            console.log('POSE', pose)
+            this.props.addScore(counter)
+            console.log('COUNTER', counter)
             this.eliminateBubble()
           }
           poses.push(pose)
@@ -256,6 +230,60 @@ class PoseNet extends React.Component {
     this.props.addY(yBubble)
   }
 
+  async startTimer() {
+    let startTime = new Date()
+    await this.setState({
+      time: startTime,
+      windowTime: this.props.song.destination.context.currentTime
+    })
+    const bumpingBeats = setInterval(() => {
+      if (this.state.counterBeatInterval < beatsToDisplay.length) {
+        this.handleTimer()
+      } else {
+        clearInterval(bumpingBeats)
+      }
+    }, 500)
+  }
+
+  handleTimer(counterBeat = 1) {
+    const beatTime = beatsToDisplay[counterBeat]
+    console.log('COUNTERBEAT', counterBeat)
+    console.log('COUNTERBEATJOE', beatTime)
+
+    if (
+      this.props.song.destination.context.currentTime - this.state.windowTime >
+      beatTime
+    ) {
+      console.log('INSIDE IF')
+      this.generateRandomCoordinates()
+      counterBeat = counterBeat + 3
+      this.setState({counterBeatInterval: counterBeat})
+      return this.handleTimer(counterBeat)
+    }
+    // return this.handleTimer(counterBeat)
+  }
+  //   const firstBeat = beatsToDisplay[0].toFixed(1) * 1000
+  //   setTimeout(setInterval(this.generateRandomCoordinates, 2000), firstBeat)
+  // }
+
+  // while (tuner.destination.context.currentTime.toFixed(1) <= 30) {
+  // (
+  //   this.state.time.getSeconds() + beatsToDisplay[beatsToDisplay.length - 1]
+  // ).toFixed(1)
+  //     // ) {
+  //     console.log('HERE IN WHILE LOOP')
+  //     let counterTimeBubble = 1
+  //     if (
+  //       tuner.destination.context.currentTime.toFixed(1) ===
+  //       this.state.time.getSeconds() +
+  //         beatsToDisplay[counterTimeBubble].toFixed(1)
+  //     ) {
+  //       this.eliminateBubble()
+  //       counterTimeBubble++
+  //     }
+  //   }
+  // }
+
   eliminateBubble() {
     this.setState({
       xMin: null,
@@ -265,7 +293,7 @@ class PoseNet extends React.Component {
     })
     this.props.addX(null)
     this.props.addY(null)
-    this.generateRandomCoordinates()
+    // this.generateRandomCoordinates()
   }
 
   render() {
@@ -274,26 +302,16 @@ class PoseNet extends React.Component {
     ) : (
       ''
     )
-    // console.log('VALUES', this.props.xBubble, this.props.yBubble)
-
     return (
       <div className="PoseNet">
         {loading}
         <video id="notShow" playsInline ref={this.getVideo} />
-        <Bubble
-          /*className="bubble"
-          render={({x, y}) => (
-            <img
-
-              src="http://pngimg.com/uploads/cat/cat_PNG132.png"
-              width="100"
-              style={{position: 'absolute', bottom: y, left: x}}
-            />
-          )}*/
-          yBubble={this.props.yBubble}
-          xBubble={this.props.xBubble}
-          generateRandomCoordinates={this.generateRandomCoordinates}
-        />
+        <button onClick={this.startTimer}> Start Game </button>
+        {this.state.time === '' ? (
+          <h2 />
+        ) : (
+          <Bubble yBubble={this.props.yBubble} xBubble={this.props.xBubble} />
+        )}
         <canvas ref={this.getCanvas} />
       </div>
     )
@@ -308,7 +326,8 @@ const mapState = state => ({
 const mapDispatch = dispatch => {
   return {
     addX: num => dispatch(getXCoordinate(num)),
-    addY: yBubble => dispatch(getYCoordinate(yBubble))
+    addY: yBubble => dispatch(getYCoordinate(yBubble)),
+    addScore: danceScore => dispatch(getDanceScore(danceScore))
   }
 }
 
