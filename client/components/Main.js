@@ -15,9 +15,11 @@ class Main extends Component {
   render() {
     return (
       <div>
-        <Score />
-        <Sing song={this.state.song} />
-        <Webcam song={this.state.song} />
+        <div className="dataContainer">
+          <Score />
+          <Sing song={this.state.song} />
+          <Webcam song={this.state.song} />
+        </div>
       </div>
     )
   }

@@ -6,14 +6,15 @@ import Bubble from './bubble'
 import {connect} from 'react-redux'
 import {getXCoordinate, getYCoordinate, getDanceScore} from '../store/bubble'
 import Wad from 'web-audio-daw'
+
 // import { beats } from '../../beats';
 
 let counter = 0
 
 class PoseNet extends React.Component {
   static defaultProps = {
-    videoWidth: 1200,
-    videoHeight: 1000,
+    videoWidth: 1400,
+    videoHeight: 800,
     flipHorizontal: true,
     algorithm: 'single-pose',
     mobileNetArchitecture: isMobile() ? 0.5 : 1.01,
@@ -284,7 +285,7 @@ class PoseNet extends React.Component {
       <div className="PoseNet">
         {loading}
         <video id="notShow" playsInline ref={this.getVideo} />
-        <button onClick={this.startTimer}> Start Game </button>
+        <button onClick={this.startTimer}> Start Bubble </button>
         {this.state.time === '' ? (
           <h2 />
         ) : (
