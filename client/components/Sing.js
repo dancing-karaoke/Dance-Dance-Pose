@@ -31,7 +31,7 @@ class Sing extends Component {
         9.5: 'E',
         10: 'C'
       },
-      syncData: [
+      lyricsData: [
         [
           {start: '3', end: '5', text: 'I'},
           {start: '5', end: '5.5', text: 'heard'},
@@ -64,24 +64,25 @@ class Sing extends Component {
   }
 
   createSubtitle = () => {
-    let fakeTime = this.props.song.destination.context.currentTime
+    let windowTime = this.props.song.destination.context.currentTime
     let subtitles = document.getElementById('subtitles')
     let element
 
     let currentSection = 0
 
-    for (let i = 0; i < this.state.syncData[currentSection].length; i++) {
+    for (let i = 0; i < this.state.lyricsData[currentSection].length; i++) {
       element = document.createElement('span')
-      element.innerText = this.state.syncData[currentSection][i].text + ' '
+      element.innerText = this.state.lyricsData[currentSection][i].text + ' '
       subtitles.appendChild(element)
     }
 
     setInterval(() => {
-      this.state.syncData[currentSection].forEach((ele, index, array) => {
+      this.state.lyricsData[currentSection].forEach((ele, index, array) => {
         if (
-          this.props.song.destination.context.currentTime - fakeTime >=
+          this.props.song.destination.context.currentTime - windowTime >=
             ele.start &&
-          this.props.song.destination.context.currentTime - fakeTime <= ele.end
+          this.props.song.destination.context.currentTime - windowTime <=
+            ele.end
         ) {
           subtitles.children[index].style.background = 'yellow'
           if (ele.finalWord) {
@@ -90,14 +91,15 @@ class Sing extends Component {
             subtitles.innerText = ''
             for (
               let i = 0;
-              i < this.state.syncData[currentSection].length;
+              i < this.state.lyricsData[currentSection].length - 1;
               i++
             ) {
               element = document.createElement('span')
               element.innerText =
-                this.state.syncData[currentSection][i].text + ' '
+                this.state.lyricsData[currentSection][i].text + ' '
               subtitles.appendChild(element)
             }
+            // TODO: if (currentSection === this.state.lyricsData[currentSection].length) cancel setInterval
           }
         }
       })
@@ -112,7 +114,7 @@ class Sing extends Component {
 
       song.play()
 
-      let currentTime = tuner.destination.context.currentTime.toFixed(1)
+      let windowTime = tuner.destination.context.currentTime.toFixed(1)
 
       tuner.setVolume(0) // eliminate microphone feedback by muting the output from the tuner
       tuner.add(voice)
@@ -126,14 +128,14 @@ class Sing extends Component {
         requestAnimationFrame(logPitch)
 
         if (
-          (tuner.destination.context.currentTime.toFixed(1) - currentTime) %
+          (tuner.destination.context.currentTime.toFixed(1) - windowTime) %
             0.5 ===
             0 &&
-          tuner.destination.context.currentTime.toFixed(1) - currentTime > 0
+          tuner.destination.context.currentTime.toFixed(1) - windowTime > 0
         ) {
           let time =
-            tuner.destination.context.currentTime.toFixed(1) - currentTime ||
-            tuner.destination.context.currentTime.toFixed(0) - currentTime
+            tuner.destination.context.currentTime.toFixed(1) - windowTime ||
+            tuner.destination.context.currentTime.toFixed(0) - windowTime
           this.setState({currentTime: time})
 
           let note
