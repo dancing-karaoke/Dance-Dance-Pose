@@ -25,7 +25,7 @@ let counter = 0
 
 class PoseNet extends React.Component {
   static defaultProps = {
-    videoWidth: 900,
+    videoWidth: 1200,
     videoHeight: 600,
     flipHorizontal: true,
     algorithm: 'single-pose',
