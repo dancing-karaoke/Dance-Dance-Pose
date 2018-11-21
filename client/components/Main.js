@@ -8,7 +8,7 @@ class Main extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      song: new Wad({source: '/adele.mp3'})
+      song: new Wad({source: '/songs/dancingqueen.m4a'})
     }
     this.danceDancePoseTime = this.danceDancePoseTime.bind(this)
   }

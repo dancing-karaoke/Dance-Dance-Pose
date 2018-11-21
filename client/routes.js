@@ -22,7 +22,6 @@ class Routes extends Component {
     return (
       <Switch>
         <Route path="/main" component={Main} />
-        <Route path="/webcam" component={Webcam} />
         <Route path="/sing" component={Sing} />
 
         {/* Routes placed here are available to all visitors */}
