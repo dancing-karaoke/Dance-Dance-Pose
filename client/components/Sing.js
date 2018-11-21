@@ -32,18 +32,6 @@ class Sing extends Component {
         10: 'C'
       },
       lyricsData: [
-        // [
-        //   {start: '1', end: '1.5', text: '1'},
-        //   {start: '1.5', end: '2', text: '1', finalWord: true}
-        // ],
-        // [
-        //   {start: '2', end: '2.5', text: '2'},
-        //   {start: '2.5', end: '3', text: '2', finalWord: true}
-        // ],
-        // [
-        //   {start: '3', end: '3.5', text: '3'},
-        //   {start: '3.5', end: '4', text: '3', finalWord: true}
-        // ],
         [
           {start: '3', end: '5', text: 'I'},
           {start: '5', end: '5.5', text: 'heard'},
@@ -83,7 +71,8 @@ class Sing extends Component {
           {start: '26', end: '27', text: 'end'},
           {start: '27', end: '28', text: 'interval?', finalWord: true}
         ]
-      ]
+      ],
+      displaySubtitle: ''
     }
     this.pitchLogger = this.pitchLogger.bind(this)
     this.handlePitchLogger = this.handlePitchLogger.bind(this)
@@ -106,12 +95,14 @@ class Sing extends Component {
     let element
 
     let currentSection = 0
+    let subtitleInnerHtml = ''
 
     for (let i = 0; i < this.state.lyricsData[currentSection].length; i++) {
-      element = document.createElement('span')
-      element.innerText = this.state.lyricsData[currentSection][i].text + ' '
-      subtitles.appendChild(element)
+      subtitleInnerHtml += `<span>${this.state.lyricsData[currentSection][i]
+        .text + ' '}</span>`
     }
+
+    this.setState({displaySubtitle: subtitleInnerHtml})
 
     const updateLyricsSection = setInterval(() => {
       let stop = false
@@ -126,14 +117,14 @@ class Sing extends Component {
           if (ele.finalWord) {
             currentSection++
 
-            // break if on last Section
+            // break if on last section
             if (currentSection === this.state.lyricsData.length) {
               stop = true
               clearInterval(updateLyricsSection)
             }
 
-            // reset to next line
-            subtitles.innerText = ''
+            // reset for next block of lyrics
+            subtitleInnerHtml = ''
 
             // update subtitle div
             for (
@@ -141,12 +132,14 @@ class Sing extends Component {
               !stop && i < this.state.lyricsData[currentSection].length;
               i++
             ) {
-              element = document.createElement('span')
-              element.innerText =
-                this.state.lyricsData[currentSection][i].text + ' '
-              subtitles.appendChild(element)
+              subtitleInnerHtml += `<span>${this.state.lyricsData[
+                currentSection
+              ][i].text + ' '}</span>`
             }
           }
+
+          // render new lyrics
+          this.setState({displaySubtitle: subtitleInnerHtml})
         }
       })
     }, 100)
@@ -224,7 +217,10 @@ class Sing extends Component {
           <p>Score: {this.state.score}</p>
           <p>Current Time: {this.state.currentTime}</p>
           <p>Target Note: {this.state.adeleNotes[this.state.currentTime]}</p>
-          <div id="subtitles" />
+          <div
+            id="subtitles"
+            dangerouslySetInnerHTML={{__html: this.state.displaySubtitle}}
+          />
         </div>
       </div>
     )

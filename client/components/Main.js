@@ -15,7 +15,7 @@ class Main extends Component {
 
   danceDancePoseTime = () => {
     this.sing.handlePitchLogger()
-    this.dance.startTimer()
+    // this.dance.startTimer()
   }
 
   render() {
@@ -24,8 +24,7 @@ class Main extends Component {
         <Score />
         <button onClick={this.danceDancePoseTime}> LET'S GO </button>
         <Sing onRef={ref => (this.sing = ref)} song={this.state.song} />
-        <Webcam onRef={ref => (this.dance = ref)} song={this.state.song} />
-
+        {/* <Webcam onRef={ref => (this.dance = ref)} song={this.state.song} /> */}
       </div>
     )
   }
