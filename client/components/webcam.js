@@ -1,6 +1,12 @@
 import * as posenet from '@tensorflow-models/posenet'
 import React, {Component} from 'react'
-import {isMobile, drawKeypoints, drawSkeleton, beatsToDisplay} from './utils'
+import {
+  isMobile,
+  drawKeypoints,
+  drawSkeleton,
+  beatsToDisplay,
+  beatTimeAbba
+} from './utils'
 import {defaultProps} from './utils2'
 import Bubble from './bubble'
 import {connect} from 'react-redux'
@@ -26,7 +32,7 @@ class PoseNet extends React.Component {
     maxPoseDetections: 2,
     nmsRadius: 20.0,
     outputStride: 32,
-    imageScaleFactor: 0.2,
+    imageScaleFactor: 0.3,
     skeletonColor: 'coral',
     skeletonLineWidth: 6,
     loadingText: 'Loading pose detector...'
@@ -167,10 +173,10 @@ class PoseNet extends React.Component {
           // index 9 is left Wrist
 
           this.setState({
-            xMin: this.props.xBubble * 0.7,
-            xMax: this.props.xBubble * 1.3,
-            yMin: this.props.yBubble * 0.7,
-            yMax: this.props.yBubble * 1.3
+            xMin: this.props.xBubble * 0.6,
+            xMax: this.props.xBubble * 1.4,
+            yMin: this.props.yBubble * 0.6,
+            yMax: this.props.yBubble * 1.4
           })
 
           if (
@@ -248,50 +254,16 @@ class PoseNet extends React.Component {
 
   handleTimer() {
     const beatTime = beatsToDisplay[this.state.counterBeatInterval]
-    // console.log('COUNTERBEAT', counterBeat)
-    // console.log('beatTime', beatTime)
-    // console.log('currentTime - this.state.windowTime', this.props.song.destination.context.currentTime - this.state.windowTime)
-
     if (
       this.props.song.destination.context.currentTime - this.state.windowTime >
       beatTime
     ) {
       this.generateRandomCoordinates()
-      this.setState({counterBeatInterval: this.state.counterBeatInterval + 9})
-    } else {
-      console.log(
-        'this.state.counterBeatInterval',
-        this.state.counterBeatInterval
-      )
+      this.setState({
+        counterBeatInterval: this.state.counterBeatInterval + beatTimeAbba
+      })
     }
-
-    // counterBeat = counterBeat + 3
-
-    // while (this.state.counterBeatInterval < beatsToDisplay.length) {
-    //   console.log('INSIDEEEEEE')
-    //   this.generateRandomCoordinates()
-    //   // counterBeat = counterBeat + 3
-    //   this.setState({counterBeatInterval: this.state.counterBeatInterval + 3})
-    // }
   }
-
-  // handleTimer(counterBeat = 1) {
-  //   const beatTime = beatsToDisplay[counterBeat]
-  //   // console.log('COUNTERBEAT', counterBeat)
-  //   console.log('beatTime', beatTime)
-  //   console.log('currentTime - this.state.windowTime', this.props.song.destination.context.currentTime - this.state.windowTime)
-
-  //   if (
-  //     this.props.song.destination.context.currentTime - this.state.windowTime >
-  //     beatTime
-  //   ) {
-  //     // console.log('INSIDE IF')
-  //     this.generateRandomCoordinates()
-  //     counterBeat = counterBeat + 3
-  //     this.setState({counterBeatInterval: counterBeat})
-  //     return this.handleTimer(counterBeat)
-  //   }
-  // }
 
   eliminateBubble() {
     this.setState({
