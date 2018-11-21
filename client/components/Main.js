@@ -3,6 +3,7 @@ import Wad from 'web-audio-daw'
 import Sing from './Sing'
 import Webcam from './webcam'
 import Score from './score'
+import TV from './Tv'
 
 class Main extends Component {
   constructor(props) {
@@ -24,8 +25,9 @@ class Main extends Component {
         <Score />
         <button onClick={this.danceDancePoseTime}> LET'S GO </button>
         <Sing onRef={ref => (this.sing = ref)} song={this.state.song} />
-        <Webcam onRef={ref => (this.dance = ref)} song={this.state.song} />
-
+        <TV>
+          <Webcam onRef={ref => (this.dance = ref)} song={this.state.song} />
+        </TV>
       </div>
     )
   }
