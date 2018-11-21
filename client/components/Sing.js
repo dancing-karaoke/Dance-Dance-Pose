@@ -288,16 +288,20 @@ class Sing extends Component {
       let logPitch = () => {
         requestAnimationFrame(logPitch)
 
+        this.setState(prevState => ({
+          score: (prevState.score += 2)
+        }))
+
         if (
-          (tuner.destination.context.currentTime.toFixed(1) - windowTime) %
+          (tuner.destination.context.currentTime - windowTime).toFixed(1) %
             0.5 ===
             0 &&
-          tuner.destination.context.currentTime.toFixed(1) - windowTime > 0
+          (tuner.destination.context.currentTime - windowTime).toFixed(1) > 0
         ) {
           let time =
-            tuner.destination.context.currentTime.toFixed(1) - windowTime ||
-            tuner.destination.context.currentTime.toFixed(0) - windowTime
-          console.log(results)
+            (tuner.destination.context.currentTime - windowTime).toFixed(1) ||
+            (tuner.destination.context.currentTime - windowTime).toFixed(0)
+          // console.log(results)
           this.setState({currentTime: time})
 
           let note
@@ -313,7 +317,7 @@ class Sing extends Component {
               results[time] !== undefined
             ) {
               this.setState(prevState => ({
-                score: prevState.score + 1
+                score: (prevState.score += 1000)
               }))
             }
           }
