@@ -1,6 +1,11 @@
 import * as posenet from '@tensorflow-models/posenet'
 import React, {Component} from 'react'
-import {drawKeypoints, drawSkeleton, beatsToDisplay} from './utils'
+import {
+  drawKeypoints,
+  drawSkeleton,
+  beatsToDisplay,
+  beatTimeAbba
+} from './utils'
 import {defaultProps} from './utils2'
 import Bubble from './bubble'
 import {connect} from 'react-redux'
@@ -25,7 +30,7 @@ class PoseNet extends React.Component {
     maxPoseDetections: 2,
     nmsRadius: 20.0,
     outputStride: 32,
-    imageScaleFactor: 0.2,
+    imageScaleFactor: 0.3,
     skeletonColor: 'coral',
     skeletonLineWidth: 6,
     loadingText: 'Loading pose detector...'
@@ -165,10 +170,10 @@ class PoseNet extends React.Component {
           // index 9 is left Wrist
 
           this.setState({
-            xMin: this.props.xBubble * 0.7,
-            xMax: this.props.xBubble * 1.3,
-            yMin: this.props.yBubble * 0.7,
-            yMax: this.props.yBubble * 1.3
+            xMin: this.props.xBubble * 0.6,
+            xMax: this.props.xBubble * 1.4,
+            yMin: this.props.yBubble * 0.6,
+            yMax: this.props.yBubble * 1.4
           })
 
           if (
@@ -250,13 +255,11 @@ class PoseNet extends React.Component {
       beatTime
     ) {
       this.generateRandomCoordinates()
-      const newCounterBeatInterval = this.state.counterBeatInterval + 9
-      this.setState({counterBeatInterval: newCounterBeatInterval})
-    } else {
-      console.log(
-        'this.state.counterBeatInterval',
-        this.state.counterBeatInterval
-      )
+      const newCounterBeatInterval =
+        this.state.counterBeatInterval + beatTimeAbba
+      this.setState({
+        counterBeatInterval: newCounterBeatInterval
+      })
     }
   }
 
