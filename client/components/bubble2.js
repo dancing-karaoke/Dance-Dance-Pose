@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-class Bubble extends Component {
+class Bubble2 extends Component {
   constructor(props) {
     super(props)
     this.state = {x: 0, y: 0}
@@ -30,7 +30,7 @@ class Bubble extends Component {
     return (
       <div className="bubble">
         <img
-          src="./bubble.gif"
+          src="./explode1.gif"
           width="500"
           style={{
             position: 'absolute',
@@ -44,8 +44,8 @@ class Bubble extends Component {
 }
 
 const mapState = state => ({
-  xBubble: state.bubble.xCoordinate,
-  yBubble: state.bubble.yCoordinate
+  xBubble: state.bubble.xCoordinate2,
+  yBubble: state.bubble.yCoordinate2
 })
 
-export default connect(mapState)(Bubble)
+export default connect(mapState)(Bubble2)
