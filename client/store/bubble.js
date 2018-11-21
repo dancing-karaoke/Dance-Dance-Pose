@@ -7,7 +7,6 @@ const GET_YCOORDINATE = 'GET_YCOORDINATE'
 const GET_XCOORDINATE2 = 'GET_XCOORDINATE2'
 const GET_YCOORDINATE2 = 'GET_YCOORDINATE2'
 const GET_DANCESCORE = 'GET_DANCESCORE'
-const GET_SINGSCORE = 'GET_SINGSCORE'
 
 /**
  * INITIAL STATE
@@ -48,11 +47,6 @@ export const getDanceScore = danceScore => ({
   danceScore
 })
 
-export const getSingScore = singScore => ({
-  type: GET_SINGSCORE,
-  singScore
-})
-
 /**
  * REDUCER
  */
@@ -84,12 +78,6 @@ export default function bubble(state = initialState, action) {
         ...state,
         danceScore: action.danceScore
       }
-    case GET_SINGSCORE:
-      return {
-        ...state,
-        singScore: action.singScore
-      }
-
     default:
       return state
   }

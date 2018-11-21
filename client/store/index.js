@@ -4,8 +4,9 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import bubble from './bubble'
+import song from './song'
 
-const reducer = combineReducers({user, bubble})
+const reducer = combineReducers({user, bubble, song})
 const middleware = composeWithDevTools(applyMiddleware(thunkMiddleware))
 const store = createStore(reducer, middleware)
 
@@ -17,3 +18,4 @@ const store = createStore(reducer, middleware)
 export default store
 export * from './user'
 export * from './bubble'
+export * from './song'
