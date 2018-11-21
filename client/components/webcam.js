@@ -1,7 +1,6 @@
 import * as posenet from '@tensorflow-models/posenet'
 import React, {Component} from 'react'
 import {
-  isMobile,
   drawKeypoints,
   drawSkeleton,
   beatsToDisplay,
@@ -9,8 +8,15 @@ import {
 } from './utils'
 import {defaultProps} from './utils2'
 import Bubble from './bubble'
+import Bubble2 from './bubble2'
 import {connect} from 'react-redux'
-import {getXCoordinate, getYCoordinate, getDanceScore} from '../store/bubble'
+import {
+  getXCoordinate,
+  getYCoordinate,
+  getDanceScore,
+  getXCoordinate2,
+  getYCoordinate2
+} from '../store/bubble'
 import Wad from 'web-audio-daw'
 
 // import { beats } from '../../beats';
@@ -19,11 +25,10 @@ let counter = 0
 
 class PoseNet extends React.Component {
   static defaultProps = {
-    videoWidth: 1400,
-    videoHeight: 800,
+    videoWidth: 1200,
+    videoHeight: 600,
     flipHorizontal: true,
     algorithm: 'single-pose',
-    mobileNetArchitecture: isMobile() ? 0.5 : 1.01,
     showVideo: true,
     showSkeleton: true,
     showPoints: true,
@@ -51,10 +56,11 @@ class PoseNet extends React.Component {
       yMin: 0,
       yMax: 0,
       windowTime: this.props.song.destination.context.currentTime,
-      time: 0,
+      time: '',
       counterBeatInterval: 0
     }
     this.generateRandomCoordinates = this.generateRandomCoordinates.bind(this)
+    this.generateRandomCoordinates2 = this.generateRandomCoordinates2.bind(this)
     this.emilinateBubble = this.eliminateBubble.bind(this)
     this.startTimer = this.startTimer.bind(this)
     this.handleTimer = this.handleTimer.bind(this)
@@ -76,7 +82,7 @@ class PoseNet extends React.Component {
     } finally {
       this.setState({loading: false})
     }
-    this.net = await posenet.load(this.props.mobileNetArchitecture)
+    this.net = await posenet.load()
     this.detectPose()
     this.props.onRef(this)
   }
@@ -88,7 +94,6 @@ class PoseNet extends React.Component {
     }
     const {videoWidth, videoHeight} = this.props
     const video = this.video
-    const mobile = isMobile()
     video.width = videoWidth
     video.height = videoHeight
 
@@ -97,8 +102,8 @@ class PoseNet extends React.Component {
       audio: false,
       video: {
         facingMode: 'user',
-        width: mobile ? void 0 : videoWidth,
-        height: mobile ? void 0 : videoHeight
+        width: videoWidth,
+        height: videoHeight
       }
     })
 
@@ -184,7 +189,6 @@ class PoseNet extends React.Component {
             pose.keypoints[10].position.x < this.state.xMax &&
             this.state.yMin < pose.keypoints[10].position.y &&
             pose.keypoints[10].position.y < this.state.yMax
-            // pose.keypoints[10].score > 0.5
           ) {
             counter++
             this.props.addScore(counter)
@@ -236,6 +240,13 @@ class PoseNet extends React.Component {
     this.props.addX(xBubble)
     this.props.addY(yBubble)
   }
+  //manages coordinates for second bubble
+  generateRandomCoordinates2() {
+    const xBubble = Math.random() * 1300
+    const yBubble = Math.random() * 800
+    this.props.addX2(xBubble)
+    this.props.addY2(yBubble)
+  }
 
   async startTimer() {
     let startTime = new Date()
@@ -259,8 +270,11 @@ class PoseNet extends React.Component {
       beatTime
     ) {
       this.generateRandomCoordinates()
+      this.generateRandomCoordinates2()
+      const newCounterBeatInterval =
+        this.state.counterBeatInterval + beatTimeAbba
       this.setState({
-        counterBeatInterval: this.state.counterBeatInterval + beatTimeAbba
+        counterBeatInterval: newCounterBeatInterval
       })
     }
   }
@@ -274,7 +288,6 @@ class PoseNet extends React.Component {
     })
     this.props.addX(null)
     this.props.addY(null)
-    // this.generateRandomCoordinates()
   }
 
   render() {
@@ -290,9 +303,17 @@ class PoseNet extends React.Component {
         {this.state.time === '' ? (
           <h2 />
         ) : (
-          <Bubble yBubble={this.props.yBubble} xBubble={this.props.xBubble} />
+          <div>
+            <Bubble yBubble={this.props.yBubble} xBubble={this.props.xBubble} />
+            <Bubble2
+              yBubble={this.props.yBubble2}
+              xBubble={this.props.xBubble2}
+            />
+          </div>
         )}
-        <canvas ref={this.getCanvas} />
+        <div className="webcamContainer">
+          <canvas className="webcam" ref={this.getCanvas} />
+        </div>
       </div>
     )
   }
@@ -300,13 +321,17 @@ class PoseNet extends React.Component {
 
 const mapState = state => ({
   xBubble: state.bubble.xCoordinate,
-  yBubble: state.bubble.yCoordinate
+  yBubble: state.bubble.yCoordinate,
+  xBubble2: state.bubble.xCoordinate2,
+  yBubble2: state.bubble.yCoordinate2
 })
 
 const mapDispatch = dispatch => {
   return {
     addX: num => dispatch(getXCoordinate(num)),
     addY: yBubble => dispatch(getYCoordinate(yBubble)),
+    addX2: num => dispatch(getXCoordinate2(num)),
+    addY2: yBubble => dispatch(getYCoordinate2(yBubble)),
     addScore: danceScore => dispatch(getDanceScore(danceScore))
   }
 }
