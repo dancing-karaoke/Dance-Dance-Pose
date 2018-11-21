@@ -23,6 +23,9 @@ module.exports = {
       },
       {
         exclude: /\.mp3$/
+      },
+      {
+        exclude: /\.m4a$/
       }
     ]
   }

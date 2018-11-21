@@ -5,7 +5,6 @@
 const GET_XCOORDINATE = 'GET_XCOORDINATE'
 const GET_YCOORDINATE = 'GET_YCOORDINATE'
 const GET_DANCESCORE = 'GET_DANCESCORE'
-const GET_SINGSCORE = 'GET_SINGSCORE'
 
 /**
  * INITIAL STATE
@@ -13,8 +12,7 @@ const GET_SINGSCORE = 'GET_SINGSCORE'
 export const initialState = {
   xCoordinate: 0,
   yCoordinate: 0,
-  danceScore: 0,
-  singScore: 0
+  danceScore: 0
 }
 
 /**
@@ -33,11 +31,6 @@ export const getYCoordinate = yCoordinate => ({
 export const getDanceScore = danceScore => ({
   type: GET_DANCESCORE,
   danceScore
-})
-
-export const getSingScore = singScore => ({
-  type: GET_SINGSCORE,
-  singScore
 })
 
 /**
@@ -61,12 +54,6 @@ export default function bubble(state = initialState, action) {
         ...state,
         danceScore: action.danceScore
       }
-    case GET_SINGSCORE:
-      return {
-        ...state,
-        singScore: action.singScore
-      }
-
     default:
       return state
   }
