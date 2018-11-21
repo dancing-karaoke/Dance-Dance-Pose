@@ -33,44 +33,56 @@ class Sing extends Component {
       },
       lyricsData: [
         [
-          {start: '3', end: '5', text: 'I'},
-          {start: '5', end: '5.5', text: 'heard'},
-          {start: '6.5', end: '7', text: 'that'},
-          {start: '7', end: '7.5', text: 'you'},
-          {start: '8', end: '9.5', text: 'settled'},
-          {start: '9.5', end: '10', text: 'down'},
-          {start: '10', end: '11', text: ' ', finalWord: true}
+          {start: '1', end: '1.5', text: '1'},
+          {start: '1.5', end: '2', text: '1', finalWord: true}
         ],
         [
-          {start: '10.5', end: '11', text: 'that'},
-          {start: '12', end: '13', text: 'you'},
-          {start: '13', end: '14', text: 'found'},
-          {start: '14', end: '15', text: 'a'},
-          {start: '16', end: '17', text: 'girl'},
-          {start: '17', end: '18', text: 'and'},
-          {start: '18', end: '19', text: "you're"},
-          {start: '19', end: '20', text: 'married', finalWord: true}
+          {start: '2', end: '2.5', text: '2'},
+          {start: '2.5', end: '3', text: '2', finalWord: true}
         ],
         [
-          {start: '20', end: '21', text: 'whoa'},
-          {start: '21', end: '22', text: 'you'},
-          {start: '22', end: '23', text: 'made'},
-          {start: '23', end: '24', text: 'it'},
-          {start: '24', end: '25', text: 'so'},
-          {start: '25', end: '26', text: 'far'},
-          {start: '26', end: '27', text: 'end'},
-          {start: '27', end: '28', text: 'interval?', finalWord: true}
-        ],
-        [
-          {start: '28', end: '29', text: '###'},
-          {start: '21', end: '22', text: '###'},
-          {start: '22', end: '23', text: 'made'},
-          {start: '23', end: '24', text: 'it'},
-          {start: '24', end: '25', text: 'so'},
-          {start: '25', end: '26', text: 'far'},
-          {start: '26', end: '27', text: 'end'},
-          {start: '27', end: '28', text: 'interval?', finalWord: true}
+          {start: '3', end: '3.5', text: '3'},
+          {start: '3.5', end: '4', text: '3', finalWord: true}
         ]
+        // [
+        //   {start: '3', end: '5', text: 'I'},
+        //   {start: '5', end: '5.5', text: 'heard'},
+        //   {start: '6.5', end: '7', text: 'that'},
+        //   {start: '7', end: '7.5', text: 'you'},
+        //   {start: '8', end: '9.5', text: 'settled'},
+        //   {start: '9.5', end: '10', text: 'down'},
+        //   {start: '10', end: '11', text: ' ', finalWord: true}
+        // ],
+        // [
+        //   {start: '10.5', end: '11', text: 'that'},
+        //   {start: '12', end: '13', text: 'you'},
+        //   {start: '13', end: '14', text: 'found'},
+        //   {start: '14', end: '15', text: 'a'},
+        //   {start: '16', end: '17', text: 'girl'},
+        //   {start: '17', end: '18', text: 'and'},
+        //   {start: '18', end: '19', text: "you're"},
+        //   {start: '19', end: '20', text: 'married', finalWord: true}
+        // ],
+        // [
+        //   {start: '20', end: '21', text: 'whoa'},
+        //   {start: '21', end: '22', text: 'you'},
+        //   {start: '22', end: '23', text: 'made'},
+        //   {start: '23', end: '24', text: 'it'},
+        //   {start: '24', end: '25', text: 'so'},
+        //   {start: '25', end: '26', text: 'far'},
+        //   {start: '26', end: '27', text: 'end'},
+        //   {start: '27', end: '28', text: 'interval?', finalWord: true}
+        // ],
+        // [
+        //   {start: '28', end: '29', text: '###'},
+        //   {start: '21', end: '22', text: '###'},
+        //   {start: '22', end: '23', text: 'made'},
+        //   {start: '23', end: '24', text: 'it'},
+        //   {start: '24', end: '25', text: 'so'},
+        //   {start: '25', end: '26', text: 'far'},
+        //   {start: '26', end: '27', text: 'end'},
+        //   {start: '27', end: '28', text: 'interval?', finalWord: true}
+        // ]
       ],
       displaySubtitle: ''
     }
@@ -92,7 +104,6 @@ class Sing extends Component {
   createSubtitle = () => {
     let windowTime = this.props.song.destination.context.currentTime
     let subtitles = document.getElementById('subtitles')
-    let element
 
     let currentSection = 0
     let subtitleInnerHtml = ''
@@ -104,9 +115,11 @@ class Sing extends Component {
 
     this.setState({displaySubtitle: subtitleInnerHtml})
 
-    const updateLyricsSection = setInterval(() => {
-      let stop = false
-      this.state.lyricsData[currentSection].forEach((ele, index, array) => {
+    let stop = false
+    let updateLyricsInterval
+
+    const updateLyricsSection = () => {
+      this.state.lyricsData[currentSection].forEach((ele, index) => {
         if (
           this.props.song.destination.context.currentTime - windowTime >=
             ele.start &&
@@ -116,11 +129,9 @@ class Sing extends Component {
           subtitles.children[index].style.background = 'yellow'
           if (ele.finalWord) {
             currentSection++
-
-            // break if on last section
+            // break if on last section of lyrics
             if (currentSection === this.state.lyricsData.length) {
               stop = true
-              clearInterval(updateLyricsSection)
             }
 
             // reset for next block of lyrics
@@ -142,7 +153,18 @@ class Sing extends Component {
           this.setState({displaySubtitle: subtitleInnerHtml})
         }
       })
-    }, 100)
+
+      // end recursive call and return if all lyrics have played
+      if (currentSection === this.state.lyricsData.length) {
+        cancelAnimationFrame(updateLyricsInterval)
+        return
+      }
+
+      // recursively call itself
+      updateLyricsInterval = requestAnimationFrame(updateLyricsSection)
+    }
+    // start
+    updateLyricsSection()
   }
 
   pitchLogger = () => {
@@ -212,7 +234,6 @@ class Sing extends Component {
             left: 40
           }}
         >
-          <button onClick={this.handlePitchLogger}> Start Game </button>
           <p>Current Note: {this.state.currentNote}</p>
           <p>Score: {this.state.score}</p>
           <p>Current Time: {this.state.currentTime}</p>
