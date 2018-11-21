@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, Navbar} from './components'
+import {Login, Signup, UserHome, Navbar, HomePage, SongMenu} from './components'
 import {me} from './store'
 import Sing from './components/Sing'
 import Webcam from './components/webcam'
@@ -21,8 +21,10 @@ class Routes extends Component {
 
     return (
       <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/home" component={HomePage} />
         <Route path="/main" component={Main} />
-        <Route path="/sing" component={Sing} />
+        <Route path="/songs" component={SongMenu} />
 
         {/* Routes placed here are available to all visitors */}
         <Navbar />
@@ -33,7 +35,7 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
+            <Route path="/userprofile" component={UserHome} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
