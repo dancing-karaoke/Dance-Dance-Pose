@@ -43,6 +43,7 @@ form div {
 }
 
 .PoseNet {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,6 +54,7 @@ form div {
   margin-right: auto;
 }
 .webcam {
+  justify-content: center;
   display: flex;
   width: 900px;
   height: 600px;
