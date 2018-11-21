@@ -3,6 +3,8 @@ import Wad from 'web-audio-daw'
 import Sing from './Sing'
 import Webcam from './webcam'
 import Score from './score'
+import {connect} from 'react-redux'
+import {selectSong, getSingScore} from '../store/song'
 
 class Main extends Component {
   constructor(props) {
@@ -30,4 +32,11 @@ class Main extends Component {
   }
 }
 
-export default Main
+const mapState = state => ({
+  selectedSong: state.selectedSong,
+  singScore: state.singScore
+})
+
+const mapDispatch = {selectSong, getSingScore}
+
+export default connect(mapState, mapDispatch)(Main)
