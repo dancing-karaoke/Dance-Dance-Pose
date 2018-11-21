@@ -2,13 +2,13 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-const selectedSongMenu = ({hideModal, show, showModal}) => {
-  const showHideClassName = show ? 'modal display-block' : 'modal display-none'
+//Notes to Team: i'm (Joe) still working on this...
 
+const SelectedSongMenu = () => {
   return (
     <div>
       <div>
-        <button onClick={props.hideModal}>close</button>
+        {/* <button onClick={props.hideModal}>close</button>*/}
         <h1>CHOOSE DIFFICULTY</h1>
         <ul>
           <li>EASY</li>
@@ -22,4 +22,4 @@ const selectedSongMenu = ({hideModal, show, showModal}) => {
   )
 }
 
-export default selectedSongMenu
+export default SelectedSongMenu

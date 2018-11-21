@@ -2,12 +2,11 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Navbar from './navbar'
-import {getSong} from '../store'
-import ReactModal from 'react-modal'
-import selectedSongMenu from './selected-song-menu'
+import {Modal} from './Modal'
+// import selectedSongMenu from './selected-song-menu'
 
 //Notes to Team:
-//-pass specific song to webcam component
+//-pass specific song to webcam component, import action type from the store
 //-style this component
 
 class SongMenu extends Component {
@@ -35,16 +34,16 @@ class SongMenu extends Component {
       <div>
         <h1>PICK YOUR SONG!</h1>
         <div>
-          <Modal>
-            <button type="button" onClick={this.showModal}>
-              DANCING QUEEN BY ABBA
-            </button>
-            <selectedSongMenu
+          <button type="button" onClick={this.showModal}>
+            DANCING QUEEN BY ABBA
+          </button>
+          {this.state.show && (
+            <Modal
               show={this.state.show}
               showModal={this.showModal}
               hideModal={this.hideModal}
             />
-          </Modal>
+          )}
         </div>
 
         <Link to="/main">
