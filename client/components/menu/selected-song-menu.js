@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {selectDifficulty} from '../store'
+import {selectDifficulty} from '../../store'
 
 //Notes to Team: i'm (Joe) still working on this...
 

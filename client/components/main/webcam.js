@@ -20,7 +20,7 @@ import {
 } from '../../store/bubble'
 import Tv from './Tv'
 import Loading from './Loading'
-import {selectSong, selectDifficulty} from '../store/song'
+import {selectSong, selectDifficulty} from '../../store/song'
 
 let counter = 0
 
