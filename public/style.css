@@ -6,6 +6,7 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0;
+  background: #23a6d5;
 }
 
 .PoseNet video {
