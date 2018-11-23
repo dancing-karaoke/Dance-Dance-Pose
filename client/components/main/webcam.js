@@ -20,8 +20,7 @@ import {
 } from '../../store/bubble'
 import Tv from './Tv'
 import Loading from './Loading'
-
-// import { beats } from '../../beats';
+import {selectSong, selectDifficulty} from '../../store/song'
 
 let counter = 0
 
@@ -371,7 +370,10 @@ const mapState = state => ({
   xBubble: state.bubble.xCoordinate,
   yBubble: state.bubble.yCoordinate,
   xBubble2: state.bubble.xCoordinate2,
-  yBubble2: state.bubble.yCoordinate2
+  yBubble2: state.bubble.yCoordinate2,
+  selectedSong: state.song.selectedSong,
+  difficulty: state.song.difficulty,
+  danceScore: state.bubble.danceScore
 })
 
 const mapDispatch = dispatch => {

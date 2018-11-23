@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Leaderboard} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -10,6 +10,39 @@ async function seed() {
   const users = await Promise.all([
     User.create({email: 'cody@email.com', password: '123'}),
     User.create({email: 'murphy@email.com', password: '123'})
+  ])
+
+  const leaderboards = await Promise.all([
+    Leaderboard.create({
+      name: 'Cody the Dancing King',
+      score: 5100,
+      difficulty: 'chaos!',
+      song: 'Dancing Queen by Abba'
+    }),
+    Leaderboard.create({
+      name: 'Queen',
+      score: 4800,
+      difficulty: 'chaos!',
+      song: 'Beat It by Michael Jackson'
+    }),
+    Leaderboard.create({
+      name: 'Rolling Stone',
+      score: 4600,
+      difficulty: 'medium',
+      song: 'Dancing Queen by Abba'
+    }),
+    Leaderboard.create({
+      name: 'Eagle',
+      score: 4500,
+      difficulty: 'medium!',
+      song: 'Beat It by Michael Jackson'
+    }),
+    Leaderboard.create({
+      name: 'Dancing Beatles',
+      score: 4000,
+      difficulty: 'chaos!',
+      song: 'Dancing Queen by Abba'
+    })
   ])
 
   console.log(`seeded ${users.length} users`)

@@ -1,7 +1,5 @@
 import React from 'react'
-import {SelectedSongMenu} from './selected-song-menu'
-
-//Notes to team: I'm (Joe) is still working on this...
+import SelectedSongMenu from './selected-song-menu'
 
 export const Modal = ({hideModal, show}) => {
   const showHideClassName = show ? 'modal display-block' : 'modal display-none'
@@ -10,9 +8,6 @@ export const Modal = ({hideModal, show}) => {
     <div className={showHideClassName}>
       <section className="modal-main">
         <SelectedSongMenu hideModal={() => hideModal('SelectedSongMenu')} />
-        <button type="button" onClick={() => handleClose()}>
-          close
-        </button>
       </section>
     </div>
   )
