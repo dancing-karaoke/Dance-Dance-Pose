@@ -17,9 +17,8 @@ import {
   getXCoordinate2,
   getYCoordinate2
 } from '../store/bubble'
+import {selectSong, selectDifficulty} from '../store/song'
 import Wad from 'web-audio-daw'
-
-// import { beats } from '../../beats';
 
 let counter = 0
 
@@ -323,7 +322,10 @@ const mapState = state => ({
   xBubble: state.bubble.xCoordinate,
   yBubble: state.bubble.yCoordinate,
   xBubble2: state.bubble.xCoordinate2,
-  yBubble2: state.bubble.yCoordinate2
+  yBubble2: state.bubble.yCoordinate2,
+  selectedSong: state.song.selectedSong,
+  difficulty: state.song.difficulty,
+  danceScore: state.bubble.danceScore
 })
 
 const mapDispatch = dispatch => {

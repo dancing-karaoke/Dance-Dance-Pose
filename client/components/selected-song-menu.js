@@ -1,25 +1,37 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import {selectDifficulty} from '../store'
 
 //Notes to Team: i'm (Joe) still working on this...
 
-const SelectedSongMenu = () => {
+const SelectedSongMenu = props => {
   return (
     <div>
       <div>
-        {/* <button onClick={props.hideModal}>close</button>*/}
-        <h1>CHOOSE DIFFICULTY</h1>
-        <ul>
-          <li>EASY</li>
-          <li>MEDIUM</li>
-          <li>CHAOS!</li>
-        </ul>
+        <button onClick={props.hideModal}>close</button>
+        <h1>CHOOSE YOUR DIFFICULTY:</h1>
+        <button type="button" onClick={() => props.selectDifficulty('easy')}>
+          EASY
+        </button>
+        <button type="button" onClick={() => props.selectDifficulty('medium')}>
+          MEDIUM
+        </button>
+        <button type="button" onClick={() => props.selectDifficulty('chaos')}>
+          CHAOS!
+        </button>
       </div>
-
-      <button>PLAY!</button>
+      <Link to="/main">PLAY!</Link>
     </div>
   )
 }
 
-export default SelectedSongMenu
+const mapDispatchToProps = dispatch => {
+  return {
+    selectDifficulty: difficulty => dispatch(selectDifficulty(difficulty))
+  }
+}
+
+const Connect = connect(null, mapDispatchToProps)(SelectedSongMenu)
+
+export default Connect

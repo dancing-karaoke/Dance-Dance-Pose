@@ -87,3 +87,6 @@ export const beatsToDisplay = beatsToBubble(abbaBeats)
 // }
 
 export const beatTimeAbba = 1
+export const abbaEasy = 5
+export const abbaMedium = 3
+export const abbaChaos = 1
