@@ -44,6 +44,11 @@ form div {
   color: white;
 }
 
+.main h1 {
+  color: white;
+  text-align: center;
+}
+
 /* .scoreContainer h2 {
   position: absolute;
   top: 50%;
@@ -74,6 +79,7 @@ form div {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 100% 100%;
   animation: Gradient 15s ease infinite;
+  transform: scaleX(1.5) scaleY(1);
 }
 
 .webcam {
