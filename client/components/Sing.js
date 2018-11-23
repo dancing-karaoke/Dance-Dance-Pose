@@ -332,19 +332,13 @@ class Sing extends Component {
   render() {
     return (
       <div>
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 450,
-            left: 40
-          }}
-        >
-          <p>Current Note: {this.state.userNote}</p>
+        <div className="lyricsContainer">
+          {/* <p>Current Note: {this.state.userNote}</p>
           <p>Score: {this.state.score}</p>
           <p>Current Time: {this.state.currentTime}</p>
           <p>
-            Target Note: {this.state.currentSongNotes[this.state.currentTime]}
-          </p>
+            Target Note: {this.state.currentSongNotes[this.state.currentTime]} */}
+          {/* </p> */}
           <div
             id="subtitles"
             dangerouslySetInnerHTML={{__html: this.state.displaySubtitle}}

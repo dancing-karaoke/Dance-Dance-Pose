@@ -30,12 +30,12 @@ class Bubble2 extends Component {
     return (
       <div className="bubble">
         <img
-          src="./explode1.gif"
-          width="500"
+          src="./bubble.gif"
+          width="200"
           style={{
-            position: 'absolute',
-            bottom: this.state.y,
-            left: this.state.x
+            position: 'fixed',
+            top: this.state.y,
+            right: this.state.x
           }}
         />
       </div>

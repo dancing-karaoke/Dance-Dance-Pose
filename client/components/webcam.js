@@ -23,10 +23,21 @@ import Wad from 'web-audio-daw'
 
 let counter = 0
 
+const defaultParameters = {
+  minBubblex: 75,
+  maxBubblex: 1050,
+  minHandBubbley: 35,
+  maxHandBubbley: 430,
+  minFootBubbley: 430,
+  maxFootBubbley: 580,
+  rangeSpectrum: 0.3,
+  minConfidencePoints: 0.5
+}
+
 class PoseNet extends React.Component {
   static defaultProps = {
-    videoWidth: 1200,
-    videoHeight: 600,
+    videoWidth: 600,
+    videoHeight: 500,
     flipHorizontal: true,
     algorithm: 'single-pose',
     showVideo: true,
@@ -176,24 +187,31 @@ class PoseNet extends React.Component {
           )
           // index 10 is rightWrist
           // index 9 is left Wrist
-
+          const {rangeSpectrum, minConfidencePoints} = defaultParameters
           this.setState({
-            xMin: this.props.xBubble * 0.6,
-            xMax: this.props.xBubble * 1.4,
-            yMin: this.props.yBubble * 0.6,
-            yMax: this.props.yBubble * 1.4
+            xMin: this.props.xBubble * (1 - rangeSpectrum),
+            xMax: this.props.xBubble * (1 + rangeSpectrum),
+            yMin: this.props.yBubble * (1 - rangeSpectrum),
+            yMax: this.props.yBubble * (1 + rangeSpectrum)
           })
 
           if (
             this.state.xMin < pose.keypoints[10].position.x &&
             pose.keypoints[10].position.x < this.state.xMax &&
             this.state.yMin < pose.keypoints[10].position.y &&
-            pose.keypoints[10].position.y < this.state.yMax
+            pose.keypoints[10].position.y < this.state.yMax &&
+            pose.keypoints[10].score > minConfidencePoints
           ) {
             counter++
             this.props.addScore(counter)
-            console.log('COUNTER', counter)
-            this.eliminateBubble()
+            console.log(
+              'COUNTER',
+              counter,
+              'STATE',
+              this.state,
+              'POSE',
+              pose.keypoints
+            )
           }
           poses.push(pose)
           break
@@ -235,15 +253,29 @@ class PoseNet extends React.Component {
   }
 
   generateRandomCoordinates() {
-    const xBubble = Math.random() * 1300
-    const yBubble = Math.random() * 800
+    const {
+      minBubblex,
+      maxBubblex,
+      maxHandBubbley,
+      minHandBubbley
+    } = defaultParameters
+    const xBubble = Math.random() * (maxBubblex - minBubblex) + minBubblex
+    const yBubble =
+      Math.random() * (maxHandBubbley - minHandBubbley) + minHandBubbley
     this.props.addX(xBubble)
     this.props.addY(yBubble)
   }
   //manages coordinates for second bubble
   generateRandomCoordinates2() {
-    const xBubble = Math.random() * 1300
-    const yBubble = Math.random() * 800
+    const {
+      minFootBubbley,
+      maxFootBubbley,
+      maxBubblex,
+      minBubblex
+    } = defaultParameters
+    const xBubble = Math.random() * (maxBubblex - minBubblex) + minBubblex
+    const yBubble =
+      Math.random() * (maxFootBubbley - minFootBubbley) + minFootBubbley
     this.props.addX2(xBubble)
     this.props.addY2(yBubble)
   }
@@ -297,7 +329,7 @@ class PoseNet extends React.Component {
       ''
     )
     return (
-      <div className="PoseNet">
+      <div className="webcam-outer">
         {loading}
         <video id="notShow" playsInline ref={this.getVideo} />
         {this.state.time === '' ? (
@@ -311,9 +343,7 @@ class PoseNet extends React.Component {
             />
           </div>
         )}
-        <div className="webcamContainer">
-          <canvas className="webcam" ref={this.getCanvas} />
-        </div>
+        <canvas className="webcam" ref={this.getCanvas} />
       </div>
     )
   }

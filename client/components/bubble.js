@@ -31,11 +31,11 @@ class Bubble extends Component {
       <div className="bubble">
         <img
           src="./bubble.gif"
-          width="500"
+          width="200"
           style={{
-            position: 'absolute',
-            bottom: this.state.y,
-            left: this.state.x
+            position: 'fixed',
+            top: this.state.y,
+            right: this.state.x
           }}
         />
       </div>

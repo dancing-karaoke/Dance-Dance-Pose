@@ -36,8 +36,8 @@ class Main extends Component {
 }
 
 const mapState = state => ({
-  selectedSong: state.selectedSong,
-  singScore: state.singScore
+  selectedSong: state.song.selectedSong,
+  singScore: state.song.singScore
 })
 
 const mapDispatch = {selectSong, getSingScore}
