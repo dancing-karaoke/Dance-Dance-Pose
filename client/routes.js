@@ -32,6 +32,7 @@ class Routes extends Component {
         <Route exact path="/home" component={HomePage} />
         <Route path="/main" component={Main} />
         <Route path="/songs" component={SongMenu} />
+        <Route path="/songselect" component={SongSelect} />
 
         {/* Routes placed here are available to all visitors */}
         <Navbar />
