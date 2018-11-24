@@ -2,12 +2,18 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, Navbar, HomePage, SongMenu} from './components'
+import {
+  Login,
+  Signup,
+  UserHome,
+  Navbar,
+  HomePage,
+  Sing,
+  Webcam,
+  Main,
+  SongMenu
+} from './components'
 import {me} from './store'
-import Sing from './components/Sing'
-import Webcam from './components/webcam'
-import Main from './components/Main'
-import SongSelect from './components/SongSelect'
 
 /**
  * COMPONENT
