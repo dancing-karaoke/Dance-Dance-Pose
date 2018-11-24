@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom'
 
 function menuSound() {
   // const menuSound = new Wad({source: '/assets/menu-select.mp3'})
-  const menuSound = new Wad({source: '/assets/game-start.ogg'})
+  // const menuSound = new Wad({source: '/assets/game-start.ogg'})
   // menuSound.play()
 }
 
