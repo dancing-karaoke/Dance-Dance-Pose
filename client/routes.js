@@ -11,7 +11,8 @@ import {
   Sing,
   Webcam,
   Main,
-  SongMenu
+  SongMenu,
+  SongSelect
 } from './components'
 import {me} from './store'
 
