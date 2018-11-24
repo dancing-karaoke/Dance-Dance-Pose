@@ -145,43 +145,112 @@ class Sing extends Component {
         //   {start: '3.5', end: '4', text: '3', finalWord: true}
         // ]
         [
-          {start: '3', end: '5', text: 'I'},
-          {start: '5', end: '5.5', text: 'heard'},
-          {start: '6.5', end: '7', text: 'that'},
-          {start: '7', end: '7.5', text: 'you'},
-          {start: '8', end: '9.5', text: 'settled'},
-          {start: '9.5', end: '10', text: 'down'},
-          {start: '10', end: '11', text: ' ', finalWord: true}
+          {start: '1.5', end: '3.25', text: 'Ooooooooooh'},
+          {start: '3.25', end: '5.55', text: 'Ooooooooooh'},
+          {start: '5.5', end: '10.3', text: 'Ooooooooooh'},
+          {start: '10.3', end: '11', text: ' ', finalWord: true}
         ],
         [
-          {start: '10.5', end: '11', text: 'that'},
-          {start: '12', end: '13', text: 'you'},
-          {start: '13', end: '14', text: 'found'},
-          {start: '14', end: '15', text: 'a'},
-          {start: '16', end: '17', text: 'girl'},
-          {start: '17', end: '18', text: 'and'},
-          {start: '18', end: '19', text: "you're"},
-          {start: '19', end: '20', text: 'married', finalWord: true}
+          {start: '11', end: '13.5', text: 'Ooooooooooh'},
+          {start: '12.3', end: '15', text: 'Ooooooooooh'},
+          {start: '15', end: '17', text: 'Ooooooooooh'},
+          {start: '17', end: '20.1', text: 'Ooooooooooh'},
+          {start: '20.1', end: '20.3', text: ' ', finalWord: true}
         ],
         [
-          {start: '20', end: '21', text: 'whoa'},
-          {start: '21', end: '22', text: 'you'},
-          {start: '22', end: '23', text: 'made'},
-          {start: '23', end: '24', text: 'it'},
-          {start: '24', end: '25', text: 'so'},
-          {start: '25', end: '26', text: 'far'},
-          {start: '26', end: '27', text: 'end'},
-          {start: '27', end: '28', text: 'interval?', finalWord: true}
+          {start: '20.3', end: '20.5', text: 'You'},
+          {start: '20.5', end: '21', text: 'can'},
+          {start: '21.5', end: '22.2', text: 'dance'},
+          {start: '22.2', end: '22.45', text: ' ', finalWord: true}
         ],
         [
-          {start: '28', end: '29', text: '###'},
-          {start: '21', end: '22', text: '###'},
-          {start: '22', end: '23', text: 'made'},
-          {start: '23', end: '24', text: 'it'},
-          {start: '24', end: '25', text: 'so'},
-          {start: '25', end: '26', text: 'far'},
-          {start: '26', end: '27', text: 'end'},
-          {start: '27', end: '28', text: 'interval?', finalWord: true}
+          {start: '22.45', end: '23.3', text: 'You'},
+          {start: '23.4', end: '23.6', text: 'can'},
+          {start: '23.6', end: '25', text: 'jive'},
+          {start: '25', end: '25.5', text: ' ', finalWord: true}
+        ],
+        [
+          {start: '25.5', end: '26.3', text: 'Having'},
+          {start: '26.3', end: '26.6', text: 'the'},
+          {start: '26.6', end: '27.2', text: 'time'},
+          {start: '27.2', end: '27.4', text: 'of'},
+          {start: '27.4', end: '27.8', text: 'your'},
+          {start: '27.8', end: '28.1', text: 'life'},
+          {start: '28.1', end: '28.3', text: ' ', finalWord: true}
+        ],
+        [
+          {start: '28.3', end: '29.5', text: 'Ooooooooooh'},
+          {start: '29.5', end: '30', text: ' ', finalWord: true}
+        ],
+        [
+          {start: '30', end: '30.5', text: 'see'},
+          {start: '30.5', end: '31', text: 'that'},
+          {start: '31', end: '31.5', text: 'girl'},
+          {start: '31.5', end: '31.8', text: ' ', finalWord: true}
+        ],
+        [
+          {start: '32', end: '32.4', text: 'Watch'},
+          {start: '32.4', end: '33', text: 'that'},
+          {start: '33', end: '33.4', text: 'scene'},
+          {start: '33.4', end: '33.5', text: ' ', finalWord: true}
+        ],
+        [
+          {start: '33.5', end: '33.8', text: 'Dig'},
+          {start: '33.8', end: '34.1', text: 'in'},
+          {start: '34.1', end: '34.4', text: 'the'},
+          {start: '34.4', end: '34.9', text: 'dancing'},
+          {start: '34.9', end: '38.8', text: 'queen'},
+          {start: '38.8', end: '39', text: ' ', finalWord: true}
+        ],
+        [
+          {start: '39', end: '43.8', text: 'Ooooooooooh'},
+          {start: '43.8', end: '44', text: ' ', finalWord: true}
+        ],
+        [
+          {start: '44', end: '44.5', text: 'Friday'},
+          {start: '44.5', end: '45', text: 'night'},
+          {start: '45', end: '45.5', text: 'and'},
+          {start: '45.5', end: '45.8', text: 'the'},
+          {start: '45.8', end: '46.1', text: 'lights'},
+          {start: '46.1', end: '46.4', text: 'are'},
+          {start: '46.4', end: '48.8', text: 'low'},
+          {start: '48.8', end: '49', text: ' ', finalWord: true}
+        ],
+        [
+          {start: '49', end: '49.5', text: 'Looking'},
+          {start: '49.5', end: '50', text: 'out'},
+          {start: '50', end: '50.5', text: 'for'},
+          {start: '50.5', end: '50.8', text: 'a'},
+          {start: '50.8', end: '51.1', text: 'place'},
+          {start: '51.1', end: '51.4', text: 'to'},
+          {start: '51.4', end: '53.8', text: 'go'},
+          {start: '53.8', end: '54', text: ' ', finalWord: true}
+        ],
+        [
+          {start: '54', end: '54.3', text: 'Where'},
+          {start: '54.3', end: '54.7', text: 'they'},
+          {start: '54.7', end: '55', text: 'play'},
+          {start: '55', end: '55.3', text: 'the'},
+          {start: '55.3', end: '55.6', text: 'right'},
+          {start: '55.6', end: '55.9', text: 'music'},
+          {start: '55.9', end: '56', text: ' ', finalWord: true}
+        ],
+        [
+          {start: '56', end: '56.4', text: 'Getting'},
+          {start: '56.4', end: '56.7', text: 'in'},
+          {start: '56.7', end: '57', text: 'the'},
+          {start: '57', end: '57.8', text: 'swing'},
+          {start: '57.8', end: '58', text: ' ', finalWord: true}
+        ],
+        [
+          {start: '58', end: '58.3', text: 'You'},
+          {start: '58.3', end: '58.6', text: 'come'},
+          {start: '58.6', end: '58.9', text: 'to'},
+          {start: '58.9', end: '59.2', text: 'look'},
+          {start: '59.2', end: '59.5', text: 'for'},
+          {start: '59.5', end: '59.8', text: 'a'},
+          {start: '59.8', end: '60.3', text: 'king'},
+          {start: '60.3', end: '60.5', text: ' ', finalWord: true}
         ]
       ],
       displaySubtitle: ''
@@ -226,7 +295,7 @@ class Sing extends Component {
           this.props.song.destination.context.currentTime - windowTime <=
             ele.end
         ) {
-          subtitles.children[index].style.color = 'yellow'
+          subtitles.children[index].style.color = 'green'
           if (ele.finalWord) {
             currentSection++
             // break if on last section of lyrics
@@ -332,13 +401,19 @@ class Sing extends Component {
   render() {
     return (
       <div>
-        <div className="lyricsContainer">
-          {/* <p>Current Note: {this.state.userNote}</p>
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 450,
+            left: 40
+          }}
+        >
+          <p>Current Note: {this.state.userNote}</p>
           <p>Score: {this.state.score}</p>
           <p>Current Time: {this.state.currentTime}</p>
           <p>
-            Target Note: {this.state.currentSongNotes[this.state.currentTime]} */}
-          {/* </p> */}
+            Target Note: {this.state.currentSongNotes[this.state.currentTime]}
+          </p>
           <div
             id="subtitles"
             dangerouslySetInnerHTML={{__html: this.state.displaySubtitle}}
