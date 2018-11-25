@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Navbar from '../home/navbar'
 import {Modal} from './Modal'
+import {SongSelect} from '../index.js'
 
 //Notes to Team:
 //-pass specific song to webcam component, import action type from the store
@@ -31,6 +32,7 @@ class SongMenu extends Component {
       <div>
         <h1>PICK YOUR SONG!</h1>
         <div>
+          <SongSelect />
           <button type="button" onClick={this.showModal}>
             DANCING QUEEN BY ABBA
           </button>
