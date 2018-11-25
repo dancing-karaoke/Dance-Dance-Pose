@@ -11,7 +11,7 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0;
-  background: plum;
+  background: pink;
 }
 
 #notShow {
@@ -178,26 +178,30 @@ form div {
 
 .sudbury {
   font-family: 'Sudbury', sans-serif;
-  font-size: 40px;
+  font-size: 30px;
   font-weight: normal;
   text-align: center;
   line-height: 100%;
   padding-bottom: 5px;
-  color: darkblue;
+  color: rgb(125, 125, 203);
+  z-index: 2;
+  position: relative;
 }
 
 .sudbury:hover {
-  color: rebeccapurple;
+  color: cyan;
   animation: bounce 1s infinite;
 }
 
 .homeLogo {
   font-family: 'Sudbury', sans-serif;
-  font-size: 60px;
+  font-size: 70px;
   font-weight: normal;
   text-align: center;
   line-height: 100%;
   padding-bottom: 10px;
+  z-index: 2;
+  position: relative;
   /* width: 300px;
   margin: auto; */
   /* text-shadow: 0em 0em 0.1em red, 0em 0em 0.1em red; */
@@ -294,4 +298,56 @@ form div {
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff1177,
       0 0 35px #ff1177, 0 0 40px #ff1177, 0 0 50px #ff1177, 0 0 75px #ff1177;
   }
+}
+
+#background-video {
+  height: 100%;
+  width: 100%;
+  float: left;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: none;
+  position: fixed;
+  z-index: 1;
+}
+
+.backButton {
+  font-family: 'Sudbury', sans-serif;
+  font-size: 30px;
+  font-weight: normal;
+  text-align: center;
+  line-height: 100%;
+  padding-bottom: 5px;
+  color: lightgreen;
+  z-index: 2;
+  position: relative;
+}
+
+/* table, tbody, tr, td {
+  z-index: 2;
+  position: relative;
+  color: greenyellow;
+} */
+
+div.tableContainer {
+  width: 98%;
+  margin: 1%;
+}
+table#table1 {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+}
+
+tr,
+td {
+  text-align: left;
+  border-left: 30px solid;
+  border-left-color: transparent;
+}
+
+tr > td:first-child {
+  border: 0px;
 }

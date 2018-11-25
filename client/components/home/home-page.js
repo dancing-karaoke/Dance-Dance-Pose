@@ -1,34 +1,40 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-// import Wad from 'web-audio-daw'
 
 //Notes to Team:
 //-create credit component and link it here
 //-create leaderboard component and link it with backend (store leaderboard on the store)
 
 function menuSound() {
-  // const menuSound = new Wad({source: '/assets/menu-select.mp3'})
-  // const menuSound = new Wad({source: '/assets/game-start.ogg'})
-  // menuSound.play()
+  const menuSound = new Audio('/assets/menu-select.mp3')
+  menuSound.play()
+}
+
+function confirmSound() {
+  const confirmSound = new Audio('/assets/game-start.ogg')
+  confirmSound.play()
 }
 
 const HomePage = ({handleClick}) => (
   <div>
-    <h1 className="homeLogo">DANCE DANCE POSE</h1>
+    <h1 className="homeLogo">* DANCE DANCE POSE *</h1>
     <div>
-      <Link to="/songs" onMouseOver={menuSound}>
+      <Link to="/songs" onMouseOver={menuSound} onClick={confirmSound}>
         <h3 className="sudbury"> PICK YOUR SONG </h3>
       </Link>
-      <Link to="/songs" onMouseOver={menuSound}>
+      <Link to="/instructions" onMouseOver={menuSound} onClick={confirmSound}>
         <h3 className="sudbury"> INSTRUCTIONS </h3>
       </Link>
-      <Link to="/songs" onMouseOver={menuSound}>
+      <Link to="/leaderboard" onMouseOver={menuSound} onClick={confirmSound}>
         <h3 className="sudbury"> LEADERBOARD </h3>
       </Link>
-      <Link to="/songs" onMouseOver={menuSound}>
+      <Link to="/credits" onMouseOver={menuSound} onClick={confirmSound}>
         <h3 className="sudbury"> CREDITS </h3>
       </Link>
+      <video id="background-video" loop autoPlay>
+        <source src="/assets/disco-lights.mp4" type="video/mp4" />
+      </video>
     </div>
   </div>
 )
