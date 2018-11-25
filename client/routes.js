@@ -11,7 +11,8 @@ import {
   Sing,
   Webcam,
   Main,
-  SongMenu
+  SongMenu,
+  SongSelection
 } from './components'
 import {me} from './store'
 
@@ -32,7 +33,7 @@ class Routes extends Component {
         <Route exact path="/home" component={HomePage} />
         <Route path="/main" component={Main} />
         <Route path="/songs" component={SongMenu} />
-        <Route path="/songselect" component={SongSelect} />
+        <Route path="/songselect" component={SongSelection} />
 
         {/* Routes placed here are available to all visitors */}
         <Navbar />
