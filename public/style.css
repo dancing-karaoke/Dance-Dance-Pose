@@ -11,7 +11,7 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0;
-  background: #333;
+  background: plum;
 }
 
 #notShow {
@@ -168,4 +168,128 @@ form div {
 
 #bubble-container {
   z-index: 99;
+  
+@font-face {
+  font-family: 'Sudbury';
+  src: url('assets/SudburyBasin3D.ttf');
+}
+
+.sudbury {
+  font-family: 'Sudbury', sans-serif;
+  font-size: 40px;
+  font-weight: normal;
+  text-align: center;
+  line-height: 100%;
+  padding-bottom: 5px;
+  color: darkblue;
+}
+
+.sudbury:hover {
+  color: rebeccapurple;
+  animation: bounce 1s infinite;
+}
+
+.logo {
+  font-family: 'Sudbury', sans-serif;
+  font-size: 60px;
+  font-weight: normal;
+  text-align: center;
+  line-height: 100%;
+  padding-bottom: 10px;
+  /* width: 300px;
+  margin: auto; */
+  /* text-shadow: 0em 0em 0.1em red, 0em 0em 0.1em red; */
+
+  /* Color Changing */
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #647687,
+    #00ced1,
+    #20b2aa,
+    #008080,
+    #a20025,
+    #8b00ff
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 300% 300%;
+  -webkit-animation: rainbowanim 5s ease infinite;
+  -moz-animation: rainbowanim 5s ease infinite;
+  animation: rainbowanim 5s ease infinite;
+
+  /* Neon Glow */
+  /* font-family:'Monoton', cursive; */
+  /* color: purple;
+  -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
+  -moz-animation: neon1 1.5s ease-in-out infinite alternate;
+  animation: neon1 1.5s ease-in-out infinite alternate; */
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  60%,
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  40% {
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px);
+    -webkit-transform: scale(1.7);
+    -ms-transform: scale(1.7);
+    transform: scale(1.7);
+  }
+
+  80% {
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px);
+  }
+}
+
+@-webkit-keyframes rainbowanim {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-moz-keyframes rainbowanim {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes rainbowanim {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes neon1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff1177,
+      0 0 70px #ff1177, 0 0 80px #ff1177, 0 0 100px #ff1177, 0 0 150px #ff1177;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff1177,
+      0 0 35px #ff1177, 0 0 40px #ff1177, 0 0 50px #ff1177, 0 0 75px #ff1177;
+  }
 }
