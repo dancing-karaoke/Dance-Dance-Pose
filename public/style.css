@@ -168,7 +168,8 @@ form div {
 
 #bubble-container {
   z-index: 99;
-  
+}
+
 @font-face {
   font-family: 'Sudbury';
   src: url('assets/SudburyBasin3D.ttf');
