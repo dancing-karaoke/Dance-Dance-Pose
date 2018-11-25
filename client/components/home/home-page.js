@@ -15,7 +15,7 @@ function menuSound() {
 
 const HomePage = ({handleClick}) => (
   <div>
-    <h1 className="logo">DANCE DANCE POSE</h1>
+    <h1 className="homeLogo">DANCE DANCE POSE</h1>
     <div>
       <Link to="/songs" onMouseOver={menuSound}>
         <h3 className="sudbury"> PICK YOUR SONG </h3>

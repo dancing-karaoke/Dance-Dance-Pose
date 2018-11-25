@@ -61,6 +61,7 @@ form div {
   animation-duration: 500ms;
   animation-iteration-count: infinite;
 }
+
 @keyframes logo {
   0% {
     color: #ee7752;
@@ -190,7 +191,7 @@ form div {
   animation: bounce 1s infinite;
 }
 
-.logo {
+.homeLogo {
   font-family: 'Sudbury', sans-serif;
   font-size: 60px;
   font-weight: normal;
