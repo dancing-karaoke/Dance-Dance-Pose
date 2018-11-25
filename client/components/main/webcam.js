@@ -22,6 +22,7 @@ import Tv from './Tv'
 import Loading from './Loading'
 import {selectSong, selectDifficulty} from '../../store/song'
 import ReactLoading from 'react-loading'
+import Score from './score'
 
 let counter = 0
 
@@ -38,8 +39,8 @@ const defaultParameters = {
 
 class PoseNet extends React.Component {
   static defaultProps = {
-    videoWidth: window.screen.width * 0.85,
-    videoHeight: window.screen.height * 0.75,
+    videoWidth: window.screen.width * 0.95,
+    videoHeight: window.screen.height * 0.65,
     flipHorizontal: true,
     algorithm: 'single-pose',
     showVideo: true,
@@ -352,6 +353,10 @@ class PoseNet extends React.Component {
     )
     return (
       <div id="border">
+        <div className="sidenav" />
+        <div className="score">
+          <Score />
+        </div>
         <div className="tvlines">
           <div className="webcam-outer">
             <video id="notShow" playsInline ref={this.getVideo} />
