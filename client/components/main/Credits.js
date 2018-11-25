@@ -8,9 +8,7 @@ function confirmSound() {
 
 const Credits = () => (
   <div>
-    <h1 className="homeLogo" style={{textDecorationLine: 'underline'}}>
-      CREDITS
-    </h1>
+    <h1 className="homeLogo"> CREDITS </h1>
     <h3 className="sudbury">* JIMMY HUANG * </h3>
     <h3 className="sudbury">* JOE COSTA *</h3>
     <h3 className="sudbury">* PAOLA NEIRA *</h3>

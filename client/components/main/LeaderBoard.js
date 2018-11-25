@@ -17,8 +17,6 @@ class LeaderBoard extends Component {
   }
 
   render() {
-    const dataColumns = ['Name', 'Score']
-
     return (
       <div>
         <h1 className="homeLogo"> LEADERBOARD</h1>
