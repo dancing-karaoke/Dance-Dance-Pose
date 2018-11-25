@@ -21,6 +21,7 @@ import {
 import Tv from './Tv'
 import Loading from './Loading'
 import {selectSong, selectDifficulty} from '../../store/song'
+import ReactLoading from 'react-loading'
 
 let counter = 0
 
@@ -37,8 +38,8 @@ const defaultParameters = {
 
 class PoseNet extends React.Component {
   static defaultProps = {
-    videoWidth: 600,
-    videoHeight: 500,
+    videoWidth: window.screen.width * 0.85,
+    videoHeight: window.screen.height * 0.75,
     flipHorizontal: true,
     algorithm: 'single-pose',
     showVideo: true,
@@ -87,6 +88,7 @@ class PoseNet extends React.Component {
   }
 
   async componentDidMount() {
+    console.log('STATE', this.state.loading)
     try {
       await this.setupCamera()
     } catch (e) {
@@ -98,6 +100,7 @@ class PoseNet extends React.Component {
     this.net = await posenet.load()
     this.detectPose()
     this.props.onRef(this)
+    console.log('STATE X@', this.state.loading)
   }
 
   async setupCamera() {
@@ -337,31 +340,39 @@ class PoseNet extends React.Component {
 
   render() {
     const loading = this.state.loading ? (
-      <div className="PoseNet__loading">{this.props.loadingText}</div>
+      // <h1>HELLO</h1>
+      <ReactLoading
+        type="spinningBubbles"
+        color="white"
+        height="25%"
+        width="25%"
+      />
     ) : (
       ''
     )
     return (
-      <Tv>
-        <div className="webcam-outer">
-          <video id="notShow" playsInline ref={this.getVideo} />
-          {this.state.time === '' ? (
-            <h2 />
-          ) : (
-            <div>
-              <Bubble
-                yBubble={this.props.yBubble}
-                xBubble={this.props.xBubble}
-              />
-              <Bubble2
-                yBubble={this.props.yBubble2}
-                xBubble={this.props.xBubble2}
-              />
-            </div>
-          )}
-          <canvas className="webcam" ref={this.getCanvas} />
+      <div id="border">
+        <div className="tvlines">
+          <div className="webcam-outer">
+            <video id="notShow" playsInline ref={this.getVideo} />
+            {this.state.time === '' ? (
+              <h2 />
+            ) : (
+              <div id="bubble-container">
+                <Bubble
+                  yBubble={this.props.yBubble}
+                  xBubble={this.props.xBubble}
+                />
+                <Bubble2
+                  yBubble={this.props.yBubble2}
+                  xBubble={this.props.xBubble2}
+                />
+              </div>
+            )}
+            <canvas className="webcam" ref={this.getCanvas} />
+          </div>
         </div>
-      </Tv>
+      </div>
     )
   }
 }

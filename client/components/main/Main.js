@@ -3,6 +3,7 @@ import Wad from 'web-audio-daw'
 import Sing from './Sing'
 import Webcam from './webcam'
 import Score from './score'
+import Logo from '.././home/logo'
 import {connect} from 'react-redux'
 import {selectSong, getSingScore} from '../../store/song'
 
@@ -22,12 +23,28 @@ class Main extends Component {
 
   render() {
     return (
-      <div className="main">
-        <h1> Dance-Dance-Pose </h1>
-        <Score />
-        <button onClick={this.danceDancePoseTime}> LET'S GO </button>
-        <Sing onRef={ref => (this.sing = ref)} song={this.state.song} />
-        <Webcam onRef={ref => (this.dance = ref)} song={this.state.song} />
+      <div>
+        <Logo />
+        {/* <Score /> */}
+        <div className="Lyrics">
+          <Sing
+            onRef={ref => (this.sing = ref)}
+            song={this.state.song}
+            sing={this.props.sing}
+          />
+        </div>
+        <div>
+          <Webcam onRef={ref => (this.dance = ref)} song={this.state.song} />
+          <button className="button" onClick={this.danceDancePoseTime}>
+            {' '}
+            LET'S GO{' '}
+          </button>
+          {/* <Sing
+          onRef={ref => (this.sing = ref)}
+          song={this.state.song}
+          sing={this.props.sing}
+        /> */}
+        </div>
       </div>
     )
   }
