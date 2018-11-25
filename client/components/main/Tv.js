@@ -1,9 +1,9 @@
-import * as React from 'react'
+// import * as React from 'react'
 
-const TV = props => (
-  <div id="border">
-    <div className="tvlines">{props.children}</div>
-  </div>
-)
+// const TV = props => (
+//   <div id="border">
+//     <div className="tvlines">{props.children}</div>
+//   </div>
+// )
 
-export default TV
+// export default TV

@@ -4,7 +4,7 @@ html {
 
 body {
   display: flex;
-  font-family: sans-serif;
+  font-family: 'Sudbury Basin 3D', arial;
   width: 100%;
   min-height: 100%;
   display: flex;
@@ -44,11 +44,51 @@ form div {
   color: white;
 }
 
-.main h1 {
+.logo {
+  position: absolute;
+  top: -2%;
+  left: 38%;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  /* padding: %; */
+}
+.logo h1 {
+  font-family: 'Sudbury Basin 3D', arial;
   color: white;
   text-align: center;
+  animation-name: logo;
+  animation-duration: 500ms;
+  animation-iteration-count: infinite;
+}
+@keyframes logo {
+  0% {
+    color: #ee7752;
+    font-size: 2em;
+  }
+  25% {
+    color: #e73c7e;
+    font-size: 2.2em;
+  }
+  75% {
+    color: #23a6d5;
+    font-size: 2em;
+  }
+  100% {
+    color: #23d5ab;
+    font-size: 2.2em;
+  }
 }
 
+#subtitles {
+  /* position: absolute; */
+  font-size: 2.5em;
+  /* opacity: 1; */
+}
+
+.button {
+  position: absolute;
+}
 /* .scoreContainer h2 {
   position: absolute;
   top: 50%;
@@ -79,7 +119,8 @@ form div {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 100% 100%;
   animation: Gradient 15s ease infinite;
-  transform: scaleX(1.5) scaleY(1);
+  opacity: 0.5;
+  /* transform: scale(1.4); */
 }
 
 .webcam {
@@ -87,6 +128,7 @@ form div {
   margin-left: auto;
   margin-right: auto;
   padding: 6px;
+  /* opacity: 1; */
 }
 
 .modal {
@@ -116,6 +158,17 @@ form div {
   display: none;
 }
 
+.Lyrics {
+  display: flex;
+  position: absolute;
+  top: 70px;
+  left: 120px;
+  z-index: 99;
+}
+
+#bubble-container {
+  z-index: 99;
+  
 @font-face {
   font-family: 'Sudbury';
   src: url('assets/SudburyBasin3D.ttf');
