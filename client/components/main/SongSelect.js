@@ -36,12 +36,16 @@ class SongSelection extends Component {
   }
   render() {
     return (
-      <div
-        id="svgAttributes"
-        onMouseEnter={this.enterPoly}
-        onMouseLeave={this.exitPoly}
-      >
-        <svg width="128" height="128" viewBox="0 0 128 128">
+      <div id="svgAttributes">
+        {' '}
+        <svg
+          width="128"
+          height="128"
+          viewBox="0 0 128 128"
+          onMouseEnter={this.enterPoly}
+          onMouseLeave={this.exitPoly}
+        >
+
           <polygon
             points="64 68.86333111206183 8.574 99.98495073368855 63.23955416473961 67.54576054450193 64 3.9849507336885557 64.7604458352604 67.54576054450193 119.426 99.98495073368855 "
             fill="currentColor"
