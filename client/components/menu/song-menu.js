@@ -31,8 +31,9 @@ class SongMenu extends Component {
     return (
       <div>
         <h1>PICK YOUR SONG!</h1>
+        <SongSelect />
+
         <div>
-          <SongSelect />
           <button type="button" onClick={this.showModal}>
             DANCING QUEEN BY ABBA
           </button>

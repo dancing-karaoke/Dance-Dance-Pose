@@ -15,7 +15,8 @@ import {
   SongSelect,
   Credits,
   LeaderBoard,
-  Instructions
+  Instructions,
+  Pointer
 } from './components'
 import {me} from './store'
 
@@ -40,6 +41,7 @@ class Routes extends Component {
         <Route path="/songselect" component={SongSelect} />
         <Route path="/leaderboard" component={LeaderBoard} />
         <Route path="/credits" component={Credits} />
+        <Route path="/pointer" component={Pointer} />
 
         {/* Routes placed here are available to all visitors */}
         <Navbar />
