@@ -9,6 +9,16 @@ import {SongSelect} from '../index.js'
 //-pass specific song to webcam component, import action type from the store
 //-style this component
 
+function menuSound() {
+  const menuSound = new Audio('/assets/menu-select.mp3')
+  menuSound.play()
+}
+
+function confirmSound() {
+  const confirmSound = new Audio('/assets/game-start.ogg')
+  confirmSound.play()
+}
+
 class SongMenu extends Component {
   constructor(props) {
     super(props)
@@ -33,9 +43,17 @@ class SongMenu extends Component {
         <h1>PICK YOUR SONG!</h1>
         <div>
           <SongSelect />
-          <button type="button" onClick={this.showModal}>
+          <button
+            type="button"
+            onMouseOver={menuSound}
+            onClick={() => {
+              this.showModal()
+              confirmSound()
+            }}
+          >
             DANCING QUEEN BY ABBA
           </button>
+
           {this.state.show && (
             <Modal
               show={this.state.show}
@@ -46,7 +64,14 @@ class SongMenu extends Component {
         </div>
 
         <div>
-          <button type="button" onClick={this.showModal}>
+          <button
+            type="button"
+            onMouseOver={menuSound}
+            onClick={() => {
+              this.showModal()
+              confirmSound()
+            }}
+          >
             BEAT IT BY MICHAEL JACKSON
           </button>
           {this.state.show && (
@@ -56,6 +81,9 @@ class SongMenu extends Component {
               hideModal={this.hideModal}
             />
           )}
+          <video id="background-video" loop autoPlay>
+            <source src="/assets/disco-lights.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
     )

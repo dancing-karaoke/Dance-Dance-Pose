@@ -3,25 +3,66 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {selectDifficulty} from '../../store'
 
-//Notes to Team: i'm (Joe) still working on this...
+function menuSound() {
+  const menuSound = new Audio('/assets/menu-select.mp3')
+  menuSound.play()
+}
+
+function confirmSound() {
+  const confirmSound = new Audio('/assets/game-start.ogg')
+  confirmSound.play()
+}
 
 const SelectedSongMenu = props => {
   return (
-    <div>
-      <div>
-        <button onClick={props.hideModal}>close</button>
-        <h1>CHOOSE YOUR DIFFICULTY:</h1>
-        <button type="button" onClick={() => props.selectDifficulty('easy')}>
-          EASY
-        </button>
-        <button type="button" onClick={() => props.selectDifficulty('medium')}>
-          MEDIUM
-        </button>
-        <button type="button" onClick={() => props.selectDifficulty('chaos')}>
-          CHAOS!
+    <div className="modal-main">
+      <div id="modal-exit-button">
+        <button
+          onClick={() => {
+            props.hideModal()
+            confirmSound()
+          }}
+        >
+          X
         </button>
       </div>
-      <Link to="/main">PLAY!</Link>
+      <div>
+        <h1 className="homeLogo">CHOOSE YOUR DIFFICULTY:</h1>
+        <span
+          onClick={() => props.selectDifficulty('easy')}
+          className="modal-content"
+          onMouseOver={menuSound}
+          onClick={confirmSound}
+        >
+          EASY
+        </span>
+        <span
+          onClick={() => props.selectDifficulty('medium')}
+          className="modal-content"
+          onMouseOver={menuSound}
+          onClick={confirmSound}
+        >
+          MEDIUM
+        </span>
+        <span
+          onClick={() => props.selectDifficulty('chaos')}
+          className="modal-content"
+          onMouseOver={menuSound}
+          onClick={confirmSound}
+        >
+          CHAOS!
+        </span>
+      </div>
+      <div>
+        <Link
+          to="/main"
+          onMouseOver={menuSound}
+          className="modal-play-button"
+          onClick={confirmSound}
+        >
+          PLAY!
+        </Link>
+      </div>
     </div>
   )
 }

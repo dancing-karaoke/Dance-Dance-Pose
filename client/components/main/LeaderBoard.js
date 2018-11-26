@@ -1,15 +1,16 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-// import {} from '../../store/??'
+import {fetchLeaderboard} from '../../store'
 
 class LeaderBoard extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.getLeaderboard()
+  }
 
   confirmSound() {
     const confirmSound = new Audio('/assets/game-start.ogg')
@@ -27,23 +28,21 @@ class LeaderBoard extends Component {
               <tr id="row0">
                 <td id="cell0-0">Rank</td>
                 <td id="cell0-1">Name</td>
-                <td id="cell0-2">Score</td>
+                <td id="cell0-2">Song</td>
+                <td id="cell0-3">Difficulty</td>
+                <td id="cell0-4">Score</td>
               </tr>
-              <tr id="row1">
-                <td id="cell1-0">1</td>
-                <td id="cell1-1">Jimmy</td>
-                <td id="cell1-2">3000</td>
-              </tr>
-              <tr id="row2">
-                <td id="cell2-0">2</td>
-                <td id="cell2-1">Jimmy</td>
-                <td id="cell2-2">2000</td>
-              </tr>
-              <tr id="row2">
-                <td id="cell2-0">3</td>
-                <td id="cell2-1">Jimmy</td>
-                <td id="cell2-2">1000</td>
-              </tr>
+              {this.props.leaderboard.map(leader => {
+                return (
+                  <tr id="row">
+                    <td id={`cell${leader.rank}-0`}>{leader.rank}</td>
+                    <td id={`cell${leader.rank}-1`}>{leader.name}</td>
+                    <td id={`cell${leader.rank}-2`}>{leader.song}</td>
+                    <td id={`cell${leader.rank}-3`}>{leader.difficulty}</td>
+                    <td id={`cell${leader.rank}-4`}>{leader.score}</td>
+                  </tr>
+                )
+              })}
             </tbody>
           </table>
         </div>
@@ -61,8 +60,16 @@ class LeaderBoard extends Component {
   }
 }
 
-const mapState = state => ({})
+const mapStateToProps = state => {
+  return {
+    leaderboard: state.leaderboard.leaderboard
+  }
+}
 
-const mapDispatch = {}
+const mapDispatchToProps = dispatch => {
+  return {
+    getLeaderboard: () => dispatch(fetchLeaderboard())
+  }
+}
 
-export default connect(mapState, mapDispatch)(LeaderBoard)
+export default connect(mapStateToProps, mapDispatchToProps)(LeaderBoard)
