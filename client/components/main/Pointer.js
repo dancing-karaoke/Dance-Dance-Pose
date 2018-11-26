@@ -12,8 +12,6 @@ class Pointer extends Component {
   }
   componentDidMount() {
     this.animateOne()
-    // this.animateTwo()
-    // this.animateThree()
   }
   animateOne() {
     // let currentY = anime.getValue('arrow-left', translateY)

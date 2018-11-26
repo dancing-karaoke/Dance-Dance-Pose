@@ -31,7 +31,7 @@ class Bubble2 extends Component {
       <div className="bubble">
         <img
           src="/images/feet-ball.gif"
-          width="100"
+          width="140"
           style={{
             position: 'fixed',
             top: this.state.y,

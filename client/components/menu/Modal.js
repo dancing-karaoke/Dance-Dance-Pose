@@ -5,8 +5,8 @@ export const Modal = ({hideModal, show}) => {
   const showHideClassName = show ? 'modal display-block' : 'modal display-none'
 
   return (
-    <div className={showHideClassName}>
-      <section className="modal-main">
+    <div className={`${showHideClassName} modal`}>
+      <section>
         <SelectedSongMenu hideModal={() => hideModal('SelectedSongMenu')} />
       </section>
     </div>

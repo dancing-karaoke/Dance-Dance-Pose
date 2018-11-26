@@ -11,7 +11,7 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0;
-  background: pink;
+  background: black;
 }
 
 #notShow {
@@ -35,13 +35,6 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
-}
-
-.scoreContainer {
-  position: relative;
-  align-items: flex-end;
-  text-align: left;
-  color: white;
 }
 
 .logo {
@@ -90,12 +83,6 @@ form div {
 .button {
   position: absolute;
 }
-/* .scoreContainer h2 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-} */
 
 .dataContainer {
   margin-left: auto;
@@ -138,17 +125,91 @@ form div {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .modal-main {
   position: fixed;
-  background: white;
-  width: 80%;
-  height: auto;
+  width: 40%;
+  /*height: auto;*/
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  /*background-color: rgba(94, 253, 254, 0.6);*/
+  background-image: linear-gradient(
+    rgba(137, 205, 206, 0.7),
+    rgba(58, 106, 128, 0.7),
+    rgba(108, 35, 117, 0.7)
+  );
+  border-radius: 15px;
+}
+
+.modal-content {
+  /* display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+*/
+  margin: 2.5%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  font-family: 'Sudbury', sans-serif;
+  font-weight: normal;
+  text-align: center;
+  line-height: 100%;
+  padding-bottom: 5px;
+  color: rgba(125, 125, 203);
+  z-index: 2;
+  position: relative;
+}
+
+.modal-content:hover {
+  color: cyan;
+  animation: bounce 1s infinite;
+}
+
+#modal-exit-button {
+  display: flex;
+  height: auto;
+  justify-content: flex-end;
+  /*font-family: 'Sudbury', sans-serif;*/
+  font-size: 40px;
+  /*font-weight: normal;
+  text-align: center;*/
+  /*line-height: 100%;*/
+  /*line-height: 100%;*/
+  /*padding-bottom: 5px;*/
+  color: lightgreen;
+  /*z-index: 1;*/
+  /*position: relative;*/
+}
+
+.modal-play-button {
+  margin: 5%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  font-family: 'Sudbury', sans-serif;
+  font-weight: normal;
+  text-align: center;
+  line-height: 100%;
+  padding-bottom: 5px;
+  color: rgba(125, 125, 203);
+  z-index: 2;
+  position: relative;
+}
+
+.modal-play-button:hover {
+  color: cyan;
+  animation: bounce 1s infinite;
 }
 
 .display-block {
@@ -162,8 +223,9 @@ form div {
 .Lyrics {
   display: flex;
   position: absolute;
+  text-align: center;
   top: 70px;
-  left: 120px;
+  left: 160px;
   z-index: 99;
 }
 
@@ -192,7 +254,7 @@ form div {
   text-align: center;
   line-height: 100%;
   padding-bottom: 5px;
-  color: rgb(125, 125, 203);
+  color: rgba(125, 125, 203);
   z-index: 2;
   position: relative;
 }
@@ -318,7 +380,7 @@ form div {
   bottom: 0;
   padding: none;
   position: fixed;
-  z-index: 1;
+  z-index: -1;
 }
 
 .backButton {
@@ -353,21 +415,68 @@ table#table1 {
 tr,
 td {
   text-align: left;
-  border-left: 30px solid;
+  border-left: 60px solid;
   border-left-color: transparent;
+  padding: 10px;
 }
 
 tr > td:first-child {
   border: 0px;
 }
 
-#grad1 {
-  height: 200px;
-  width: 30px;
-  background-color: red; /* For browsers that do not support gradients */
-  background-image: linear-gradient(
-    green,
-    yellow,
-    red
-  ); /* Standard syntax (must be last) */
+.sidenav {
+  height: 15%; /* Full-height: remove this if you want "auto" height */
+  border-radius: 50%;
+  width: 15%; /* Set the width of the sidebar */
+  position: absolute; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 3%; /* Stay at the top */
+  left: 2%;
+  background-color: #111; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+  opacity: 0.5;
+}
+
+.score {
+  height: 15%; /* Full-height: remove this if you want "auto" height */
+  border-radius: 50%;
+  width: 15%; /* Set the width of the sidebar */
+  position: absolute; /* Fixed Sidebar (stay in place on scroll) */
+  background-color: white; /* Black */
+  z-index: 1; /* Stay on top */
+  top: 3%; /* Stay at the top */
+  right: 2%;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+  opacity: 0.5;
+}
+
+.scoreCont h2 {
+  text-align: center;
+  z-index: 2; /* Stay on top */
+  color: black;
+  font-size: 2em;
+}
+
+@keyframes bounceOut {
+  20% {
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  50%,
+  55% {
+    opacity: 1;
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+}
+
+.bounceOut {
+  animation-duration: 0.75s;
+  animation-name: bounceOut;
 }

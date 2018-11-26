@@ -5,8 +5,9 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import bubble from './bubble'
 import song from './song'
+import leaderboard from './leaderboard'
 
-const reducer = combineReducers({user, bubble, song})
+const reducer = combineReducers({user, bubble, song, leaderboard})
 const middleware = composeWithDevTools(applyMiddleware(thunkMiddleware))
 const store = createStore(reducer, middleware)
 
@@ -19,3 +20,4 @@ export default store
 export * from './user'
 export * from './bubble'
 export * from './song'
+export * from './leaderboard'
