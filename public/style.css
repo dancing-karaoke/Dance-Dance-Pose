@@ -37,13 +37,6 @@ form div {
   display: inline-block;
 }
 
-/* .scoreContainer {
-  position: relative;
-  align-items: flex-end;
-  text-align: left;
-  color: white;
-} */
-
 .logo {
   position: absolute;
   top: -2%;
@@ -90,12 +83,6 @@ form div {
 .button {
   position: absolute;
 }
-/* .scoreContainer h2 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-} */
 
 .dataContainer {
   margin-left: auto;
@@ -386,4 +373,26 @@ tr > td:first-child {
   z-index: 2; /* Stay on top */
   color: black;
   font-size: 2em;
+}
+
+@keyframes bounceOut {
+  20% {
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  50%,
+  55% {
+    opacity: 1;
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+}
+
+.bounceOut {
+  animation-duration: 0.75s;
+  animation-name: bounceOut;
 }

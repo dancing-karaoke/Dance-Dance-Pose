@@ -23,6 +23,7 @@ import Loading from './Loading'
 import {selectSong, selectDifficulty} from '../../store/song'
 import ReactLoading from 'react-loading'
 import Score from './score'
+import {constant} from '../../../node_modules/@tensorflow/tfjs-layers/dist/exports_initializers'
 
 let counter = 0
 
@@ -69,6 +70,10 @@ class PoseNet extends React.Component {
       xMax: 0,
       yMin: 0,
       yMax: 0,
+      xMin2: 0,
+      xMax2: 0,
+      yMin2: 0,
+      yMax2: 0,
       windowTime: this.props.song.destination.context.currentTime,
       time: '',
       counterBeatInterval: 0
@@ -198,15 +203,24 @@ class PoseNet extends React.Component {
             xMin: this.props.xBubble * (1 - rangeSpectrum),
             xMax: this.props.xBubble * (1 + rangeSpectrum),
             yMin: this.props.yBubble * (1 - rangeSpectrum),
-            yMax: this.props.yBubble * (1 + rangeSpectrum)
+            yMax: this.props.yBubble * (1 + rangeSpectrum),
+            xMin2: this.props.xBubble * (1 - rangeSpectrum),
+            xMax2: this.props.xBubble * (1 + rangeSpectrum),
+            yMin2: this.props.yBubble * (1 - rangeSpectrum),
+            yMax2: this.props.yBubble * (1 + rangeSpectrum)
           })
 
           if (
-            this.state.xMin < pose.keypoints[10].position.x &&
-            pose.keypoints[10].position.x < this.state.xMax &&
-            this.state.yMin < pose.keypoints[10].position.y &&
-            pose.keypoints[10].position.y < this.state.yMax &&
-            pose.keypoints[10].score > minConfidencePoints
+            (this.state.xMin < pose.keypoints[10].position.x &&
+              pose.keypoints[10].position.x < this.state.xMax &&
+              this.state.yMin < pose.keypoints[10].position.y &&
+              pose.keypoints[10].position.y < this.state.yMax &&
+              pose.keypoints[10].score > minConfidencePoints) ||
+            (this.state.xMin2 < pose.keypoints[13].position.x &&
+              pose.keypoints[13].position.x < this.state.xMax2 &&
+              this.state.yMin2 < pose.keypoints[13].position.y &&
+              pose.keypoints[13].position.y < this.state.yMax2 &&
+              pose.keypoints[3].score > minConfidencePoints)
           ) {
             counter++
             this.props.addScore(counter)
@@ -302,6 +316,7 @@ class PoseNet extends React.Component {
   }
 
   handleTimer() {
+    // beatsToDisplay()
     const beatTime = beatsToDisplay[this.state.counterBeatInterval]
     console.log('BEATs', beatTime)
     if (

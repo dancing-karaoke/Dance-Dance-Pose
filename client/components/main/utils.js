@@ -1,7 +1,9 @@
 import * as posenet from '@tensorflow-models/posenet'
 import {drakeBeats, abbaBeats} from '../../../beats'
+import redux from 'redux'
 import {connect} from 'react-redux'
 import react from 'react'
+import store from '../../store'
 
 function isAndroid() {
   return /Android/i.test(navigator.userAgent)
@@ -77,14 +79,18 @@ function beatsToBubble(array) {
   // return output
 }
 
-export const beatsToDisplay = song => {
-  switch (song) {
-    default:
-      return beatsToBubble(abbaBeats)
-    case 'drake':
-      return beatsToBubble(drakeBeats)
-  }
-}
+export const beatsToDisplay = beatsToBubble(abbaBeats)
+
+// () => {
+//   const song = store.getState().selectedSong
+//   console.log('He', song)
+//   switch (song) {
+//     default:
+//       return beatsToBubble(abbaBeats)
+//     case 'drake':
+//       return beatsToBubble(drakeBeats)
+//   }
+// }
 
 // export const assignRange
 // this.setState({
