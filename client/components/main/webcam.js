@@ -95,7 +95,6 @@ class PoseNet extends React.Component {
   }
 
   async componentDidMount() {
-    console.log('STATE', this.state.loading)
     try {
       await this.setupCamera()
     } catch (e) {
@@ -107,7 +106,7 @@ class PoseNet extends React.Component {
     this.net = await posenet.load()
     this.detectPose()
     this.props.onRef(this)
-    consoleSongandLevel()
+    this.props.danceDancePoseTime()
   }
 
   async setupCamera() {
