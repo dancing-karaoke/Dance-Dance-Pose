@@ -303,6 +303,7 @@ class PoseNet extends React.Component {
 
   handleTimer() {
     const beatTime = beatsToDisplay[this.state.counterBeatInterval]
+    console.log('BEATs', beatTime)
     if (
       this.props.song.destination.context.currentTime - this.state.windowTime >
       beatTime
@@ -388,8 +389,8 @@ const mapState = state => ({
   xBubble2: state.bubble.xCoordinate2,
   yBubble2: state.bubble.yCoordinate2,
   selectedSong: state.song.selectedSong,
-  difficulty: state.song.difficulty,
-  danceScore: state.bubble.danceScore
+  danceScore: state.bubble.danceScore,
+  level: state.song.level
 })
 
 const mapDispatch = dispatch => {

@@ -1,5 +1,7 @@
 import * as posenet from '@tensorflow-models/posenet'
 import {drakeBeats, abbaBeats} from '../../../beats'
+import {connect} from 'react-redux'
+import react from 'react'
 
 function isAndroid() {
   return /Android/i.test(navigator.userAgent)
@@ -75,7 +77,14 @@ function beatsToBubble(array) {
   // return output
 }
 
-export const beatsToDisplay = beatsToBubble(abbaBeats)
+export const beatsToDisplay = song => {
+  switch (song) {
+    default:
+      return beatsToBubble(abbaBeats)
+    case 'drake':
+      return beatsToBubble(drakeBeats)
+  }
+}
 
 // export const assignRange
 // this.setState({
@@ -84,15 +93,6 @@ export const beatsToDisplay = beatsToBubble(abbaBeats)
 //   yMin: this.props.yBubble * (1 - defaultParameters.rangeSpectrum),
 //   yMax: this.props.yBubble * (1 + defaultParameters.rangeSpectrum)
 // })
-
-// () => {
-//   switch(song) {
-//     case 'abba':
-//       beatsToBubble(abbaBeats)
-//     case 'drake':
-//       beatsToBubble(drakeBeats)
-//   }
-// }
 
 export const beatTimeAbba = 1
 export const abbaEasy = 5
