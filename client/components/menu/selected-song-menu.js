@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {selectDifficulty} from '../../store'
+import {selectLevel} from '../../store'
 
 function menuSound() {
   const menuSound = new Audio('/assets/menu-select.mp3')
@@ -27,28 +27,34 @@ const SelectedSongMenu = props => {
         </button>
       </div>
       <div>
-        <h1 className="homeLogo">CHOOSE YOUR DIFFICULTY:</h1>
+        <h1 className="homeLogo">CHOOSE YOUR Level:</h1>
         <span
-          onClick={() => props.selectDifficulty('easy')}
+          onClick={() => {
+            props.selectLevel('easy')
+            confirmSound()
+          }}
           className="modal-content"
           onMouseOver={menuSound}
-          onClick={confirmSound}
         >
           EASY
         </span>
         <span
-          onClick={() => props.selectDifficulty('medium')}
+          onClick={() => {
+            props.selectLevel('medium')
+            confirmSound()
+          }}
           className="modal-content"
           onMouseOver={menuSound}
-          onClick={confirmSound}
         >
           MEDIUM
         </span>
         <span
-          onClick={() => props.selectDifficulty('chaos')}
+          onClick={() => {
+            props.selectLevel('chaos')
+            confirmSound()
+          }}
           className="modal-content"
           onMouseOver={menuSound}
-          onClick={confirmSound}
         >
           CHAOS!
         </span>
@@ -69,10 +75,7 @@ const SelectedSongMenu = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    selectDifficulty: difficulty => dispatch(selectDifficulty(difficulty))
+    selectLevel: level => dispatch(selectLevel(level))
   }
 }
-
-const Connect = connect(null, mapDispatchToProps)(SelectedSongMenu)
-
-export default Connect
+export default connect(null, mapDispatchToProps)(SelectedSongMenu)

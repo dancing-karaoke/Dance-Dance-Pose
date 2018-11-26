@@ -294,13 +294,6 @@ form div {
   -webkit-animation: rainbowanim 5s ease infinite;
   -moz-animation: rainbowanim 5s ease infinite;
   animation: rainbowanim 5s ease infinite;
-
-  /* Neon Glow */
-  /* font-family:'Monoton', cursive; */
-  /* color: purple;
-  -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
-  -moz-animation: neon1 1.5s ease-in-out infinite alternate;
-  animation: neon1 1.5s ease-in-out infinite alternate; */
 }
 
 @keyframes bounce {
