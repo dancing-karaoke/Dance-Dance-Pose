@@ -1,5 +1,5 @@
 import * as posenet from '@tensorflow-models/posenet'
-import {drakeBeats, abbaBeats} from '../../../beats'
+import {drakeBeats, abbaBeats, jacksonBeats} from '../../../beats'
 import redux from 'redux'
 import {connect} from 'react-redux'
 import react from 'react'
@@ -79,37 +79,52 @@ function beatsToBubble(array) {
   // return output
 }
 
-// export const beatsToDisplay = beatsToBubble(abbaBeats)
 export const setBeats = () => {
   const song = store.getState().song.selectedSong
   switch (song) {
     default:
-      // return console.log('OTHER')
       return beatsToBubble(abbaBeats)
     case 'dancing-queen':
       return beatsToBubble(abbaBeats)
+    case 'beat-it':
+      return beatsToBubble(jacksonBeats)
   }
 }
 
 export const setLevel = () => {
   const level = store.getState().song.level
+  const song = store.getState().song.selectedSong
+
   const abbaEasy = 5
   const abbaMedium = 3
   const abbaChaos = 1
-  switch (level) {
+  const jacksonEasy = 6
+  const jacksonMedium = 4
+  const jacksonChaos = 2
+
+  switch (song) {
     default:
-      return abbaEasy
-    case 'medium':
-      return abbaMedium
-    case 'chaos':
-      return abbaChaos
+      return beatsToBubble(abbaBeats)
+    case 'dancing-queen':
+      switch (level) {
+        default:
+          return abbaEasy
+        case 'medium':
+          return abbaMedium
+        case 'chaos':
+          return abbaChaos
+      }
+    case 'beat-it':
+      switch (level) {
+        default:
+          return jacksonEasy
+        case 'medium':
+          return jacksonMedium
+        case 'chaos':
+          return jacksonChaos
+      }
   }
 }
-
-export const consoleSongandLevel = () => {
-  console.log('LEVELAND SONG', store.getState().song)
-}
-// () => {
 
 // export const assignRange
 // this.setState({
@@ -118,8 +133,3 @@ export const consoleSongandLevel = () => {
 //   yMin: this.props.yBubble * (1 - defaultParameters.rangeSpectrum),
 //   yMax: this.props.yBubble * (1 + defaultParameters.rangeSpectrum)
 // })
-
-export const beatTimeAbba = 1
-export const abbaEasy = 5
-export const abbaMedium = 3
-export const abbaChaos = 1

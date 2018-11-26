@@ -319,8 +319,8 @@ class PoseNet extends React.Component {
   handleTimer() {
     const beatsToDisplay = setBeats()
     const beatTime = beatsToDisplay[this.state.counterBeatInterval]
+    console.log('song beats', beatTime)
     const level = setLevel()
-    console.log('LEVL', level)
     if (
       this.props.song.destination.context.currentTime - this.state.windowTime >
       beatTime
