@@ -79,18 +79,37 @@ function beatsToBubble(array) {
   // return output
 }
 
-export const beatsToDisplay = beatsToBubble(abbaBeats)
+// export const beatsToDisplay = beatsToBubble(abbaBeats)
+export const setBeats = () => {
+  const song = store.getState().song.selectedSong
+  switch (song) {
+    default:
+      // return console.log('OTHER')
+      return beatsToBubble(abbaBeats)
+    case 'dancing-queen':
+      return beatsToBubble(abbaBeats)
+  }
+}
 
+export const setLevel = () => {
+  const level = store.getState().song.level
+  const abbaEasy = 5
+  const abbaMedium = 3
+  const abbaChaos = 1
+  switch (level) {
+    default:
+      return abbaEasy
+    case 'medium':
+      return abbaMedium
+    case 'chaos':
+      return abbaChaos
+  }
+}
+
+export const consoleSongandLevel = () => {
+  console.log('LEVELAND SONG', store.getState().song)
+}
 // () => {
-//   const song = store.getState().selectedSong
-//   console.log('He', song)
-//   switch (song) {
-//     default:
-//       return beatsToBubble(abbaBeats)
-//     case 'drake':
-//       return beatsToBubble(drakeBeats)
-//   }
-// }
 
 // export const assignRange
 // this.setState({

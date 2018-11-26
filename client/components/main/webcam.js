@@ -3,8 +3,9 @@ import React, {Component} from 'react'
 import {
   drawKeypoints,
   drawSkeleton,
-  beatsToDisplay,
-  beatTimeAbba
+  setBeats,
+  setLevel,
+  consoleSongandLevel
 } from './utils'
 import {defaultProps} from './utils2'
 import Bubble from '../bubbles/bubble'
@@ -106,7 +107,7 @@ class PoseNet extends React.Component {
     this.net = await posenet.load()
     this.detectPose()
     this.props.onRef(this)
-    console.log('STATE X@', this.state.loading)
+    consoleSongandLevel()
   }
 
   async setupCamera() {
@@ -302,6 +303,7 @@ class PoseNet extends React.Component {
 
   async startTimer() {
     let startTime = new Date()
+    const beatsToDisplay = setBeats()
     await this.setState({
       time: startTime,
       windowTime: this.props.song.destination.context.currentTime
@@ -316,17 +318,17 @@ class PoseNet extends React.Component {
   }
 
   handleTimer() {
-    // beatsToDisplay()
+    const beatsToDisplay = setBeats()
     const beatTime = beatsToDisplay[this.state.counterBeatInterval]
-    console.log('BEATs', beatTime)
+    const level = setLevel()
+    console.log('LEVL', level)
     if (
       this.props.song.destination.context.currentTime - this.state.windowTime >
       beatTime
     ) {
       this.generateRandomCoordinates()
       this.generateRandomCoordinates2()
-      const newCounterBeatInterval =
-        this.state.counterBeatInterval + beatTimeAbba
+      const newCounterBeatInterval = this.state.counterBeatInterval + level
       this.setState({
         counterBeatInterval: newCounterBeatInterval
       })

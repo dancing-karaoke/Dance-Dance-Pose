@@ -29,7 +29,7 @@ export const getSingScore = singScore => ({
   singScore
 })
 
-export const selectlevel = level => ({
+export const selectLevel = level => ({
   type: SELECT_LEVEL,
   level
 })
