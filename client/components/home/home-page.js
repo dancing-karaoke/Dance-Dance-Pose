@@ -32,7 +32,7 @@ const HomePage = ({handleClick}) => (
       <Link to="/credits" onMouseOver={menuSound} onClick={confirmSound}>
         <h3 className="sudbury"> CREDITS </h3>
       </Link>
-      <video id="background-video" loop autoPlay>
+      <video id="background-video" loop autoPlay muted>
         <source src="/assets/disco-lights.mp4" type="video/mp4" />
       </video>
     </div>
