@@ -6,10 +6,6 @@ import {Modal} from './Modal'
 import {SongSelect} from '../index.js'
 import {selectSong} from '../../store'
 
-//Notes to Team:
-//-pass specific song to webcam component, import action type from the store
-//-style this component
-
 function menuSound() {
   const menuSound = new Audio('/assets/menu-select.mp3')
   menuSound.play()
