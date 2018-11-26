@@ -132,18 +132,6 @@ class Sing extends Component {
         60: 'C'
       },
       lyricsData: [
-        // [
-        //   {start: '1', end: '1.5', text: '1'},
-        //   {start: '1.5', end: '2', text: '1', finalWord: true}
-        // ],
-        // [
-        //   {start: '2', end: '2.5', text: '2'},
-        //   {start: '2.5', end: '3', text: '2', finalWord: true}
-        // ],
-        // [
-        //   {start: '3', end: '3.5', text: '3'},
-        //   {start: '3.5', end: '4', text: '3', finalWord: true}
-        // ]
         [
           {start: '1.5', end: '3.25', text: 'Ooooooooooh'},
           {start: '3.25', end: '5.55', text: 'Ooooooooooh'},
@@ -262,6 +250,14 @@ class Sing extends Component {
 
   componentDidMount() {
     this.props.onRef(this)
+  }
+
+  componentWillUnmount() {
+    // stop selected song from playing
+    this.props.song.stop()
+
+    // force refresh if navigating away from the page
+    location.reload(true)
   }
 
   handlePitchLogger() {
