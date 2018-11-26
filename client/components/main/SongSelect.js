@@ -1,15 +1,21 @@
 import React, {Component} from 'react'
 import anime from 'animejs'
+import Wad from 'web-audio-daw'
 
 class SongSelection extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      song: new Wad({source: '/songs/dancingqueen.m4a'})
+    }
     this.enterPoly = this.enterPoly.bind(this)
     this.exitPoly = this.exitPoly.bind(this)
   }
 
   enterPoly() {
     console.log('enter working')
+    this.state.song.play()
+
     anime({
       targets: '#svgAttributes polygon',
       points: '64 128 8.574 96 8.574 32 64 0 119.426 32 119.426 96',
@@ -19,6 +25,7 @@ class SongSelection extends Component {
   }
   exitPoly() {
     console.log('leave working')
+    this.state.song.stop()
     anime({
       targets: '#svgAttributes polygon',
       points:
@@ -52,7 +59,6 @@ class SongSelection extends Component {
             width="100%"
             height="100%"
             preserveAspectRatio="xMidYMid slice"
-            a
             href="https://cdn.shopify.com/s/files/1/0067/2072/products/250762723682_grande.jpg?v=1479988071"
             clipPath="url(#clip)"
           />
