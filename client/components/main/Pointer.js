@@ -16,6 +16,7 @@ class Pointer extends Component {
     // this.animateThree()
   }
   animateOne() {
+    // let currentY = anime.getValue('arrow-left', translateY)
     anime({
       targets: '#unitlessValue .el',
       translateY: '-13rem',
@@ -25,29 +26,12 @@ class Pointer extends Component {
       loop: true
     })
   }
-  animateTwo() {
-    anime({
-      targets: '#unitlessValue .el',
-      translateY: '-12rem',
-      rotate: 360,
-      borderRadius: '8px',
-      duration: 2000
-    })
-  }
-  animateThree() {
-    anime({
-      targets: '#unitlessValue .el',
-      translateY: '-10rem',
-      rotate: 360,
-      borderRadius: '8px',
-      duration: 2000
-    })
-  }
 
   render() {
     return (
       <div id="unitlessValue">
         <div className="arrow-left el" />
+        <div id="grad1" />
       </div>
     )
   }

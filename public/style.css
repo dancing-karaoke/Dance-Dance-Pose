@@ -360,3 +360,14 @@ td {
 tr > td:first-child {
   border: 0px;
 }
+
+#grad1 {
+  height: 200px;
+  width: 30px;
+  background-color: red; /* For browsers that do not support gradients */
+  background-image: linear-gradient(
+    green,
+    yellow,
+    red
+  ); /* Standard syntax (must be last) */
+}
