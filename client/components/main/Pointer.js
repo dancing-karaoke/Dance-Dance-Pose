@@ -4,31 +4,24 @@ import anime from 'animejs'
 class Pointer extends Component {
   constructor(props) {
     super(props)
-    this.animateOne = this.animateOne.bind(this)
-    this.animateTwo = this.animateTwo.bind(this)
-    this.animateThree = this.animateThree.bind(this)
 
     // this.exitPoly = this.exitPoly.bind(this)
   }
-  componentDidMount() {
-    this.animateOne()
-  }
-  animateOne() {
-    // let currentY = anime.getValue('arrow-left', translateY)
-    anime({
-      targets: '#unitlessValue .el',
-      translateY: '-13rem',
-      rotate: 360,
-      borderRadius: '8px',
-      duration: 2000,
-      loop: true
-    })
-  }
+
+  arrowMove() {}
 
   render() {
+    // if (this.props.note ==== this.props.userNote){
+    //     const x = 100;
+    //     const y = 100;
+    //     const styles = {
+    //         transform: `translate(${x}px, ${y}px)`
+    //     };
+    // }
+    // else if (this.props)
     return (
-      <div id="unitlessValue">
-        <div className="arrow-left el" />
+      <div id="pointerDiv">
+        <div className="arrow-left" />
         <div id="grad1" />
       </div>
     )
