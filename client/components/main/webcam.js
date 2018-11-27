@@ -101,17 +101,18 @@ class PoseNet extends React.Component {
     } catch (e) {
       throw 'This browser does not support video capture, or this device does not have a camera'
     } finally {
-      setTimeout(() => {
-        this.setState({loading: false})
-        this.props.sendLoadingState(false)
-      })
-    }
-    // this.setState({loading: false})
-    // this.props.sendLoadingState(false)
+      //   setTimeout(() => {
+      //     this.setState({loading: false})
+      //     this.props.sendLoadingState(false)
+      //   })
+      // }
+      // this.setState({loading: false})
+      // this.props.sendLoadingState(false)
 
-    this.detectPose()
-    this.props.onRef(this)
-    this.props.danceDancePoseTime()
+      this.detectPose()
+      this.props.onRef(this)
+      this.props.danceDancePoseTime()
+    }
   }
 
   async setupCamera() {
