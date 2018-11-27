@@ -323,7 +323,11 @@ class Sing extends Component {
       })
 
       // end recursive call and return if all lyrics have played
-      if (currentSection === this.state.lyricsData.length) {
+      if (
+        this.state.trackingPitch === false ||
+        currentSection === this.state.lyricsData.length
+      ) {
+        this.setState({displaySubtitle: 'Thanks for playing!'})
         cancelAnimationFrame(updateLyricsInterval)
         return
       }
@@ -352,10 +356,9 @@ class Sing extends Component {
       tuner.updatePitch() // the tuner is now calculating the pitch and note name
 
       let results = {}
+      let pitchDetect
 
       let logPitch = () => {
-        requestAnimationFrame(logPitch)
-
         // this.setState(prevState => ({
         //   score: (prevState.score += 0.5)
         // }))
@@ -390,8 +393,24 @@ class Sing extends Component {
               }))
               this.props.addScore(this.state.score)
             }
+
+            // track end
+            if (
+              (tuner.destination.context.currentTime - windowTime).toFixed(1) >
+              20
+            ) {
+              cancelAnimationFrame(pitchDetect)
+              this.props.song.stop()
+              console.log(
+                'ended at: ',
+                (tuner.destination.context.currentTime - windowTime).toFixed(1)
+              )
+              this.setState({trackingPitch: false})
+              return
+            }
           }
         }
+        pitchDetect = requestAnimationFrame(logPitch)
       }
       logPitch()
       this.createSubtitle()
