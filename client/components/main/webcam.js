@@ -44,7 +44,7 @@ class PoseNet extends React.Component {
     videoWidth: window.screen.width * 0.95,
     videoHeight: window.screen.height * 0.65,
     flipHorizontal: true,
-    algorithm: 'multi-pose',
+    algorithm: 'single-pose',
     showVideo: true,
     showSkeleton: true,
     showPoints: true,
@@ -77,16 +77,13 @@ class PoseNet extends React.Component {
       yMax2: 0,
       windowTime: this.props.song.destination.context.currentTime,
       time: '',
-      counterBeatInterval: 0,
-      BubblePace: 0
+      counterBeatInterval: 0
     }
     this.generateRandomCoordinates = this.generateRandomCoordinates.bind(this)
     this.generateRandomCoordinates2 = this.generateRandomCoordinates2.bind(this)
     this.emilinateBubble = this.eliminateBubble.bind(this)
-    this.emilinateBubble2 = this.eliminateBubble2.bind(this)
     this.startTimer = this.startTimer.bind(this)
     this.handleTimer = this.handleTimer.bind(this)
-    this.setRange = this.setRange.bind(this)
   }
 
   getCanvas = elem => {
@@ -104,9 +101,14 @@ class PoseNet extends React.Component {
     } catch (e) {
       throw 'This browser does not support video capture, or this device does not have a camera'
     } finally {
-      this.setState({loading: false})
-      this.props.sendLoadingState(false)
+      setTimeout(() => {
+        this.setState({loading: false})
+        this.props.sendLoadingState(false)
+      })
     }
+    // this.setState({loading: false})
+    // this.props.sendLoadingState(false)
+
     this.detectPose()
     this.props.onRef(this)
     this.props.danceDancePoseTime()
@@ -154,20 +156,6 @@ class PoseNet extends React.Component {
     this.poseDetectionFrame(ctx)
   }
 
-  setRange() {
-    const {rangeSpectrum} = defaultParameters
-    this.setState({
-      xMin: this.props.xBubble * (1 - rangeSpectrum),
-      xMax: this.props.xBubble * (1 + rangeSpectrum),
-      yMin: this.props.yBubble * (1 - rangeSpectrum),
-      yMax: this.props.yBubble * (1 + rangeSpectrum),
-      xMin2: this.props.xBubble * (1 - rangeSpectrum),
-      xMax2: this.props.xBubble * (1 + rangeSpectrum),
-      yMin2: this.props.yBubble * (1 - rangeSpectrum),
-      yMax2: this.props.yBubble * (1 + rangeSpectrum)
-    })
-  }
-
   poseDetectionFrame(ctx) {
     const {
       algorithm,
@@ -204,47 +192,6 @@ class PoseNet extends React.Component {
             minPartConfidence,
             nmsRadius
           )
-          const pose1 = poses[0]
-
-          console.log('POSES', poses, 'HEY', pose1)
-
-          const {minConfidencePoints} = defaultParameters
-          this.setRange()
-          console.log('RANGE', this.state)
-          if (
-            (this.state.xMin < pose1.keypoints[10].position.x &&
-              pose1.keypoints[10].position.x < this.state.xMax &&
-              this.state.yMin < pose1.keypoints[10].position.y &&
-              pose1.keypoints[10].position.y < this.state.yMax &&
-              pose1.keypoints[10].score > minConfidencePoints) ||
-            (this.state.xMin < pose1.keypoints[9].position.x &&
-              pose1.keypoints[9].position.x < this.state.xMax &&
-              this.state.yMin < pose1.keypoints[9].position.y &&
-              pose1.keypoints[9].position.y < this.state.yMax &&
-              pose1.keypoints[9].score > minConfidencePoints)
-          ) {
-            counter = counter + 1000
-            console.log('COUNTER', counter)
-            this.eliminateBubble()
-            this.props.addScore(counter)
-          }
-          if (
-            (this.state.xMin2 < pose1.keypoints[11].position.x &&
-              pose1.keypoints[11].position.x < this.state.xMax2 &&
-              this.state.yMin2 < pose1.keypoints[11].position.y &&
-              pose1.keypoints[11].position.y < this.state.yMax2 &&
-              pose1.keypoints[11].score > minConfidencePoints) ||
-            (this.state.xMin2 < pose1.keypoints[12].position.x &&
-              pose1.keypoints[12].position.x < this.state.xMax2 &&
-              this.state.yMin2 < pose1.keypoints[12].position.y &&
-              pose1.keypoints[12].position.y < this.state.yMax2 &&
-              pose1.keypoints[12].score > minConfidencePoints)
-          ) {
-            counter = counter + 5000
-            console.log('COUNTER-2BUBBLE', counter)
-            this.eliminateBubble2()
-            this.props.addScore(counter)
-          }
 
           break
         case 'single-pose':
@@ -254,7 +201,38 @@ class PoseNet extends React.Component {
             flipHorizontal,
             outputStride
           )
+          // index 10 is rightWrist
+          // index 9 is left Wrist
+          //index 13 is right knee
+          const {rangeSpectrum, minConfidencePoints} = defaultParameters
+          this.setState({
+            xMin: this.props.xBubble * (1 - rangeSpectrum),
+            xMax: this.props.xBubble * (1 + rangeSpectrum),
+            yMin: this.props.yBubble * (1 - rangeSpectrum),
+            yMax: this.props.yBubble * (1 + rangeSpectrum),
+            xMin2: this.props.xBubble * (1 - rangeSpectrum),
+            xMax2: this.props.xBubble * (1 + rangeSpectrum),
+            yMin2: this.props.yBubble * (1 - rangeSpectrum),
+            yMax2: this.props.yBubble * (1 + rangeSpectrum)
+          })
+          if (
+            (this.state.xMin < pose.keypoints[10].position.x &&
+              pose.keypoints[10].position.x < this.state.xMax &&
+              this.state.yMin < pose.keypoints[10].position.y &&
+              pose.keypoints[10].position.y < this.state.yMax &&
+              pose.keypoints[10].score > minConfidencePoints) ||
+            (this.state.xMin2 < pose.keypoints[13].position.x &&
+              pose.keypoints[13].position.x < this.state.xMax2 &&
+              this.state.yMin2 < pose.keypoints[13].position.y &&
+              pose.keypoints[13].position.y < this.state.yMax2 &&
+              pose.keypoints[3].score > minConfidencePoints)
+          ) {
+            counter = counter + 1000
+            console.log('COUNTER', counter)
+            this.eliminateBubble()
 
+            this.props.addScore(counter)
+          }
           poses.push(pose)
           break
       }
@@ -306,34 +284,25 @@ class PoseNet extends React.Component {
       Math.random() * (maxHandBubbley - minHandBubbley) + minHandBubbley
     this.props.addX(xBubble)
     this.props.addY(yBubble)
-    // console.log('!BUBBBLE', xBubble, yBubble)
   }
   //manages coordinates for second bubble
   generateRandomCoordinates2() {
-    // const {
-    //   minFootBubbley,
-    //   maxFootBubbley,
-    //   maxBubblex,
-    //   minBubblex
-    // } = defaultParameters
-    const minBubblex = 75
-    const maxBubblex = 1050
-
-    const minFootBubbley = 430
-    const maxFootBubbley = 580
-
+    const {
+      minFootBubbley,
+      maxFootBubbley,
+      maxBubblex,
+      minBubblex
+    } = defaultParameters
     const xBubble = Math.random() * (maxBubblex - minBubblex) + minBubblex
     const yBubble =
       Math.random() * (maxFootBubbley - minFootBubbley) + minFootBubbley
     this.props.addX2(xBubble)
     this.props.addY2(yBubble)
-    // console.log('!BUBBBLE2', xBubble, yBubble)
   }
 
   async startTimer() {
     let startTime = new Date()
     const beatsToDisplay = setBeats()
-    //check breaking point here
     await this.setState({
       time: startTime,
       windowTime: this.props.song.destination.context.currentTime
@@ -350,25 +319,14 @@ class PoseNet extends React.Component {
   handleTimer() {
     const beatsToDisplay = setBeats()
     const beatTime = beatsToDisplay[this.state.counterBeatInterval]
+    console.log('song beats', beatTime)
     const level = setLevel()
     if (
       this.props.song.destination.context.currentTime - this.state.windowTime >
       beatTime
     ) {
-      if (this.state.BubblePace === 4) {
-        this.generateRandomCoordinates2()
-        const newBubblePace = 0
-        this.setState({
-          BubblePace: newBubblePace
-        })
-      } else {
-        // this.eliminateBubble2()
-        const newBubblePace = this.state.BubblePace + 1
-        this.setState({
-          BubblePace: newBubblePace
-        })
-      }
       this.generateRandomCoordinates()
+      this.generateRandomCoordinates2()
       const newCounterBeatInterval = this.state.counterBeatInterval + level
       this.setState({
         counterBeatInterval: newCounterBeatInterval
@@ -387,19 +345,20 @@ class PoseNet extends React.Component {
     this.props.addY(3000)
   }
 
-  eliminateBubble2() {
-    this.setState({
-      xMin2: null,
-      xMax2: null,
-      yMin2: null,
-      yMax2: null
-    })
-    this.props.addX2(3000)
-    this.props.addY2(3000)
-  }
-
   render() {
-    const loading = this.state.loading ? <h1>LOADING...</h1> : <h1 />
+    // const loading = this.state.loading ? <h1>LOADING...</h1> : <h1 />
+    const loading = this.state.loading ? (
+      <video
+        className="loading"
+        src="/assets/loading1.mov"
+        autoPlay
+        muted
+        playbackRate="1.2"
+      />
+    ) : (
+      <h1 />
+    )
+
     return (
       <div>
         <div>{loading}</div>
