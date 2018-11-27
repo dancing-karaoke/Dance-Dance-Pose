@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Wad from 'web-audio-daw'
 import {connect} from 'react-redux'
 import {getSingScore} from '../../store/bubble'
+import {Pointer} from './Pointer'
 
 class Sing extends Component {
   constructor(props) {
@@ -358,10 +359,10 @@ class Sing extends Component {
       let pitchDetect
 
       let logPitch = () => {
-        this.setState(prevState => ({
-          score: (prevState.score += 2)
-        }))
-        this.props.addScore(this.state.score)
+        // this.setState(prevState => ({
+        //   score: (prevState.score += 0.5)
+        // }))
+        // this.props.addScore(this.state.score)
 
         if (
           (tuner.destination.context.currentTime - windowTime).toFixed(1) %
@@ -420,6 +421,10 @@ class Sing extends Component {
   render() {
     return (
       <div>
+        {/* <Pointer
+          note={this.state.currentSongNotes[this.state.currentTime]}
+          userNote={this.state.userNote}
+        /> */}
         <div
         // style={{
         //   position: 'absolute',

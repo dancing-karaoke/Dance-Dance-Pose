@@ -238,15 +238,6 @@ form div {
   src: url('assets/SudburyBasin3D.ttf');
 }
 
-.arrow-left {
-  width: 0;
-  height: 0;
-  border-top: 30px solid transparent;
-  border-bottom: 30px solid transparent;
-
-  border-left: 20px solid blue;
-}
-
 .sudbury {
   font-family: 'Sudbury', sans-serif;
   font-size: 30px;
@@ -472,6 +463,30 @@ tr > td:first-child {
 .bounceOut {
   animation-duration: 0.75s;
   animation-name: bounceOut;
+}
+
+#grad1 {
+  height: 200px;
+  width: 20px;
+  background-color: red; /* For browsers that do not support gradients */
+  background-image: linear-gradient(
+    green,
+    yellow,
+    red
+  ); /* Standard syntax (must be last) */
+}
+
+#pointerDiv {
+  display: flex;
+}
+
+.arrow-left {
+  width: 0;
+  height: 0;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 20px solid blue;
+  padding-right: 20px;
 }
 
 .noShow {
