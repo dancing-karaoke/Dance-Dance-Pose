@@ -7,6 +7,8 @@ const GET_YCOORDINATE = 'GET_YCOORDINATE'
 const GET_XCOORDINATE2 = 'GET_XCOORDINATE2'
 const GET_YCOORDINATE2 = 'GET_YCOORDINATE2'
 const GET_DANCESCORE = 'GET_DANCESCORE'
+const GET_SINGSCORE = 'GET_SINGSCORE'
+
 const GET_LOADINGSTATE = 'GET_LOADINGSTATE'
 
 /**
@@ -48,6 +50,10 @@ export const getDanceScore = danceScore => ({
   type: GET_DANCESCORE,
   danceScore
 })
+export const getSingScore = singScore => ({
+  type: GET_SINGSCORE,
+  singScore
+})
 
 export const sendLoadingState = boolean => ({
   type: GET_LOADINGSTATE,
@@ -83,6 +89,11 @@ export default function bubble(state = initialState, action) {
       return {
         ...state,
         danceScore: action.danceScore
+      }
+    case GET_SINGSCORE:
+      return {
+        ...state,
+        singScore: action.singScore
       }
     case GET_LOADINGSTATE:
       return {
