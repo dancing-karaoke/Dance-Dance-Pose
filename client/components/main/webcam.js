@@ -53,7 +53,7 @@ class PoseNet extends React.Component {
     maxPoseDetections: 2,
     nmsRadius: 20.0,
     outputStride: 32,
-    imageScaleFactor: 0.3,
+    imageScaleFactor: 0.4,
     skeletonColor: 'coral',
     skeletonLineWidth: 6,
     loadingText: 'Loading pose detector...'
@@ -222,7 +222,8 @@ class PoseNet extends React.Component {
               pose.keypoints[13].position.y < this.state.yMax2 &&
               pose.keypoints[3].score > minConfidencePoints)
           ) {
-            counter = counter * 100
+            counter = counter + 1000
+            console.log('COUNTER', counter)
             this.props.addScore(counter)
           }
           poses.push(pose)

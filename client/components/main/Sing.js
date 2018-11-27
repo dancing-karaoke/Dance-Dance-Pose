@@ -355,10 +355,10 @@ class Sing extends Component {
       let logPitch = () => {
         requestAnimationFrame(logPitch)
 
-        this.setState(prevState => ({
-          score: (prevState.score += 2)
-        }))
-        this.props.addScore(this.state.score)
+        // this.setState(prevState => ({
+        //   score: (prevState.score += 0.5)
+        // }))
+        // this.props.addScore(this.state.score)
 
         if (
           (tuner.destination.context.currentTime - windowTime).toFixed(1) %
