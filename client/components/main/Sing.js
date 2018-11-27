@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Wad from 'web-audio-daw'
 import {connect} from 'react-redux'
 import {getSingScore} from '../../store/bubble'
+import {Pointer} from './Pointer'
 
 class Sing extends Component {
   constructor(props) {
@@ -401,6 +402,10 @@ class Sing extends Component {
   render() {
     return (
       <div>
+        {/* <Pointer
+          note={this.state.currentSongNotes[this.state.currentTime]}
+          userNote={this.state.userNote}
+        /> */}
         <div
         // style={{
         //   position: 'absolute',
