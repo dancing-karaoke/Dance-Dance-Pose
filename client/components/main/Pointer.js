@@ -4,24 +4,23 @@ import anime from 'animejs'
 class Pointer extends Component {
   constructor(props) {
     super(props)
-
-    // this.exitPoly = this.exitPoly.bind(this)
   }
 
-  arrowMove() {}
-
   render() {
-    // if (this.props.note ==== this.props.userNote){
-    //     const x = 100;
-    //     const y = 100;
-    //     const styles = {
-    //         transform: `translate(${x}px, ${y}px)`
-    //     };
-    // }
-    // else if (this.props)
+    // if (this.props.note === this.props.userNote) {
+    const y = -10
+    const style = {
+      transform: `translateY(${y}px)`
+      //   }
+      // } else {
+      //   const y = 100
+      //   const style = {
+      // transform: `translateY(${y}px)`
+      //   }
+    }
     return (
       <div id="pointerDiv">
-        <div className="arrow-left" />
+        <div className="arrow-left" style={style} />
         <div id="grad1" />
       </div>
     )

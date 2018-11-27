@@ -487,7 +487,6 @@ tr > td:first-child {
   border-bottom: 30px solid transparent;
   border-left: 20px solid blue;
   padding-right: 20px;
-  transform: translateY(100px); /* Equal to translateX(10px) */
 }
 
 .noShow {
