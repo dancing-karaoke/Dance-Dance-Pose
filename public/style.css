@@ -11,7 +11,7 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0;
-  background: black;
+  background: pink;
 }
 
 #notShow {
@@ -472,4 +472,8 @@ tr > td:first-child {
 .bounceOut {
   animation-duration: 0.75s;
   animation-name: bounceOut;
+}
+
+.noShow {
+  display: none;
 }

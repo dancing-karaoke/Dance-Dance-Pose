@@ -7,11 +7,12 @@ class Score extends Component {
   }
 
   render() {
+    const totalScore = this.props.singScore
+    // const fire = totalScore > 100 ? <Fire /> : <h2 />
     return (
       <div className="scoreCont">
-        {/* // <div className="scoreContainer"> */}
-        {/* <img className="score" src="/images/score-spinner.gif" width="50" /> */}
-        <h2>SCORE: {this.props.danceScore}</h2>
+        {/* {fire} */}
+        <h2>SCORE: {totalScore}</h2>
       </div>
     )
   }

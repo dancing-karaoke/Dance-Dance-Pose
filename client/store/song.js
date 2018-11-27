@@ -3,7 +3,6 @@
  */
 
 const SELECT_SONG = 'SELECT_SONG'
-const GET_SINGSCORE = 'GET_SINGSCORE'
 const SELECT_LEVEL = 'SELECT_LEVEL'
 
 /**
@@ -11,7 +10,6 @@ const SELECT_LEVEL = 'SELECT_LEVEL'
  */
 export const initialSongState = {
   selectedSong: '',
-  singScore: 0,
   level: ''
 }
 
@@ -22,11 +20,6 @@ export const initialSongState = {
 export const selectSong = selectedSong => ({
   type: SELECT_SONG,
   selectedSong
-})
-
-export const getSingScore = singScore => ({
-  type: GET_SINGSCORE,
-  singScore
 })
 
 export const selectLevel = level => ({
@@ -44,11 +37,6 @@ export default function song(state = initialSongState, action) {
       return {
         ...state,
         selectedSong: action.selectedSong
-      }
-    case GET_SINGSCORE:
-      return {
-        ...state,
-        singScore: action.singScore
       }
     case SELECT_LEVEL:
       return {
