@@ -224,6 +224,8 @@ class PoseNet extends React.Component {
           ) {
             counter = counter + 1000
             console.log('COUNTER', counter)
+            this.eliminateBubble()
+
             this.props.addScore(counter)
           }
           poses.push(pose)
@@ -334,8 +336,8 @@ class PoseNet extends React.Component {
       yMin: null,
       yMax: null
     })
-    this.props.addX(null)
-    this.props.addY(null)
+    this.props.addX(3000)
+    this.props.addY(3000)
   }
 
   render() {

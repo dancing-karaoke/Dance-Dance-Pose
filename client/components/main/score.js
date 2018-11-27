@@ -7,7 +7,7 @@ class Score extends Component {
   }
 
   render() {
-    const totalScore = this.props.danceScore
+    const totalScore = this.props.danceScore + this.props.singScore
     // const fire = totalScore > 100 ? <Fire /> : <h2 />
     return (
       <div className="scoreCont">
