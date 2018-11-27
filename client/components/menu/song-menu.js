@@ -4,10 +4,7 @@ import {Link} from 'react-router-dom'
 import Navbar from '../home/navbar'
 import {Modal} from './Modal'
 import {SongSelect} from '../index.js'
-
-//Notes to Team:
-//-pass specific song to webcam component, import action type from the store
-//-style this component
+import {selectSong} from '../../store'
 
 function menuSound() {
   const menuSound = new Audio('/assets/menu-select.mp3')
@@ -48,6 +45,7 @@ class SongMenu extends Component {
             onMouseOver={menuSound}
             onClick={() => {
               this.showModal()
+              this.props.selectSong('dancing-queen')
               confirmSound()
             }}
           >
@@ -70,6 +68,7 @@ class SongMenu extends Component {
             onClick={() => {
               this.showModal()
               confirmSound()
+              this.props.selectSong('beat-it')
             }}
           >
             BEAT IT BY MICHAEL JACKSON
@@ -89,5 +88,9 @@ class SongMenu extends Component {
     )
   }
 }
-
-export default SongMenu
+const mapDispatchToProps = dispatch => {
+  return {
+    selectSong: song => dispatch(selectSong(song))
+  }
+}
+export default connect(null, mapDispatchToProps)(SongMenu)

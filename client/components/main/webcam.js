@@ -3,8 +3,9 @@ import React, {Component} from 'react'
 import {
   drawKeypoints,
   drawSkeleton,
-  beatsToDisplay,
-  beatTimeAbba
+  setBeats,
+  setLevel,
+  consoleSongandLevel
 } from './utils'
 import {defaultProps} from './utils2'
 import Bubble from '../bubbles/bubble'
@@ -94,19 +95,18 @@ class PoseNet extends React.Component {
   }
 
   async componentDidMount() {
-    console.log('STATE', this.state.loading)
     try {
       await this.setupCamera()
+      this.net = await posenet.load()
     } catch (e) {
       throw 'This browser does not support video capture, or this device does not have a camera'
     } finally {
       this.setState({loading: false})
       this.props.sendLoadingState(false)
     }
-    this.net = await posenet.load()
     this.detectPose()
     this.props.onRef(this)
-    console.log('STATE X@', this.state.loading)
+    this.props.danceDancePoseTime()
   }
 
   async setupCamera() {
@@ -198,6 +198,7 @@ class PoseNet extends React.Component {
           )
           // index 10 is rightWrist
           // index 9 is left Wrist
+          //index 13 is right knee
           const {rangeSpectrum, minConfidencePoints} = defaultParameters
           this.setState({
             xMin: this.props.xBubble * (1 - rangeSpectrum),
@@ -209,7 +210,6 @@ class PoseNet extends React.Component {
             yMin2: this.props.yBubble * (1 - rangeSpectrum),
             yMax2: this.props.yBubble * (1 + rangeSpectrum)
           })
-
           if (
             (this.state.xMin < pose.keypoints[10].position.x &&
               pose.keypoints[10].position.x < this.state.xMax &&
@@ -222,16 +222,8 @@ class PoseNet extends React.Component {
               pose.keypoints[13].position.y < this.state.yMax2 &&
               pose.keypoints[3].score > minConfidencePoints)
           ) {
-            counter++
+            counter = counter * 100
             this.props.addScore(counter)
-            console.log(
-              'COUNTER',
-              counter,
-              'STATE',
-              this.state,
-              'POSE',
-              pose.keypoints
-            )
           }
           poses.push(pose)
           break
@@ -302,6 +294,7 @@ class PoseNet extends React.Component {
 
   async startTimer() {
     let startTime = new Date()
+    const beatsToDisplay = setBeats()
     await this.setState({
       time: startTime,
       windowTime: this.props.song.destination.context.currentTime
@@ -316,17 +309,17 @@ class PoseNet extends React.Component {
   }
 
   handleTimer() {
-    // beatsToDisplay()
+    const beatsToDisplay = setBeats()
     const beatTime = beatsToDisplay[this.state.counterBeatInterval]
-    console.log('BEATs', beatTime)
+    console.log('song beats', beatTime)
+    const level = setLevel()
     if (
       this.props.song.destination.context.currentTime - this.state.windowTime >
       beatTime
     ) {
       this.generateRandomCoordinates()
       this.generateRandomCoordinates2()
-      const newCounterBeatInterval =
-        this.state.counterBeatInterval + beatTimeAbba
+      const newCounterBeatInterval = this.state.counterBeatInterval + level
       this.setState({
         counterBeatInterval: newCounterBeatInterval
       })
@@ -344,53 +337,35 @@ class PoseNet extends React.Component {
     this.props.addY(null)
   }
 
-  // render() {
-  //   const loading = this.state.loading
-  //   return (
-  //     <div>
-  //       {loading ? (
-  //         <div>
-  //           <h2>Loading</h2>
-  //           <Loading />
-  //         </div>
-  //       ) : (
-
   render() {
-    const loading = this.state.loading ? (
-      // <h1>HELLO</h1>
-      <ReactLoading
-        type="spinningBubbles"
-        color="white"
-        height="25%"
-        width="25%"
-      />
-    ) : (
-      ''
-    )
+    const loading = this.state.loading ? <h1>LOADING...</h1> : <h1 />
     return (
-      <div id="border">
-        <div className="sidenav" />
-        <div className="score">
-          <Score />
-        </div>
-        <div className="tvlines">
-          <div className="webcam-outer">
-            <video id="notShow" playsInline ref={this.getVideo} />
-            {this.state.time === '' ? (
-              <h2 />
-            ) : (
-              <div id="bubble-container">
-                <Bubble
-                  yBubble={this.props.yBubble}
-                  xBubble={this.props.xBubble}
-                />
-                <Bubble2
-                  yBubble={this.props.yBubble2}
-                  xBubble={this.props.xBubble2}
-                />
-              </div>
-            )}
-            <canvas className="webcam" ref={this.getCanvas} />
+      <div>
+        <div>{loading}</div>
+        <div id="border">
+          <div className="sidenav" />
+          <div className="score">
+            <Score />
+          </div>
+          <div className={this.state.loading ? 'noShow' : 'tvlines'}>
+            <div className="webcam-outer">
+              <video id="notShow" playsInline ref={this.getVideo} />
+              {this.state.time === '' ? (
+                <h2 />
+              ) : (
+                <div id="bubble-container">
+                  <Bubble
+                    yBubble={this.props.yBubble}
+                    xBubble={this.props.xBubble}
+                  />
+                  <Bubble2
+                    yBubble={this.props.yBubble2}
+                    xBubble={this.props.xBubble2}
+                  />
+                </div>
+              )}
+              <canvas className="webcam" ref={this.getCanvas} />
+            </div>
           </div>
         </div>
       </div>

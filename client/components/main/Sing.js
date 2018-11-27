@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import Wad from 'web-audio-daw'
+import {connect} from 'react-redux'
+import {getSingScore} from '../../store/bubble'
 
 class Sing extends Component {
   constructor(props) {
@@ -10,8 +12,8 @@ class Sing extends Component {
       userNote: 'waiting for song to start',
       currentTime: 0,
       currentSongNotes: {
-        0.5: 'no note detected',
-        1: 'no note detected',
+        0.5: 'no note',
+        1: 'no note',
         1.5: 'G',
         2: 'C',
         2.5: 'C',
@@ -356,6 +358,7 @@ class Sing extends Component {
         this.setState(prevState => ({
           score: (prevState.score += 2)
         }))
+        this.props.addScore(this.state.score)
 
         if (
           (tuner.destination.context.currentTime - windowTime).toFixed(1) %
@@ -384,6 +387,7 @@ class Sing extends Component {
               this.setState(prevState => ({
                 score: (prevState.score += 1000)
               }))
+              this.props.addScore(this.state.score)
             }
           }
         }
@@ -420,4 +424,10 @@ class Sing extends Component {
   }
 }
 
-export default Sing
+const mapDispatch = dispatch => {
+  return {
+    addScore: danceScore => dispatch(getSingScore(danceScore))
+  }
+}
+
+export default connect(null, mapDispatch)(Sing)
