@@ -96,17 +96,11 @@ function beatsToBubble(array) {
 }
 
 export const setBeats = () => {
-  // const dancingQueen = fetchDancingQueen()
-  // const beats = dancingQueen.beats
-  // console.log('afsdasdadasa', dancingQueen)
-  // console.log('ffffffffff', beatsToBubble(abbaBeats))
   const song = store.getState().song.selectedSong
   switch (song) {
     default:
-      // console.log('inside', beats)
       return beatsToBubble(abbaBeats)
     case 'dancing-queen':
-      // console.log('not default', beats)
       return beatsToBubble(abbaBeats)
     case 'beat-it':
       return beatsToBubble(jacksonBeats)
@@ -130,6 +124,8 @@ export const setLevel = () => {
     case 'dancing-queen':
       switch (level) {
         default:
+          return abbaEasy
+        case 'easy':
           return abbaEasy
         case 'medium':
           return abbaMedium
