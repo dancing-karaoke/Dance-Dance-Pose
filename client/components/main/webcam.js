@@ -153,6 +153,10 @@ class PoseNet extends React.Component {
     this.poseDetectionFrame(ctx)
   }
 
+  // detectPosesAndCoordinates(array) {
+  //   array.map( )
+  // }
+
   poseDetectionFrame(ctx) {
     const {
       algorithm,
@@ -190,14 +194,6 @@ class PoseNet extends React.Component {
             nmsRadius
           )
 
-          break
-        case 'single-pose':
-          const pose = await net.estimateSinglePose(
-            video,
-            imageScaleFactor,
-            flipHorizontal,
-            outputStride
-          )
           // index 10 is rightWrist
           // index 9 is left Wrist
           //index 13 is right knee
@@ -212,39 +208,85 @@ class PoseNet extends React.Component {
             yMin2: this.props.yBubble * (1 - rangeSpectrum),
             yMax2: this.props.yBubble * (1 + rangeSpectrum)
           })
-          if (
-            (this.state.xMin < pose.keypoints[10].position.x &&
-              pose.keypoints[10].position.x < this.state.xMax &&
-              this.state.yMin < pose.keypoints[10].position.y &&
-              pose.keypoints[10].position.y < this.state.yMax &&
-              pose.keypoints[10].score > minConfidencePoints) ||
-            (this.state.xMin < pose.keypoints[9].position.x &&
-              pose.keypoints[9].position.x < this.state.xMax &&
-              this.state.yMin < pose.keypoints[9].position.y &&
-              pose.keypoints[9].position.y < this.state.yMax &&
-              pose.keypoints[9].score > minConfidencePoints)
-          ) {
-            counter = counter + 1000
-            this.eliminateBubble()
-            this.props.addScore(counter)
-          }
 
-          if (
-            (this.state.xMin2 < pose.keypoints[11].position.x &&
-              pose.keypoints[11].position.x < this.state.xMax2 &&
-              this.state.yMin2 < pose.keypoints[11].position.y &&
-              pose.keypoints[11].position.y < this.state.yMax2 &&
-              pose.keypoints[11].score > minConfidencePoints) ||
-            (this.state.xMin2 < pose.keypoints[12].position.x &&
-              pose.keypoints[12].position.x < this.state.xMax2 &&
-              this.state.yMin2 < pose.keypoints[12].position.y &&
-              pose.keypoints[12].position.y < this.state.yMax2 &&
-              pose.keypoints[12].score > minConfidencePoints)
-          ) {
-            counter = counter + 5000
-            this.eliminateBubble2()
-            this.props.addScore(counter)
-          }
+          poses.forEach(pose => {
+            if (
+              (this.state.xMin < pose.keypoints[10].position.x &&
+                pose.keypoints[10].position.x < this.state.xMax &&
+                this.state.yMin < pose.keypoints[10].position.y &&
+                pose.keypoints[10].position.y < this.state.yMax &&
+                pose.keypoints[10].score > minConfidencePoints) ||
+              (this.state.xMin < pose.keypoints[9].position.x &&
+                pose.keypoints[9].position.x < this.state.xMax &&
+                this.state.yMin < pose.keypoints[9].position.y &&
+                pose.keypoints[9].position.y < this.state.yMax &&
+                pose.keypoints[9].score > minConfidencePoints)
+            ) {
+              counter = counter + 1000
+              this.eliminateBubble()
+              this.props.addScore(counter)
+            }
+
+            if (
+              (this.state.xMin2 < pose.keypoints[11].position.x &&
+                pose.keypoints[11].position.x < this.state.xMax2 &&
+                this.state.yMin2 < pose.keypoints[11].position.y &&
+                pose.keypoints[11].position.y < this.state.yMax2 &&
+                pose.keypoints[11].score > minConfidencePoints) ||
+              (this.state.xMin2 < pose.keypoints[12].position.x &&
+                pose.keypoints[12].position.x < this.state.xMax2 &&
+                this.state.yMin2 < pose.keypoints[12].position.y &&
+                pose.keypoints[12].position.y < this.state.yMax2 &&
+                pose.keypoints[12].score > minConfidencePoints)
+            ) {
+              counter = counter + 5000
+              this.eliminateBubble2()
+              this.props.addScore(counter)
+            }
+          })
+
+          break
+        case 'single-pose':
+          const pose = await net.estimateSinglePose(
+            video,
+            imageScaleFactor,
+            flipHorizontal,
+            outputStride
+          )
+
+          // if (
+          //   (this.state.xMin < pose.keypoints[10].position.x &&
+          //     pose.keypoints[10].position.x < this.state.xMax &&
+          //     this.state.yMin < pose.keypoints[10].position.y &&
+          //     pose.keypoints[10].position.y < this.state.yMax &&
+          //     pose.keypoints[10].score > minConfidencePoints) ||
+          //   (this.state.xMin < pose.keypoints[9].position.x &&
+          //     pose.keypoints[9].position.x < this.state.xMax &&
+          //     this.state.yMin < pose.keypoints[9].position.y &&
+          //     pose.keypoints[9].position.y < this.state.yMax &&
+          //     pose.keypoints[9].score > minConfidencePoints)
+          // ) {
+          //   counter = counter + 1000
+          //   this.eliminateBubble()
+          //   this.props.addScore(counter)
+          // }
+
+          // if (
+          //   (this.state.xMin2 < pose.keypoints[11].position.x &&
+          //     pose.keypoints[11].position.x < this.state.xMax2 &&
+          //     this.state.yMin2 < pose.keypoints[11].position.y &&
+          //     pose.keypoints[11].position.y < this.state.yMax2 &&
+          //     pose.keypoints[11].score > minConfidencePoints) ||
+          //   (this.state.xMin2 < pose.keypoints[12].position.x &&
+          //     pose.keypoints[12].position.x < this.state.xMax2 &&
+          //     this.state.yMin2 < pose.keypoints[12].position.y &&
+          //     pose.keypoints[12].position.y < this.state.yMax2 &&
+          //     pose.keypoints[12].score > minConfidencePoints)
+          // ) {
+          //   counter = counter + 5000
+          //   this.eliminateBubble2()
+          //   this.props.addScore(counter)
+          // }
 
           poses.push(pose)
           break
