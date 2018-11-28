@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import Wad from 'web-audio-daw'
 import {connect} from 'react-redux'
 import {getSingScore} from '../../store/bubble'
-import {Pointer} from './Pointer'
+import Pointer from './Pointer'
+import {EndModal} from '../menu/end-modal'
 
 class Sing extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class Sing extends Component {
       score: 0,
       userNote: 'waiting for song to start',
       currentTime: 0,
+      show: false,
       currentSongNotes: {
         0.5: 'no note',
         1: 'no note',
@@ -323,7 +325,11 @@ class Sing extends Component {
       })
 
       // end recursive call and return if all lyrics have played
-      if (currentSection === this.state.lyricsData.length) {
+      if (
+        this.state.trackingPitch === false ||
+        currentSection === this.state.lyricsData.length
+      ) {
+        this.setState({displaySubtitle: ''})
         cancelAnimationFrame(updateLyricsInterval)
         return
       }
@@ -333,6 +339,14 @@ class Sing extends Component {
     }
     // start
     updateLyricsSection()
+  }
+
+  showModal = () => {
+    this.setState({show: true})
+  }
+
+  hideModal = () => {
+    this.setState({show: false})
   }
 
   pitchLogger = () => {
@@ -352,10 +366,9 @@ class Sing extends Component {
       tuner.updatePitch() // the tuner is now calculating the pitch and note name
 
       let results = {}
+      let pitchDetect
 
       let logPitch = () => {
-        requestAnimationFrame(logPitch)
-
         // this.setState(prevState => ({
         //   score: (prevState.score += 0.5)
         // }))
@@ -370,7 +383,6 @@ class Sing extends Component {
           let time =
             (tuner.destination.context.currentTime - windowTime).toFixed(1) ||
             (tuner.destination.context.currentTime - windowTime).toFixed(0)
-          // console.log(results)
           this.setState({currentTime: time})
 
           let note
@@ -390,8 +402,22 @@ class Sing extends Component {
               }))
               this.props.addScore(this.state.score)
             }
+
+            // track end
+            if (
+              (tuner.destination.context.currentTime - windowTime).toFixed(1) >
+              60
+            ) {
+              cancelAnimationFrame(pitchDetect)
+              this.props.song.stop()
+              this.setState({trackingPitch: false})
+              this.setState({show: true})
+              this.showModal()
+              return
+            }
           }
         }
+        pitchDetect = requestAnimationFrame(logPitch)
       }
       logPitch()
       this.createSubtitle()
@@ -401,11 +427,14 @@ class Sing extends Component {
 
   render() {
     return (
-      <div>
-        {/* <Pointer
-          note={this.state.currentSongNotes[this.state.currentTime]}
-          userNote={this.state.userNote}
-        /> */}
+      <div id="pointerAndLyrics">
+        <div id="justThePointer">
+          <Pointer
+            note={this.state.currentSongNotes[this.state.currentTime]}
+            userNote={this.state.userNote}
+            currentTime={this.state.currentTime}
+          />
+        </div>
         <div
         // style={{
         //   position: 'absolute',
@@ -423,6 +452,13 @@ class Sing extends Component {
             id="subtitles"
             dangerouslySetInnerHTML={{__html: this.state.displaySubtitle}}
           />
+          {this.state.show && (
+            <EndModal
+              show={this.state.show}
+              showModal={this.showModal}
+              hideModal={this.hideModal}
+            />
+          )}
         </div>
       </div>
     )

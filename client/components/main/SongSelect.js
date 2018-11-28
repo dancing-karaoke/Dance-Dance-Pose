@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 import anime from 'animejs'
 import Wad from 'web-audio-daw'
-import {Modal} from '../menu/Modal'
+import {SongModal} from '../menu/song-modal'
 import {selectSong} from '../../store'
 
 class SongSelection extends Component {
@@ -90,7 +90,7 @@ class SongSelection extends Component {
           <span>ES 335 Cherry</span>
         </svg>
         {this.state.show && (
-          <Modal
+          <SongModal
             show={this.state.show}
             showModal={this.showModal}
             hideModal={this.hideModal}

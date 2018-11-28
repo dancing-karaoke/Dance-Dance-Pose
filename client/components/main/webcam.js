@@ -7,7 +7,6 @@ import {
   setLevel,
   consoleSongandLevel
 } from './utils'
-import {defaultProps} from './utils2'
 import Bubble from '../bubbles/bubble'
 import Bubble2 from '../bubbles/bubble2'
 import {connect} from 'react-redux'
@@ -19,12 +18,8 @@ import {
   getYCoordinate2,
   sendLoadingState
 } from '../../store/bubble'
-import Tv from './Tv'
-import Loading from './Loading'
-import {selectSong, selectDifficulty} from '../../store/song'
-import ReactLoading from 'react-loading'
+
 import Score from './score'
-import {constant} from '../../../node_modules/@tensorflow/tfjs-layers/dist/exports_initializers'
 
 let counter = 0
 
@@ -77,11 +72,13 @@ class PoseNet extends React.Component {
       yMax2: 0,
       windowTime: this.props.song.destination.context.currentTime,
       time: '',
-      counterBeatInterval: 0
+      counterBeatInterval: 0,
+      BubblePace: 0
     }
     this.generateRandomCoordinates = this.generateRandomCoordinates.bind(this)
     this.generateRandomCoordinates2 = this.generateRandomCoordinates2.bind(this)
     this.emilinateBubble = this.eliminateBubble.bind(this)
+    this.emilinateBubble2 = this.eliminateBubble2.bind(this)
     this.startTimer = this.startTimer.bind(this)
     this.handleTimer = this.handleTimer.bind(this)
   }
@@ -101,8 +98,13 @@ class PoseNet extends React.Component {
     } catch (e) {
       throw 'This browser does not support video capture, or this device does not have a camera'
     } finally {
-      this.setState({loading: false})
-      this.props.sendLoadingState(false)
+      setTimeout(() => {
+        this.setState({loading: false})
+        this.props.sendLoadingState(false)
+      }, 200)
+
+      // this.setState({loading: false})
+      // this.props.sendLoadingState(false)
     }
     this.detectPose()
     this.props.onRef(this)
@@ -216,18 +218,34 @@ class PoseNet extends React.Component {
               this.state.yMin < pose.keypoints[10].position.y &&
               pose.keypoints[10].position.y < this.state.yMax &&
               pose.keypoints[10].score > minConfidencePoints) ||
-            (this.state.xMin2 < pose.keypoints[13].position.x &&
-              pose.keypoints[13].position.x < this.state.xMax2 &&
-              this.state.yMin2 < pose.keypoints[13].position.y &&
-              pose.keypoints[13].position.y < this.state.yMax2 &&
-              pose.keypoints[3].score > minConfidencePoints)
+            (this.state.xMin < pose.keypoints[9].position.x &&
+              pose.keypoints[9].position.x < this.state.xMax &&
+              this.state.yMin < pose.keypoints[9].position.y &&
+              pose.keypoints[9].position.y < this.state.yMax &&
+              pose.keypoints[9].score > minConfidencePoints)
           ) {
             counter = counter + 1000
-            console.log('COUNTER', counter)
             this.eliminateBubble()
-
             this.props.addScore(counter)
           }
+
+          if (
+            (this.state.xMin2 < pose.keypoints[11].position.x &&
+              pose.keypoints[11].position.x < this.state.xMax2 &&
+              this.state.yMin2 < pose.keypoints[11].position.y &&
+              pose.keypoints[11].position.y < this.state.yMax2 &&
+              pose.keypoints[11].score > minConfidencePoints) ||
+            (this.state.xMin2 < pose.keypoints[12].position.x &&
+              pose.keypoints[12].position.x < this.state.xMax2 &&
+              this.state.yMin2 < pose.keypoints[12].position.y &&
+              pose.keypoints[12].position.y < this.state.yMax2 &&
+              pose.keypoints[12].score > minConfidencePoints)
+          ) {
+            counter = counter + 5000
+            this.eliminateBubble2()
+            this.props.addScore(counter)
+          }
+
           poses.push(pose)
           break
       }
@@ -298,6 +316,7 @@ class PoseNet extends React.Component {
   async startTimer() {
     let startTime = new Date()
     const beatsToDisplay = setBeats()
+    // console.log('HE', beatsToDisplay)
     await this.setState({
       time: startTime,
       windowTime: this.props.song.destination.context.currentTime
@@ -314,14 +333,27 @@ class PoseNet extends React.Component {
   handleTimer() {
     const beatsToDisplay = setBeats()
     const beatTime = beatsToDisplay[this.state.counterBeatInterval]
-    console.log('song beats', beatTime)
     const level = setLevel()
     if (
       this.props.song.destination.context.currentTime - this.state.windowTime >
       beatTime
     ) {
+      if (this.state.BubblePace === 4) {
+        this.generateRandomCoordinates2()
+        const newBubblePace = 0
+        this.setState({
+          BubblePace: newBubblePace
+        })
+      } else {
+        if (this.state.BubblePace !== 0) {
+          this.eliminateBubble2()
+        }
+        const newBubblePace = this.state.BubblePace + 1
+        this.setState({
+          BubblePace: newBubblePace
+        })
+      }
       this.generateRandomCoordinates()
-      this.generateRandomCoordinates2()
       const newCounterBeatInterval = this.state.counterBeatInterval + level
       this.setState({
         counterBeatInterval: newCounterBeatInterval
@@ -340,13 +372,28 @@ class PoseNet extends React.Component {
     this.props.addY(3000)
   }
 
+  eliminateBubble2() {
+    this.setState({
+      xMin2: null,
+      xMax2: null,
+      yMin2: null,
+      yMax2: null
+    })
+    this.props.addX2(3000)
+    this.props.addY2(3000)
+  }
+
   render() {
-    const loading = this.state.loading ? <h1>LOADING...</h1> : <h1 />
+    const loading = this.state.loading ? (
+      <video className="loading" src="/assets/loading1.mov" autoPlay muted />
+    ) : (
+      <h1 />
+    )
     return (
       <div>
         <div>{loading}</div>
         <div id="border">
-          <div className="sidenav" />
+          {/* <div className="sidenav" /> */}
           <div className="score">
             <Score />
           </div>

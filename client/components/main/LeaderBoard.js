@@ -26,20 +26,18 @@ class LeaderBoard extends Component {
           <table id="table1" className="sudbury">
             <tbody>
               <tr id="row0">
-                <td id="cell0-0">Rank</td>
+                <td id="cell0-0">Score</td>
                 <td id="cell0-1">Name</td>
-                <td id="cell0-2">Song</td>
+                <td id="cell0-2">Name</td>
                 <td id="cell0-3">Difficulty</td>
-                <td id="cell0-4">Score</td>
               </tr>
-              {this.props.leaderboard.map(leader => {
+              {this.props.leaderboard.reverse().map(leader => {
                 return (
                   <tr id="row">
-                    <td id={`cell${leader.rank}-0`}>{leader.rank}</td>
-                    <td id={`cell${leader.rank}-1`}>{leader.name}</td>
-                    <td id={`cell${leader.rank}-2`}>{leader.song}</td>
-                    <td id={`cell${leader.rank}-3`}>{leader.difficulty}</td>
-                    <td id={`cell${leader.rank}-4`}>{leader.score}</td>
+                    <td id={`cell${leader.id}-0`}>{leader.score}</td>
+                    <td id={`cell${leader.id}-1`}>{leader.name}</td>
+                    <td id={`cell${leader.id}-2`}>{leader.song}</td>
+                    <td id={`cell${leader.id}-3`}>{leader.difficulty}</td>
                   </tr>
                 )
               })}
