@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Wad from 'web-audio-daw'
 import {connect} from 'react-redux'
 import {getSingScore} from '../../store/bubble'
-import {Pointer} from './Pointer'
+import Pointer from './Pointer'
 import {EndModal} from '../menu/end-modal'
 
 class Sing extends Component {
@@ -329,7 +329,7 @@ class Sing extends Component {
         this.state.trackingPitch === false ||
         currentSection === this.state.lyricsData.length
       ) {
-        this.setState({displaySubtitle: 'Thanks for playing!'})
+        this.setState({displaySubtitle: ''})
         cancelAnimationFrame(updateLyricsInterval)
         return
       }
@@ -406,14 +406,10 @@ class Sing extends Component {
             // track end
             if (
               (tuner.destination.context.currentTime - windowTime).toFixed(1) >
-              70
+              60
             ) {
               cancelAnimationFrame(pitchDetect)
               this.props.song.stop()
-              console.log(
-                'ended at: ',
-                (tuner.destination.context.currentTime - windowTime).toFixed(1)
-              )
               this.setState({trackingPitch: false})
               this.setState({show: true})
               this.showModal()
