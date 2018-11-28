@@ -492,8 +492,3 @@ tr > td:first-child {
 .noShow {
   display: none;
 }
-
-.loading {
-  width: 98vw;
-  height: 98vh;
-}

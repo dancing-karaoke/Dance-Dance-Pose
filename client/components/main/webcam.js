@@ -101,18 +101,12 @@ class PoseNet extends React.Component {
     } catch (e) {
       throw 'This browser does not support video capture, or this device does not have a camera'
     } finally {
-      //   setTimeout(() => {
-      //     this.setState({loading: false})
-      //     this.props.sendLoadingState(false)
-      //   })
-      // }
-      // this.setState({loading: false})
-      // this.props.sendLoadingState(false)
-
-      this.detectPose()
-      this.props.onRef(this)
-      this.props.danceDancePoseTime()
+      this.setState({loading: false})
+      this.props.sendLoadingState(false)
     }
+    this.detectPose()
+    this.props.onRef(this)
+    this.props.danceDancePoseTime()
   }
 
   async setupCamera() {
@@ -347,19 +341,7 @@ class PoseNet extends React.Component {
   }
 
   render() {
-    // const loading = this.state.loading ? <h1>LOADING...</h1> : <h1 />
-    const loading = this.state.loading ? (
-      <video
-        className="loading"
-        src="/assets/loading1.mov"
-        autoPlay
-        muted
-        playbackRate="1.2"
-      />
-    ) : (
-      <h1 />
-    )
-
+    const loading = this.state.loading ? <h1>LOADING...</h1> : <h1 />
     return (
       <div>
         <div>{loading}</div>
