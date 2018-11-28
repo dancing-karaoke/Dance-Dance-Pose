@@ -1,5 +1,5 @@
 import * as posenet from '@tensorflow-models/posenet'
-import {drakeBeats, abbaBeats, jacksonBeats} from '../../../beats'
+import {drakeBeats, abbaBeats, jacksonBeats, gagaBeats} from '../../../beats'
 import redux from 'redux'
 import {connect} from 'react-redux'
 import react from 'react'
@@ -103,7 +103,11 @@ export const setBeats = () => {
     case 'dancing-queen':
       return beatsToBubble(abbaBeats)
     case 'beat-it':
-      return beatsToBubble(jacksonBeats)
+      const tempBeats = beatsToBubble(jacksonBeats)
+      const filteredBeats = tempBeats.filter(beat => beat >= 30)
+      return filteredBeats
+    case 'gaga':
+      return beatsToBubble(gagaBeats)
   }
 }
 
@@ -117,6 +121,10 @@ export const setLevel = () => {
   const jacksonEasy = 6
   const jacksonMedium = 4
   const jacksonChaos = 2
+
+  const gagaEasy = 7
+  const gagaMedium = 5
+  const gagaChaos = 3
 
   switch (song) {
     default:
@@ -140,6 +148,15 @@ export const setLevel = () => {
           return jacksonMedium
         case 'chaos':
           return jacksonChaos
+      }
+    case 'gaga':
+      switch (level) {
+        default:
+          return gagaEasy
+        case 'medium':
+          return gagaMedium
+        case 'chaos':
+          return gagaChaos
       }
   }
 }
