@@ -210,7 +210,6 @@ class PoseNet extends React.Component {
           })
 
           poses.forEach(pose => {
-            console.log('POSE', pose)
             if (
               (this.state.xMin < pose.keypoints[10].position.x &&
                 pose.keypoints[10].position.x < this.state.xMax &&
