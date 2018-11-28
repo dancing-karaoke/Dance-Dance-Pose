@@ -16,7 +16,7 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0;
-  background: pink;
+  background: black;
 }
 
 .instructions-body {
@@ -28,7 +28,7 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0;
-  background: pink;
+  background: black;
 }
 
 #pointerAndLyrics {
@@ -40,13 +40,14 @@ body {
 
 #justThePointer {
   flex: 1;
+  top: 11%;
   position: absolute; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 5; /* Stay on top */
   /* top: 15%;
   left: -20%; */
   overflow-x: hidden; /* Disable horizontal scroll */
   margin-right: 60px;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   left: -8%;
   opacity: 0.5;
 }

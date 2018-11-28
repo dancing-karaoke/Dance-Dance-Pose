@@ -33,7 +33,7 @@ export function drawKeypoints(
   ctx,
   scale = 1
 ) {
-  keypoints.forEach(keypoint => {
+  keypoints.forEach(keypoigint => {
     if (keypoint.score >= minConfidence) {
       const {y, x} = keypoint.position
       ctx.beginPath()
@@ -113,7 +113,8 @@ export const setBeats = () => {
     case 'beat-it':
       const tempBeats = beatsToBubble(jacksonBeats)
       const filteredBeats = tempBeats.filter(beat => beat >= 30)
-      return filteredBeats
+      const newBeats = filteredBeats.map(beat => beat - 30)
+      return newBeats
     case 'gaga':
       return beatsToBubble(gagaBeats)
   }
