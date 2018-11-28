@@ -39,7 +39,7 @@ class PoseNet extends React.Component {
     videoWidth: window.screen.width * 0.95,
     videoHeight: window.screen.height * 0.65,
     flipHorizontal: true,
-    algorithm: 'single-pose',
+    algorithm: 'multi-pose',
     showVideo: true,
     showSkeleton: true,
     showPoints: true,
@@ -210,6 +210,7 @@ class PoseNet extends React.Component {
           })
 
           poses.forEach(pose => {
+            console.log('POSE', pose)
             if (
               (this.state.xMin < pose.keypoints[10].position.x &&
                 pose.keypoints[10].position.x < this.state.xMax &&
