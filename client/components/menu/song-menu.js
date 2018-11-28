@@ -37,8 +37,10 @@ class SongMenu extends Component {
   render() {
     return (
       <div>
+        {/*  {!this.state.show && (
+          <h1>PICK YOUR SONG!</h1>
+        )}*/}
         <h1>PICK YOUR SONG!</h1>
-
         <div>
           <SongSelect />
           {this.state.show && (

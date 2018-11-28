@@ -20,24 +20,11 @@ class EndMenu extends Component {
     this.state = {
       form: false,
       name: '',
-      redirect: false,
       video: true
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-
-  // setRedirect = () => {
-  //   this.setState({
-  //     redirect: true
-  //   })
-  // }
-
-  // renderRedirect = () => {
-  //   if (this.state.redirect) {
-  //     return <Redirect to='/leaderboard' />
-  //   }
-  // }
 
   showForm = () => {
     this.setState({form: true, video: false})
@@ -63,13 +50,11 @@ class EndMenu extends Component {
     this.props.addPlayerLeaderboard(playerData)
     this.setState({name: ''})
     this.props.history.push('/leaderboard')
-    // this.setRedirect()
-    // this.renderRedirect()
-    // return <Redirect to='/leaderboard' />
   }
 
   render() {
     let totalScore = this.props.danceScore + this.props.singScore
+
     const video = this.state.video ? (
       <video
         className="baby-video"
@@ -89,7 +74,7 @@ class EndMenu extends Component {
           <div>{video}</div>
           {!this.state.form && (
             <div>
-              {totalScore > 500 && (
+              {totalScore > 100000 && (
                 <span
                   onClick={() => {
                     confirmSound()
@@ -101,7 +86,7 @@ class EndMenu extends Component {
                   Enter your score into the leaderboard
                 </span>
               )}
-
+              
               <Link
                 to="/songs"
                 onMouseOver={menuSound}
