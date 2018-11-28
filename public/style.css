@@ -14,6 +14,25 @@ body {
   background: pink;
 }
 
+#pointerAndLyrics {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+}
+
+#justThePointer {
+  flex: 1;
+}
+
+#subtitles {
+  margin-left: 2.5em;
+  /* position: absolute; */
+  font-size: 2.5em;
+  flex: 7;
+  /* opacity: 1; */
+}
+
 #notShow {
   transform: scaleX(-1);
   display: none;
@@ -72,12 +91,6 @@ form div {
     color: #23d5ab;
     font-size: 2.2em;
   }
-}
-
-#subtitles {
-  /* position: absolute; */
-  font-size: 2.5em;
-  /* opacity: 1; */
 }
 
 .button {
@@ -483,10 +496,11 @@ tr > td:first-child {
 .arrow-left {
   width: 0;
   height: 0;
-  border-top: 30px solid transparent;
-  border-bottom: 30px solid transparent;
-  border-left: 20px solid blue;
-  padding-right: 20px;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid lightgreen;
+  padding-right: 10px;
+  transition: all 0.5s ease-in-out;
 }
 
 .noShow {
