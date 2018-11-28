@@ -7,23 +7,25 @@ class Pointer extends Component {
   }
 
   render() {
-    // if (this.props.note === this.props.userNote) {
-    const y = -10
-    const style = {
-      transform: `translateY(${y}px)`
-      //   }
-      // } else {
-      //   const y = 100
-      //   const style = {
-      // transform: `translateY(${y}px)`
-      //   }
+    let style
+    if (this.props.note === this.props.userNote) {
+      const y = 0
+      style = {
+        transform: `translateY(${y}px)`
+      }
+    } else {
+      const y = 130
+      style = {
+        transform: `translateY(${y}px)`
+      }
     }
-    return (
+
+    return this.props.currentTime ? (
       <div id="pointerDiv">
         <div className="arrow-left" style={style} />
         <div id="grad1" />
       </div>
-    )
+    ) : null
   }
 }
 

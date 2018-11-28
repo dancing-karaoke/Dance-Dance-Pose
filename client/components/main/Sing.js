@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Wad from 'web-audio-daw'
 import {connect} from 'react-redux'
 import {getSingScore} from '../../store/bubble'
-import {Pointer} from './Pointer'
+import Pointer from './Pointer'
 
 class Sing extends Component {
   constructor(props) {
@@ -373,7 +373,6 @@ class Sing extends Component {
           let time =
             (tuner.destination.context.currentTime - windowTime).toFixed(1) ||
             (tuner.destination.context.currentTime - windowTime).toFixed(0)
-          // console.log(results)
           this.setState({currentTime: time})
 
           let note
@@ -420,11 +419,14 @@ class Sing extends Component {
 
   render() {
     return (
-      <div>
-        {/* <Pointer
-          note={this.state.currentSongNotes[this.state.currentTime]}
-          userNote={this.state.userNote}
-        /> */}
+      <div id="pointerAndLyrics">
+        <div id="justThePointer">
+          <Pointer
+            note={this.state.currentSongNotes[this.state.currentTime]}
+            userNote={this.state.userNote}
+            currentTime={this.state.currentTime}
+          />
+        </div>
         <div
         // style={{
         //   position: 'absolute',
