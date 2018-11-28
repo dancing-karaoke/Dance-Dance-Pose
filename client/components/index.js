@@ -10,7 +10,8 @@ export {default as SongMenu} from '../components/menu/song-menu'
 export {
   default as SelectedSongMenu
 } from '../components/menu/selected-song-menu'
-export {default as Modal} from '../components/menu/Modal'
+export {default as SongModal} from '../components/menu/song-modal'
+export {default as EndModal} from '../components/menu/end-modal'
 export {Login, Signup} from '../components/home/auth-form'
 export {default as Webcam} from '../components/main/webcam'
 export {default as Main} from '../components/main/Main'
