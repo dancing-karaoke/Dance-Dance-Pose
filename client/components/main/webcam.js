@@ -289,7 +289,7 @@ class PoseNet extends React.Component {
           //   this.eliminateBubble2()
           //   this.props.addScore(counter)
           // }
-          
+
           poses.push(pose)
           break
       }
@@ -364,7 +364,6 @@ class PoseNet extends React.Component {
   async startTimer() {
     let startTime = new Date()
     const beatsToDisplay = setBeats()
-    // console.log('HE', beatsToDisplay)
     await this.setState({
       time: startTime,
       windowTime: this.props.song.destination.context.currentTime

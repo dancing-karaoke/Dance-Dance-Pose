@@ -1,3 +1,2390 @@
+export const gagaBeats = [
+  {
+    start: 0.03707,
+    duration: 0.51861,
+    confidence: 1
+  },
+  {
+    start: 0.55568,
+    duration: 0.51543,
+    confidence: 0.859
+  },
+  {
+    start: 1.07111,
+    duration: 0.51088,
+    confidence: 0.222
+  },
+  {
+    start: 1.58199,
+    duration: 0.50863,
+    confidence: 0.422
+  },
+  {
+    start: 2.09062,
+    duration: 0.50772,
+    confidence: 0.246
+  },
+  {
+    start: 2.59834,
+    duration: 0.50319,
+    confidence: 0.305
+  },
+  {
+    start: 3.10153,
+    duration: 0.50409,
+    confidence: 0.217
+  },
+  {
+    start: 3.60562,
+    duration: 0.50499,
+    confidence: 0.363
+  },
+  {
+    start: 4.11061,
+    duration: 0.50453,
+    confidence: 0.373
+  },
+  {
+    start: 4.61515,
+    duration: 0.50453,
+    confidence: 0.351
+  },
+  {
+    start: 5.11968,
+    duration: 0.50497,
+    confidence: 0.269
+  },
+  {
+    start: 5.62465,
+    duration: 0.5036,
+    confidence: 0.378
+  },
+  {
+    start: 6.12825,
+    duration: 0.49997,
+    confidence: 0.331
+  },
+  {
+    start: 6.62821,
+    duration: 0.49859,
+    confidence: 0.331
+  },
+  {
+    start: 7.1268,
+    duration: 0.4963,
+    confidence: 0.233
+  },
+  {
+    start: 7.62311,
+    duration: 0.49493,
+    confidence: 0.39
+  },
+  {
+    start: 8.11803,
+    duration: 0.49896,
+    confidence: 0.569
+  },
+  {
+    start: 8.61699,
+    duration: 0.49894,
+    confidence: 0.488
+  },
+  {
+    start: 9.11593,
+    duration: 0.50207,
+    confidence: 0.488
+  },
+  {
+    start: 9.618,
+    duration: 0.50476,
+    confidence: 0.585
+  },
+  {
+    start: 10.12276,
+    duration: 0.50564,
+    confidence: 0.596
+  },
+  {
+    start: 10.6284,
+    duration: 0.50472,
+    confidence: 0.557
+  },
+  {
+    start: 11.13311,
+    duration: 0.50469,
+    confidence: 0.488
+  },
+  {
+    start: 11.6378,
+    duration: 0.50287,
+    confidence: 0.527
+  },
+  {
+    start: 12.14067,
+    duration: 0.50285,
+    confidence: 0.522
+  },
+  {
+    start: 12.64352,
+    duration: 0.50283,
+    confidence: 0.537
+  },
+  {
+    start: 13.14636,
+    duration: 0.50236,
+    confidence: 0.471
+  },
+  {
+    start: 13.64872,
+    duration: 0.5028,
+    confidence: 0.597
+  },
+  {
+    start: 14.15151,
+    duration: 0.50413,
+    confidence: 0.588
+  },
+  {
+    start: 14.65564,
+    duration: 0.50592,
+    confidence: 0.641
+  },
+  {
+    start: 15.16156,
+    duration: 0.50635,
+    confidence: 0.59
+  },
+  {
+    start: 15.66791,
+    duration: 0.50768,
+    confidence: 0.615
+  },
+  {
+    start: 16.17559,
+    duration: 0.50631,
+    confidence: 0.552
+  },
+  {
+    start: 16.6819,
+    duration: 0.5045,
+    confidence: 0.475
+  },
+  {
+    start: 17.1864,
+    duration: 0.50313,
+    confidence: 0.47
+  },
+  {
+    start: 17.68952,
+    duration: 0.50492,
+    confidence: 0.711
+  },
+  {
+    start: 18.19444,
+    duration: 0.50175,
+    confidence: 0.786
+  },
+  {
+    start: 18.6962,
+    duration: 0.50129,
+    confidence: 0.843
+  },
+  {
+    start: 19.19749,
+    duration: 0.50264,
+    confidence: 0.792
+  },
+  {
+    start: 19.70013,
+    duration: 0.50128,
+    confidence: 0.815
+  },
+  {
+    start: 20.20141,
+    duration: 0.50398,
+    confidence: 0.761
+  },
+  {
+    start: 20.70538,
+    duration: 0.50488,
+    confidence: 0.65
+  },
+  {
+    start: 21.21026,
+    duration: 0.50352,
+    confidence: 0.782
+  },
+  {
+    start: 21.71377,
+    duration: 0.50577,
+    confidence: 0.909
+  },
+  {
+    start: 22.21954,
+    duration: 0.50621,
+    confidence: 0.913
+  },
+  {
+    start: 22.72575,
+    duration: 0.5044,
+    confidence: 0.902
+  },
+  {
+    start: 23.23015,
+    duration: 0.50666,
+    confidence: 0.842
+  },
+  {
+    start: 23.73681,
+    duration: 0.5053,
+    confidence: 0.805
+  },
+  {
+    start: 24.24211,
+    duration: 0.5044,
+    confidence: 0.728
+  },
+  {
+    start: 24.74651,
+    duration: 0.50981,
+    confidence: 0.576
+  },
+  {
+    start: 25.25631,
+    duration: 0.5062,
+    confidence: 0.605
+  },
+  {
+    start: 25.76251,
+    duration: 0.50484,
+    confidence: 0.852
+  },
+  {
+    start: 26.26735,
+    duration: 0.50303,
+    confidence: 0.818
+  },
+  {
+    start: 26.77038,
+    duration: 0.50303,
+    confidence: 0.726
+  },
+  {
+    start: 27.27341,
+    duration: 0.50256,
+    confidence: 0.76
+  },
+  {
+    start: 27.77597,
+    duration: 0.5039,
+    confidence: 0.719
+  },
+  {
+    start: 28.27987,
+    duration: 0.49892,
+    confidence: 0.629
+  },
+  {
+    start: 28.77879,
+    duration: 0.5025,
+    confidence: 0.855
+  },
+  {
+    start: 29.28129,
+    duration: 0.50383,
+    confidence: 0.842
+  },
+  {
+    start: 29.78512,
+    duration: 0.5056,
+    confidence: 0.863
+  },
+  {
+    start: 30.29072,
+    duration: 0.50422,
+    confidence: 0.882
+  },
+  {
+    start: 30.79495,
+    duration: 0.50511,
+    confidence: 0.824
+  },
+  {
+    start: 31.30006,
+    duration: 0.50284,
+    confidence: 0.76
+  },
+  {
+    start: 31.80289,
+    duration: 0.50283,
+    confidence: 0.718
+  },
+  {
+    start: 32.30572,
+    duration: 0.50372,
+    confidence: 0.689
+  },
+  {
+    start: 32.80945,
+    duration: 0.50373,
+    confidence: 0.629
+  },
+  {
+    start: 33.31317,
+    duration: 0.50282,
+    confidence: 0.574
+  },
+  {
+    start: 33.81599,
+    duration: 0.50597,
+    confidence: 0.769
+  },
+  {
+    start: 34.32197,
+    duration: 0.50688,
+    confidence: 0.639
+  },
+  {
+    start: 34.82885,
+    duration: 0.50689,
+    confidence: 0.765
+  },
+  {
+    start: 35.33574,
+    duration: 0.506,
+    confidence: 0.716
+  },
+  {
+    start: 35.84173,
+    duration: 0.50376,
+    confidence: 0.59
+  },
+  {
+    start: 36.34549,
+    duration: 0.50513,
+    confidence: 0.645
+  },
+  {
+    start: 36.85062,
+    duration: 0.5047,
+    confidence: 0.602
+  },
+  {
+    start: 37.35532,
+    duration: 0.50203,
+    confidence: 0.784
+  },
+  {
+    start: 37.85735,
+    duration: 0.50249,
+    confidence: 0.926
+  },
+  {
+    start: 38.35984,
+    duration: 0.50386,
+    confidence: 0.91
+  },
+  {
+    start: 38.86371,
+    duration: 0.50297,
+    confidence: 0.886
+  },
+  {
+    start: 39.36668,
+    duration: 0.50208,
+    confidence: 0.841
+  },
+  {
+    start: 39.86876,
+    duration: 0.50163,
+    confidence: 0.677
+  },
+  {
+    start: 40.3704,
+    duration: 0.50209,
+    confidence: 0.642
+  },
+  {
+    start: 40.87248,
+    duration: 0.50479,
+    confidence: 0.519
+  },
+  {
+    start: 41.37728,
+    duration: 0.50299,
+    confidence: 0.441
+  },
+  {
+    start: 41.88026,
+    duration: 0.50569,
+    confidence: 0.72
+  },
+  {
+    start: 42.38595,
+    duration: 0.50613,
+    confidence: 0.695
+  },
+  {
+    start: 42.89209,
+    duration: 0.50748,
+    confidence: 0.713
+  },
+  {
+    start: 43.39956,
+    duration: 0.5034,
+    confidence: 0.785
+  },
+  {
+    start: 43.90297,
+    duration: 0.50564,
+    confidence: 0.764
+  },
+  {
+    start: 44.40861,
+    duration: 0.50247,
+    confidence: 0.744
+  },
+  {
+    start: 44.91108,
+    duration: 0.50472,
+    confidence: 0.651
+  },
+  {
+    start: 45.4158,
+    duration: 0.50245,
+    confidence: 0.732
+  },
+  {
+    start: 45.91825,
+    duration: 0.50334,
+    confidence: 0.875
+  },
+  {
+    start: 46.4216,
+    duration: 0.50333,
+    confidence: 0.852
+  },
+  {
+    start: 46.92493,
+    duration: 0.50603,
+    confidence: 0.86
+  },
+  {
+    start: 47.43096,
+    duration: 0.50646,
+    confidence: 0.822
+  },
+  {
+    start: 47.93742,
+    duration: 0.50599,
+    confidence: 0.731
+  },
+  {
+    start: 48.44341,
+    duration: 0.50282,
+    confidence: 0.707
+  },
+  {
+    start: 48.94623,
+    duration: 0.50459,
+    confidence: 0.541
+  },
+  {
+    start: 49.45082,
+    duration: 0.50502,
+    confidence: 0.51
+  },
+  {
+    start: 49.95584,
+    duration: 0.50589,
+    confidence: 0.575
+  },
+  {
+    start: 50.46173,
+    duration: 0.50496,
+    confidence: 0.424
+  },
+  {
+    start: 50.96669,
+    duration: 0.50267,
+    confidence: 0.458
+  },
+  {
+    start: 51.46936,
+    duration: 0.5049,
+    confidence: 0.478
+  },
+  {
+    start: 51.97426,
+    duration: 0.50624,
+    confidence: 0.527
+  },
+  {
+    start: 52.4805,
+    duration: 0.50308,
+    confidence: 0.513
+  },
+  {
+    start: 52.98358,
+    duration: 0.50262,
+    confidence: 0.505
+  },
+  {
+    start: 53.48619,
+    duration: 0.50127,
+    confidence: 0.592
+  },
+  {
+    start: 53.98746,
+    duration: 0.50532,
+    confidence: 0.679
+  },
+  {
+    start: 54.49278,
+    duration: 0.50488,
+    confidence: 0.556
+  },
+  {
+    start: 54.99766,
+    duration: 0.50354,
+    confidence: 0.54
+  },
+  {
+    start: 55.5012,
+    duration: 0.50355,
+    confidence: 0.531
+  },
+  {
+    start: 56.00475,
+    duration: 0.50535,
+    confidence: 0.551
+  },
+  {
+    start: 56.5101,
+    duration: 0.50355,
+    confidence: 0.463
+  },
+  {
+    start: 57.01365,
+    duration: 0.50581,
+    confidence: 0.405
+  },
+  {
+    start: 57.51946,
+    duration: 0.50356,
+    confidence: 0.426
+  },
+  {
+    start: 58.02302,
+    duration: 0.50446,
+    confidence: 0.536
+  },
+  {
+    start: 58.52748,
+    duration: 0.50401,
+    confidence: 0.505
+  },
+  {
+    start: 59.03149,
+    duration: 0.50446,
+    confidence: 0.518
+  },
+  {
+    start: 59.53595,
+    duration: 0.50537,
+    confidence: 0.471
+  },
+  {
+    start: 60.04132,
+    duration: 0.50583,
+    confidence: 0.481
+  },
+  {
+    start: 60.54715,
+    duration: 0.50448,
+    confidence: 0.439
+  },
+  {
+    start: 61.05163,
+    duration: 0.50404,
+    confidence: 0.417
+  },
+  {
+    start: 61.55568,
+    duration: 0.50405,
+    confidence: 0.43
+  },
+  {
+    start: 62.05973,
+    duration: 0.50316,
+    confidence: 0.48
+  },
+  {
+    start: 62.56289,
+    duration: 0.50316,
+    confidence: 0.491
+  },
+  {
+    start: 63.06605,
+    duration: 0.50091,
+    confidence: 0.495
+  },
+  {
+    start: 63.56695,
+    duration: 0.50406,
+    confidence: 0.455
+  },
+  {
+    start: 64.07101,
+    duration: 0.50585,
+    confidence: 0.273
+  },
+  {
+    start: 64.57686,
+    duration: 0.50314,
+    confidence: 0.31
+  },
+  {
+    start: 65.08,
+    duration: 0.50313,
+    confidence: 0.169
+  },
+  {
+    start: 65.58312,
+    duration: 0.50537,
+    confidence: 0.155
+  },
+  {
+    start: 66.0885,
+    duration: 0.50442,
+    confidence: 0.097
+  },
+  {
+    start: 66.59292,
+    duration: 0.5057,
+    confidence: 0.637
+  },
+  {
+    start: 67.09862,
+    duration: 0.50472,
+    confidence: 0.698
+  },
+  {
+    start: 67.60334,
+    duration: 0.5024,
+    confidence: 0.676
+  },
+  {
+    start: 68.10573,
+    duration: 0.50368,
+    confidence: 0.892
+  },
+  {
+    start: 68.60941,
+    duration: 0.50315,
+    confidence: 0.828
+  },
+  {
+    start: 69.11256,
+    duration: 0.50488,
+    confidence: 0.861
+  },
+  {
+    start: 69.61745,
+    duration: 0.5062,
+    confidence: 0.636
+  },
+  {
+    start: 70.12364,
+    duration: 0.50575,
+    confidence: 0.583
+  },
+  {
+    start: 70.62939,
+    duration: 0.50485,
+    confidence: 0.575
+  },
+  {
+    start: 71.13424,
+    duration: 0.50395,
+    confidence: 0.705
+  },
+  {
+    start: 71.6382,
+    duration: 0.50441,
+    confidence: 0.714
+  },
+  {
+    start: 72.1426,
+    duration: 0.50531,
+    confidence: 0.751
+  },
+  {
+    start: 72.64791,
+    duration: 0.50352,
+    confidence: 0.622
+  },
+  {
+    start: 73.15143,
+    duration: 0.50398,
+    confidence: 0.804
+  },
+  {
+    start: 73.65541,
+    duration: 0.50309,
+    confidence: 0.597
+  },
+  {
+    start: 74.15849,
+    duration: 0.5031,
+    confidence: 0.754
+  },
+  {
+    start: 74.66159,
+    duration: 0.50401,
+    confidence: 0.703
+  },
+  {
+    start: 75.1656,
+    duration: 0.50582,
+    confidence: 0.649
+  },
+  {
+    start: 75.67143,
+    duration: 0.50268,
+    confidence: 0.697
+  },
+  {
+    start: 76.17411,
+    duration: 0.50178,
+    confidence: 0.784
+  },
+  {
+    start: 76.67589,
+    duration: 0.50269,
+    confidence: 0.725
+  },
+  {
+    start: 77.17858,
+    duration: 0.50449,
+    confidence: 0.705
+  },
+  {
+    start: 77.68307,
+    duration: 0.5045,
+    confidence: 0.508
+  },
+  {
+    start: 78.18757,
+    duration: 0.50405,
+    confidence: 0.794
+  },
+  {
+    start: 78.69162,
+    duration: 0.5036,
+    confidence: 0.895
+  },
+  {
+    start: 79.19521,
+    duration: 0.5072,
+    confidence: 0.911
+  },
+  {
+    start: 79.70242,
+    duration: 0.50811,
+    confidence: 0.863
+  },
+  {
+    start: 80.21053,
+    duration: 0.50361,
+    confidence: 0.798
+  },
+  {
+    start: 80.71413,
+    duration: 0.50181,
+    confidence: 0.787
+  },
+  {
+    start: 81.21595,
+    duration: 0.50227,
+    confidence: 0.852
+  },
+  {
+    start: 81.71822,
+    duration: 0.50363,
+    confidence: 0.692
+  },
+  {
+    start: 82.22185,
+    duration: 0.50454,
+    confidence: 0.635
+  },
+  {
+    start: 82.7264,
+    duration: 0.50456,
+    confidence: 0.6
+  },
+  {
+    start: 83.23096,
+    duration: 0.50232,
+    confidence: 0.664
+  },
+  {
+    start: 83.73327,
+    duration: 0.50638,
+    confidence: 0.674
+  },
+  {
+    start: 84.23966,
+    duration: 0.50774,
+    confidence: 0.73
+  },
+  {
+    start: 84.7474,
+    duration: 0.5055,
+    confidence: 0.493
+  },
+  {
+    start: 85.2529,
+    duration: 0.50415,
+    confidence: 0.677
+  },
+  {
+    start: 85.75705,
+    duration: 0.50281,
+    confidence: 0.615
+  },
+  {
+    start: 86.25986,
+    duration: 0.50371,
+    confidence: 0.687
+  },
+  {
+    start: 86.76357,
+    duration: 0.50416,
+    confidence: 0.712
+  },
+  {
+    start: 87.26773,
+    duration: 0.50326,
+    confidence: 0.888
+  },
+  {
+    start: 87.77099,
+    duration: 0.50191,
+    confidence: 0.917
+  },
+  {
+    start: 88.2729,
+    duration: 0.50552,
+    confidence: 0.897
+  },
+  {
+    start: 88.77842,
+    duration: 0.50416,
+    confidence: 0.826
+  },
+  {
+    start: 89.28259,
+    duration: 0.50371,
+    confidence: 0.811
+  },
+  {
+    start: 89.7863,
+    duration: 0.50145,
+    confidence: 0.557
+  },
+  {
+    start: 90.28775,
+    duration: 0.5037,
+    confidence: 0.517
+  },
+  {
+    start: 90.79146,
+    duration: 0.50279,
+    confidence: 0.527
+  },
+  {
+    start: 91.29425,
+    duration: 0.50503,
+    confidence: 0.675
+  },
+  {
+    start: 91.79928,
+    duration: 0.50365,
+    confidence: 0.751
+  },
+  {
+    start: 92.30293,
+    duration: 0.50634,
+    confidence: 0.837
+  },
+  {
+    start: 92.80927,
+    duration: 0.50586,
+    confidence: 0.76
+  },
+  {
+    start: 93.31513,
+    duration: 0.50538,
+    confidence: 0.847
+  },
+  {
+    start: 93.82051,
+    duration: 0.50355,
+    confidence: 0.724
+  },
+  {
+    start: 94.32406,
+    duration: 0.50442,
+    confidence: 0.717
+  },
+  {
+    start: 94.82848,
+    duration: 0.50349,
+    confidence: 0.638
+  },
+  {
+    start: 95.33198,
+    duration: 0.50302,
+    confidence: 0.812
+  },
+  {
+    start: 95.835,
+    duration: 0.50344,
+    confidence: 0.854
+  },
+  {
+    start: 96.33844,
+    duration: 0.50387,
+    confidence: 0.883
+  },
+  {
+    start: 96.84232,
+    duration: 0.50385,
+    confidence: 0.833
+  },
+  {
+    start: 97.34617,
+    duration: 0.50609,
+    confidence: 0.855
+  },
+  {
+    start: 97.85226,
+    duration: 0.50607,
+    confidence: 0.602
+  },
+  {
+    start: 98.35833,
+    duration: 0.50381,
+    confidence: 0.651
+  },
+  {
+    start: 98.86214,
+    duration: 0.50515,
+    confidence: 0.662
+  },
+  {
+    start: 99.36729,
+    duration: 0.50604,
+    confidence: 0.537
+  },
+  {
+    start: 99.87332,
+    duration: 0.50693,
+    confidence: 0.546
+  },
+  {
+    start: 100.38025,
+    duration: 0.50557,
+    confidence: 0.579
+  },
+  {
+    start: 100.88583,
+    duration: 0.50557,
+    confidence: 0.502
+  },
+  {
+    start: 101.3914,
+    duration: 0.50467,
+    confidence: 0.445
+  },
+  {
+    start: 101.89607,
+    duration: 0.50512,
+    confidence: 0.431
+  },
+  {
+    start: 102.40119,
+    duration: 0.50332,
+    confidence: 0.591
+  },
+  {
+    start: 102.90451,
+    duration: 0.50107,
+    confidence: 0.602
+  },
+  {
+    start: 103.40558,
+    duration: 0.50243,
+    confidence: 0.634
+  },
+  {
+    start: 103.90801,
+    duration: 0.50603,
+    confidence: 0.602
+  },
+  {
+    start: 104.41405,
+    duration: 0.50288,
+    confidence: 0.599
+  },
+  {
+    start: 104.91692,
+    duration: 0.50198,
+    confidence: 0.548
+  },
+  {
+    start: 105.4189,
+    duration: 0.50378,
+    confidence: 0.505
+  },
+  {
+    start: 105.92268,
+    duration: 0.50468,
+    confidence: 0.423
+  },
+  {
+    start: 106.42735,
+    duration: 0.50423,
+    confidence: 0.526
+  },
+  {
+    start: 106.93158,
+    duration: 0.50242,
+    confidence: 0.517
+  },
+  {
+    start: 107.434,
+    duration: 0.50197,
+    confidence: 0.52
+  },
+  {
+    start: 107.93597,
+    duration: 0.50467,
+    confidence: 0.453
+  },
+  {
+    start: 108.44064,
+    duration: 0.50556,
+    confidence: 0.556
+  },
+  {
+    start: 108.9462,
+    duration: 0.50511,
+    confidence: 0.475
+  },
+  {
+    start: 109.45131,
+    duration: 0.50376,
+    confidence: 0.449
+  },
+  {
+    start: 109.95507,
+    duration: 0.50511,
+    confidence: 0.37
+  },
+  {
+    start: 110.46018,
+    duration: 0.50466,
+    confidence: 0.369
+  },
+  {
+    start: 110.96483,
+    duration: 0.50466,
+    confidence: 0.307
+  },
+  {
+    start: 111.46949,
+    duration: 0.50241,
+    confidence: 0.497
+  },
+  {
+    start: 111.9719,
+    duration: 0.50286,
+    confidence: 0.388
+  },
+  {
+    start: 112.47475,
+    duration: 0.50241,
+    confidence: 0.538
+  },
+  {
+    start: 112.97716,
+    duration: 0.5042,
+    confidence: 0.319
+  },
+  {
+    start: 113.48136,
+    duration: 0.5042,
+    confidence: 0.449
+  },
+  {
+    start: 113.98557,
+    duration: 0.5051,
+    confidence: 0.335
+  },
+  {
+    start: 114.49067,
+    duration: 0.50419,
+    confidence: 0.409
+  },
+  {
+    start: 114.99486,
+    duration: 0.50554,
+    confidence: 0.686
+  },
+  {
+    start: 115.5004,
+    duration: 0.50509,
+    confidence: 0.825
+  },
+  {
+    start: 116.00549,
+    duration: 0.50418,
+    confidence: 0.87
+  },
+  {
+    start: 116.50967,
+    duration: 0.50418,
+    confidence: 0.904
+  },
+  {
+    start: 117.01385,
+    duration: 0.50372,
+    confidence: 0.834
+  },
+  {
+    start: 117.51756,
+    duration: 0.50281,
+    confidence: 0.857
+  },
+  {
+    start: 118.02038,
+    duration: 0.50596,
+    confidence: 0.678
+  },
+  {
+    start: 118.52634,
+    duration: 0.5055,
+    confidence: 0.69
+  },
+  {
+    start: 119.03184,
+    duration: 0.5064,
+    confidence: 0.761
+  },
+  {
+    start: 119.53824,
+    duration: 0.50595,
+    confidence: 0.877
+  },
+  {
+    start: 120.04419,
+    duration: 0.50459,
+    confidence: 0.715
+  },
+  {
+    start: 120.54878,
+    duration: 0.50503,
+    confidence: 0.709
+  },
+  {
+    start: 121.05381,
+    duration: 0.50503,
+    confidence: 0.75
+  },
+  {
+    start: 121.55884,
+    duration: 0.50277,
+    confidence: 0.774
+  },
+  {
+    start: 122.06161,
+    duration: 0.50366,
+    confidence: 0.693
+  },
+  {
+    start: 122.56527,
+    duration: 0.50231,
+    confidence: 0.678
+  },
+  {
+    start: 123.06758,
+    duration: 0.50411,
+    confidence: 0.634
+  },
+  {
+    start: 123.57169,
+    duration: 0.50456,
+    confidence: 0.771
+  },
+  {
+    start: 124.07625,
+    duration: 0.50276,
+    confidence: 0.793
+  },
+  {
+    start: 124.57902,
+    duration: 0.50277,
+    confidence: 0.869
+  },
+  {
+    start: 125.08178,
+    duration: 0.50232,
+    confidence: 0.891
+  },
+  {
+    start: 125.5841,
+    duration: 0.50232,
+    confidence: 0.875
+  },
+  {
+    start: 126.08643,
+    duration: 0.50458,
+    confidence: 0.843
+  },
+  {
+    start: 126.591,
+    duration: 0.50413,
+    confidence: 0.757
+  },
+  {
+    start: 127.09513,
+    duration: 0.50458,
+    confidence: 0.731
+  },
+  {
+    start: 127.59971,
+    duration: 0.50549,
+    confidence: 0.902
+  },
+  {
+    start: 128.1052,
+    duration: 0.50594,
+    confidence: 0.846
+  },
+  {
+    start: 128.61114,
+    duration: 0.50639,
+    confidence: 0.913
+  },
+  {
+    start: 129.11754,
+    duration: 0.5055,
+    confidence: 0.911
+  },
+  {
+    start: 129.62303,
+    duration: 0.50145,
+    confidence: 0.876
+  },
+  {
+    start: 130.12448,
+    duration: 0.50281,
+    confidence: 0.702
+  },
+  {
+    start: 130.62729,
+    duration: 0.50416,
+    confidence: 0.486
+  },
+  {
+    start: 131.13145,
+    duration: 0.50461,
+    confidence: 0.4
+  },
+  {
+    start: 131.63606,
+    duration: 0.50417,
+    confidence: 0.525
+  },
+  {
+    start: 132.14023,
+    duration: 0.50372,
+    confidence: 0.692
+  },
+  {
+    start: 132.64395,
+    duration: 0.50328,
+    confidence: 0.829
+  },
+  {
+    start: 133.14723,
+    duration: 0.50508,
+    confidence: 0.772
+  },
+  {
+    start: 133.65231,
+    duration: 0.50463,
+    confidence: 0.806
+  },
+  {
+    start: 134.15694,
+    duration: 0.50148,
+    confidence: 0.665
+  },
+  {
+    start: 134.65842,
+    duration: 0.50328,
+    confidence: 0.607
+  },
+  {
+    start: 135.1617,
+    duration: 0.50239,
+    confidence: 0.689
+  },
+  {
+    start: 135.66409,
+    duration: 0.50284,
+    confidence: 0.774
+  },
+  {
+    start: 136.16693,
+    duration: 0.50464,
+    confidence: 0.67
+  },
+  {
+    start: 136.67157,
+    duration: 0.50599,
+    confidence: 0.817
+  },
+  {
+    start: 137.17756,
+    duration: 0.5051,
+    confidence: 0.828
+  },
+  {
+    start: 137.68266,
+    duration: 0.5051,
+    confidence: 0.752
+  },
+  {
+    start: 138.18776,
+    duration: 0.5042,
+    confidence: 0.689
+  },
+  {
+    start: 138.69196,
+    duration: 0.50691,
+    confidence: 0.656
+  },
+  {
+    start: 139.19887,
+    duration: 0.50736,
+    confidence: 0.571
+  },
+  {
+    start: 139.70623,
+    duration: 0.50421,
+    confidence: 0.396
+  },
+  {
+    start: 140.21045,
+    duration: 0.50467,
+    confidence: 0.528
+  },
+  {
+    start: 140.71511,
+    duration: 0.50513,
+    confidence: 0.61
+  },
+  {
+    start: 141.22024,
+    duration: 0.50423,
+    confidence: 0.543
+  },
+  {
+    start: 141.72447,
+    duration: 0.50425,
+    confidence: 0.673
+  },
+  {
+    start: 142.22872,
+    duration: 0.50337,
+    confidence: 0.606
+  },
+  {
+    start: 142.73209,
+    duration: 0.50429,
+    confidence: 0.649
+  },
+  {
+    start: 143.23639,
+    duration: 0.50477,
+    confidence: 0.69
+  },
+  {
+    start: 143.74115,
+    duration: 0.50344,
+    confidence: 0.839
+  },
+  {
+    start: 144.2446,
+    duration: 0.50481,
+    confidence: 0.814
+  },
+  {
+    start: 144.74941,
+    duration: 0.50798,
+    confidence: 0.875
+  },
+  {
+    start: 145.25739,
+    duration: 0.50529,
+    confidence: 0.903
+  },
+  {
+    start: 145.76268,
+    duration: 0.50529,
+    confidence: 0.918
+  },
+  {
+    start: 146.26797,
+    duration: 0.50484,
+    confidence: 0.746
+  },
+  {
+    start: 146.77281,
+    duration: 0.50439,
+    confidence: 0.593
+  },
+  {
+    start: 147.2772,
+    duration: 0.50618,
+    confidence: 0.512
+  },
+  {
+    start: 147.78338,
+    duration: 0.50573,
+    confidence: 0.336
+  },
+  {
+    start: 148.28911,
+    duration: 0.50751,
+    confidence: 0.325
+  },
+  {
+    start: 148.79661,
+    duration: 0.50704,
+    confidence: 0.333
+  },
+  {
+    start: 149.30365,
+    duration: 0.50565,
+    confidence: 0.318
+  },
+  {
+    start: 149.8093,
+    duration: 0.50427,
+    confidence: 0.394
+  },
+  {
+    start: 150.31357,
+    duration: 0.50469,
+    confidence: 0.414
+  },
+  {
+    start: 150.81826,
+    duration: 0.50195,
+    confidence: 0.441
+  },
+  {
+    start: 151.32021,
+    duration: 0.50011,
+    confidence: 0.486
+  },
+  {
+    start: 151.82033,
+    duration: 0.49919,
+    confidence: 0.417
+  },
+  {
+    start: 152.31951,
+    duration: 0.50321,
+    confidence: 0.385
+  },
+  {
+    start: 152.82272,
+    duration: 0.50319,
+    confidence: 0.344
+  },
+  {
+    start: 153.3259,
+    duration: 0.49866,
+    confidence: 0.48
+  },
+  {
+    start: 153.82456,
+    duration: 0.50133,
+    confidence: 0.469
+  },
+  {
+    start: 154.32589,
+    duration: 0.50399,
+    confidence: 0.4
+  },
+  {
+    start: 154.82988,
+    duration: 0.50351,
+    confidence: 0.367
+  },
+  {
+    start: 155.33339,
+    duration: 0.50303,
+    confidence: 0.283
+  },
+  {
+    start: 155.83642,
+    duration: 0.5012,
+    confidence: 0.362
+  },
+  {
+    start: 156.33762,
+    duration: 0.50342,
+    confidence: 0.471
+  },
+  {
+    start: 156.84105,
+    duration: 0.5061,
+    confidence: 0.545
+  },
+  {
+    start: 157.34715,
+    duration: 0.50428,
+    confidence: 0.513
+  },
+  {
+    start: 157.85143,
+    duration: 0.50246,
+    confidence: 0.472
+  },
+  {
+    start: 158.35389,
+    duration: 0.50558,
+    confidence: 0.339
+  },
+  {
+    start: 158.85947,
+    duration: 0.50377,
+    confidence: 0.411
+  },
+  {
+    start: 159.36324,
+    duration: 0.50284,
+    confidence: 0.333
+  },
+  {
+    start: 159.86608,
+    duration: 0.50328,
+    confidence: 0.455
+  },
+  {
+    start: 160.36936,
+    duration: 0.50595,
+    confidence: 0.556
+  },
+  {
+    start: 160.87531,
+    duration: 0.50548,
+    confidence: 0.591
+  },
+  {
+    start: 161.38079,
+    duration: 0.505,
+    confidence: 0.571
+  },
+  {
+    start: 161.88579,
+    duration: 0.50409,
+    confidence: 0.51
+  },
+  {
+    start: 162.38988,
+    duration: 0.50453,
+    confidence: 0.339
+  },
+  {
+    start: 162.89441,
+    duration: 0.50497,
+    confidence: 0.402
+  },
+  {
+    start: 163.39939,
+    duration: 0.50361,
+    confidence: 0.303
+  },
+  {
+    start: 163.90299,
+    duration: 0.50405,
+    confidence: 0.346
+  },
+  {
+    start: 164.40704,
+    duration: 0.50449,
+    confidence: 0.376
+  },
+  {
+    start: 164.91153,
+    duration: 0.50718,
+    confidence: 0.5
+  },
+  {
+    start: 165.41871,
+    duration: 0.50672,
+    confidence: 0.496
+  },
+  {
+    start: 165.92543,
+    duration: 0.50536,
+    confidence: 0.476
+  },
+  {
+    start: 166.4308,
+    duration: 0.5058,
+    confidence: 0.401
+  },
+  {
+    start: 166.93659,
+    duration: 0.50309,
+    confidence: 0.364
+  },
+  {
+    start: 167.43968,
+    duration: 0.50173,
+    confidence: 0.34
+  },
+  {
+    start: 167.94141,
+    duration: 0.50396,
+    confidence: 0.425
+  },
+  {
+    start: 168.44537,
+    duration: 0.5026,
+    confidence: 0.442
+  },
+  {
+    start: 168.94797,
+    duration: 0.50125,
+    confidence: 0.558
+  },
+  {
+    start: 169.44922,
+    duration: 0.50258,
+    confidence: 0.306
+  },
+  {
+    start: 169.9518,
+    duration: 0.50347,
+    confidence: 0.437
+  },
+  {
+    start: 170.45527,
+    duration: 0.5048,
+    confidence: 0.298
+  },
+  {
+    start: 170.96007,
+    duration: 0.50569,
+    confidence: 0.3
+  },
+  {
+    start: 171.46576,
+    duration: 0.50431,
+    confidence: 0.413
+  },
+  {
+    start: 171.97007,
+    duration: 0.50339,
+    confidence: 0.592
+  },
+  {
+    start: 172.47347,
+    duration: 0.50471,
+    confidence: 0.758
+  },
+  {
+    start: 172.97818,
+    duration: 0.50559,
+    confidence: 0.851
+  },
+  {
+    start: 173.48377,
+    duration: 0.50421,
+    confidence: 0.843
+  },
+  {
+    start: 173.98798,
+    duration: 0.50464,
+    confidence: 0.831
+  },
+  {
+    start: 174.49263,
+    duration: 0.50328,
+    confidence: 0.843
+  },
+  {
+    start: 174.9959,
+    duration: 0.50416,
+    confidence: 0.881
+  },
+  {
+    start: 175.50007,
+    duration: 0.50415,
+    confidence: 0.854
+  },
+  {
+    start: 176.00421,
+    duration: 0.50414,
+    confidence: 0.83
+  },
+  {
+    start: 176.50836,
+    duration: 0.50323,
+    confidence: 0.82
+  },
+  {
+    start: 177.01159,
+    duration: 0.50458,
+    confidence: 0.865
+  },
+  {
+    start: 177.51617,
+    duration: 0.50414,
+    confidence: 0.819
+  },
+  {
+    start: 178.02031,
+    duration: 0.5055,
+    confidence: 0.879
+  },
+  {
+    start: 178.52581,
+    duration: 0.50371,
+    confidence: 0.86
+  },
+  {
+    start: 179.02952,
+    duration: 0.50418,
+    confidence: 0.849
+  },
+  {
+    start: 179.5337,
+    duration: 0.50374,
+    confidence: 0.787
+  },
+  {
+    start: 180.03744,
+    duration: 0.50241,
+    confidence: 0.699
+  },
+  {
+    start: 180.53986,
+    duration: 0.50289,
+    confidence: 0.685
+  },
+  {
+    start: 181.04274,
+    duration: 0.50471,
+    confidence: 0.815
+  },
+  {
+    start: 181.54745,
+    duration: 0.50472,
+    confidence: 0.774
+  },
+  {
+    start: 182.05217,
+    duration: 0.50473,
+    confidence: 0.841
+  },
+  {
+    start: 182.55691,
+    duration: 0.5052,
+    confidence: 0.792
+  },
+  {
+    start: 183.0621,
+    duration: 0.50476,
+    confidence: 0.843
+  },
+  {
+    start: 183.56686,
+    duration: 0.50791,
+    confidence: 0.804
+  },
+  {
+    start: 184.07477,
+    duration: 0.50612,
+    confidence: 0.875
+  },
+  {
+    start: 184.58089,
+    duration: 0.50567,
+    confidence: 0.751
+  },
+  {
+    start: 185.08656,
+    duration: 0.50433,
+    confidence: 0.855
+  },
+  {
+    start: 185.59089,
+    duration: 0.50523,
+    confidence: 0.722
+  },
+  {
+    start: 186.09612,
+    duration: 0.50433,
+    confidence: 0.825
+  },
+  {
+    start: 186.60045,
+    duration: 0.50343,
+    confidence: 0.76
+  },
+  {
+    start: 187.10388,
+    duration: 0.50118,
+    confidence: 0.799
+  },
+  {
+    start: 187.60506,
+    duration: 0.50208,
+    confidence: 0.779
+  },
+  {
+    start: 188.10715,
+    duration: 0.50118,
+    confidence: 0.837
+  },
+  {
+    start: 188.60833,
+    duration: 0.50253,
+    confidence: 0.754
+  },
+  {
+    start: 189.11086,
+    duration: 0.50433,
+    confidence: 0.837
+  },
+  {
+    start: 189.61519,
+    duration: 0.50477,
+    confidence: 0.769
+  },
+  {
+    start: 190.11996,
+    duration: 0.50477,
+    confidence: 0.825
+  },
+  {
+    start: 190.62473,
+    duration: 0.50521,
+    confidence: 0.769
+  },
+  {
+    start: 191.12994,
+    duration: 0.50476,
+    confidence: 0.834
+  },
+  {
+    start: 191.6347,
+    duration: 0.5061,
+    confidence: 0.826
+  },
+  {
+    start: 192.1408,
+    duration: 0.50565,
+    confidence: 0.889
+  },
+  {
+    start: 192.64645,
+    duration: 0.50475,
+    confidence: 0.771
+  },
+  {
+    start: 193.1512,
+    duration: 0.5034,
+    confidence: 0.858
+  },
+  {
+    start: 193.6546,
+    duration: 0.50565,
+    confidence: 0.725
+  },
+  {
+    start: 194.16025,
+    duration: 0.5043,
+    confidence: 0.81
+  },
+  {
+    start: 194.66455,
+    duration: 0.50385,
+    confidence: 0.737
+  },
+  {
+    start: 195.16839,
+    duration: 0.50294,
+    confidence: 0.763
+  },
+  {
+    start: 195.67134,
+    duration: 0.50384,
+    confidence: 0.723
+  },
+  {
+    start: 196.17518,
+    duration: 0.50294,
+    confidence: 0.791
+  },
+  {
+    start: 196.67812,
+    duration: 0.50698,
+    confidence: 0.738
+  },
+  {
+    start: 197.1851,
+    duration: 0.50338,
+    confidence: 0.866
+  },
+  {
+    start: 197.68848,
+    duration: 0.50518,
+    confidence: 0.799
+  },
+  {
+    start: 198.19366,
+    duration: 0.50518,
+    confidence: 0.821
+  },
+  {
+    start: 198.69884,
+    duration: 0.50518,
+    confidence: 0.809
+  },
+  {
+    start: 199.20402,
+    duration: 0.50293,
+    confidence: 0.882
+  },
+  {
+    start: 199.70695,
+    duration: 0.50338,
+    confidence: 0.868
+  },
+  {
+    start: 200.21033,
+    duration: 0.50158,
+    confidence: 0.912
+  },
+  {
+    start: 200.71191,
+    duration: 0.50337,
+    confidence: 0.888
+  },
+  {
+    start: 201.21527,
+    duration: 0.5029,
+    confidence: 0.903
+  },
+  {
+    start: 201.71818,
+    duration: 0.50244,
+    confidence: 0.833
+  },
+  {
+    start: 202.22062,
+    duration: 0.50377,
+    confidence: 0.841
+  },
+  {
+    start: 202.72439,
+    duration: 0.50511,
+    confidence: 0.741
+  },
+  {
+    start: 203.2295,
+    duration: 0.506,
+    confidence: 0.651
+  },
+  {
+    start: 203.73549,
+    duration: 0.50419,
+    confidence: 0.66
+  },
+  {
+    start: 204.23968,
+    duration: 0.50373,
+    confidence: 0.627
+  },
+  {
+    start: 204.74341,
+    duration: 0.50553,
+    confidence: 0.748
+  },
+  {
+    start: 205.24894,
+    duration: 0.50553,
+    confidence: 0.872
+  },
+  {
+    start: 205.75447,
+    duration: 0.50419,
+    confidence: 0.877
+  },
+  {
+    start: 206.25866,
+    duration: 0.50374,
+    confidence: 0.93
+  },
+  {
+    start: 206.76241,
+    duration: 0.50195,
+    confidence: 0.909
+  },
+  {
+    start: 207.26436,
+    duration: 0.50152,
+    confidence: 0.914
+  },
+  {
+    start: 207.76588,
+    duration: 0.50333,
+    confidence: 0.856
+  },
+  {
+    start: 208.26921,
+    duration: 0.50426,
+    confidence: 0.768
+  },
+  {
+    start: 208.77347,
+    duration: 0.50563,
+    confidence: 0.829
+  },
+  {
+    start: 209.2791,
+    duration: 0.50385,
+    confidence: 0.9
+  },
+  {
+    start: 209.78295,
+    duration: 0.50478,
+    confidence: 0.859
+  },
+  {
+    start: 210.28773,
+    duration: 0.5075,
+    confidence: 0.765
+  },
+  {
+    start: 210.79523,
+    duration: 0.50977,
+    confidence: 0.768
+  },
+  {
+    start: 211.305,
+    duration: 0.50664,
+    confidence: 0.759
+  },
+  {
+    start: 211.81164,
+    duration: 0.5062,
+    confidence: 0.613
+  },
+  {
+    start: 212.31783,
+    duration: 0.50621,
+    confidence: 0.368
+  },
+  {
+    start: 212.82404,
+    duration: 0.50981,
+    confidence: 0.366
+  },
+  {
+    start: 213.33386,
+    duration: 0.50757,
+    confidence: 0.361
+  },
+  {
+    start: 213.84143,
+    duration: 0.50443,
+    confidence: 0.45
+  },
+  {
+    start: 214.34586,
+    duration: 0.50445,
+    confidence: 0.446
+  },
+  {
+    start: 214.85032,
+    duration: 0.50446,
+    confidence: 0.501
+  },
+  {
+    start: 215.35478,
+    duration: 0.50222,
+    confidence: 0.554
+  },
+  {
+    start: 215.857,
+    duration: 0.50042,
+    confidence: 0.595
+  },
+  {
+    start: 216.35743,
+    duration: 0.49999,
+    confidence: 0.48
+  },
+  {
+    start: 216.85742,
+    duration: 0.5036,
+    confidence: 0.439
+  },
+  {
+    start: 217.36101,
+    duration: 0.50451,
+    confidence: 0.397
+  },
+  {
+    start: 217.86553,
+    duration: 0.50002,
+    confidence: 0.496
+  },
+  {
+    start: 218.36555,
+    duration: 0.50184,
+    confidence: 0.505
+  },
+  {
+    start: 218.86739,
+    duration: 0.50276,
+    confidence: 0.474
+  },
+  {
+    start: 219.37015,
+    duration: 0.50369,
+    confidence: 0.489
+  },
+  {
+    start: 219.87384,
+    duration: 0.501,
+    confidence: 0.447
+  },
+  {
+    start: 220.37485,
+    duration: 0.50012,
+    confidence: 0.293
+  },
+  {
+    start: 220.87497,
+    duration: 0.49969,
+    confidence: 0.181
+  },
+  {
+    start: 221.37466,
+    duration: 0.506,
+    confidence: 0.274
+  },
+  {
+    start: 221.88065,
+    duration: 0.5069,
+    confidence: 0.228
+  },
+  {
+    start: 222.38755,
+    duration: 0.50556,
+    confidence: 0.274
+  },
+  {
+    start: 222.89311,
+    duration: 0.50601,
+    confidence: 0.278
+  },
+  {
+    start: 223.39912,
+    duration: 0.50557,
+    confidence: 0.4
+  },
+  {
+    start: 223.90468,
+    duration: 0.50377,
+    confidence: 0.527
+  },
+  {
+    start: 224.40845,
+    duration: 0.50558,
+    confidence: 0.612
+  },
+  {
+    start: 224.91403,
+    duration: 0.50109,
+    confidence: 0.557
+  },
+  {
+    start: 225.41513,
+    duration: 0.50426,
+    confidence: 0.486
+  },
+  {
+    start: 225.91939,
+    duration: 0.50293,
+    confidence: 0.37
+  },
+  {
+    start: 226.42232,
+    duration: 0.5034,
+    confidence: 0.226
+  },
+  {
+    start: 226.92572,
+    duration: 0.50703,
+    confidence: 0.151
+  },
+  {
+    start: 227.43275,
+    duration: 0.50482,
+    confidence: 0.233
+  },
+  {
+    start: 227.93757,
+    duration: 0.50259,
+    confidence: 0.284
+  },
+  {
+    start: 228.44016,
+    duration: 0.50489,
+    confidence: 0.45
+  },
+  {
+    start: 228.94506,
+    duration: 0.50359,
+    confidence: 0.431
+  },
+  {
+    start: 229.44865,
+    duration: 0.50636,
+    confidence: 0.518
+  },
+  {
+    start: 229.95501,
+    duration: 0.50372,
+    confidence: 0.502
+  },
+  {
+    start: 230.45873,
+    duration: 0.50336,
+    confidence: 0.508
+  },
+  {
+    start: 230.96209,
+    duration: 0.50614,
+    confidence: 0.461
+  },
+  {
+    start: 231.46823,
+    duration: 0.50533,
+    confidence: 0.359
+  },
+  {
+    start: 231.97355,
+    duration: 0.5045,
+    confidence: 0.295
+  },
+  {
+    start: 232.47805,
+    duration: 0.50324,
+    confidence: 0.48
+  },
+  {
+    start: 232.98129,
+    duration: 0.5042,
+    confidence: 0.374
+  },
+  {
+    start: 233.48549,
+    duration: 0.50609,
+    confidence: 0.481
+  },
+  {
+    start: 233.99158,
+    duration: 0.50434,
+    confidence: 0.266
+  },
+  {
+    start: 234.49592,
+    duration: 0.50532,
+    confidence: 0.395
+  },
+  {
+    start: 235.00124,
+    duration: 0.50312,
+    confidence: 0.255
+  },
+  {
+    start: 235.50435,
+    duration: 0.50273,
+    confidence: 0.217
+  },
+  {
+    start: 236.00709,
+    duration: 0.50234,
+    confidence: 0.255
+  },
+  {
+    start: 236.50943,
+    duration: 0.49879,
+    confidence: 0.214
+  },
+  {
+    start: 237.00822,
+    duration: 0.50017,
+    confidence: 0.219
+  },
+  {
+    start: 237.50839,
+    duration: 0.50112,
+    confidence: 0.249
+  },
+  {
+    start: 238.00952,
+    duration: 0.50069,
+    confidence: 0.322
+  },
+  {
+    start: 238.51021,
+    duration: 0.50341,
+    confidence: 0.116
+  },
+  {
+    start: 239.01362,
+    duration: 0.50733,
+    confidence: 0.172
+  },
+  {
+    start: 239.52095,
+    duration: 0.50947,
+    confidence: 0.021
+  },
+  {
+    start: 240.03042,
+    duration: 0.50947,
+    confidence: 0.036
+  }
+]
 export const drakeBeats = [
   {start: 0.38235, duration: 0.61256, confidence: 0.928},
   {start: 0.99491, duration: 0.62153, confidence: 0.407},
