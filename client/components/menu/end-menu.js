@@ -20,24 +20,11 @@ class EndMenu extends Component {
     this.state = {
       form: false,
       name: '',
-      redirect: false,
       video: true
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-
-  // setRedirect = () => {
-  //   this.setState({
-  //     redirect: true
-  //   })
-  // }
-
-  // renderRedirect = () => {
-  //   if (this.state.redirect) {
-  //     return <Redirect to='/leaderboard' />
-  //   }
-  // }
 
   showForm = () => {
     this.setState({form: true, video: false})
@@ -63,13 +50,11 @@ class EndMenu extends Component {
     this.props.addPlayerLeaderboard(playerData)
     this.setState({name: ''})
     this.props.history.push('/leaderboard')
-    // this.setRedirect()
-    // this.renderRedirect()
-    // return <Redirect to='/leaderboard' />
   }
 
   render() {
     let totalScore = this.props.danceScore + this.props.singScore
+
     const video = this.state.video ? (
       <video
         className="baby-video"
@@ -86,22 +71,37 @@ class EndMenu extends Component {
       <div className="modal-main">
         <div>
           <h1 className="homeLogo">Good Job!</h1>
-          <div>{video}</div>
 
-          <span
-            onClick={() => {
-              confirmSound()
-              this.showForm()
-            }}
-            className="modal-content"
-            onMouseOver={menuSound}
-          >
-            Enter your score into the leaderboard
-          </span>
+          {!this.state.form && (
+            <div>
+              {video}
+              {totalScore > 100000 && (
+                <span
+                  onClick={() => {
+                    confirmSound()
+                    this.showForm()
+                  }}
+                  className="modal-content"
+                  onMouseOver={menuSound}
+                >
+                  Enter your score into the leaderboard
+                </span>
+              )}
+              <Link
+                to="/songs"
+                onMouseOver={menuSound}
+                className="modal-play-button"
+                onClick={confirmSound}
+              >
+                <span className="modal-content-confirm">PLAY AGAIN!</span>
+              </Link>
+            </div>
+          )}
+
           {this.state.form && (
             <div>
-              <form onSubmit={this.handleSubmit}>
-                <label>
+              <form onSubmit={this.handleSubmit} className="modal-form">
+                <label className="modal-form-input">
                   Name:
                   <input
                     type="text"
@@ -109,21 +109,16 @@ class EndMenu extends Component {
                     onChange={this.handleChange}
                   />
                 </label>
-                <input type="submit" value="Submit" />
+                <button
+                  type="submit"
+                  className="modal-form-confirm"
+                  onClick={confirmSound}
+                >
+                  Submit
+                </button>
               </form>
-              <span>{this.props.selectedSong}</span>
-              <span>{this.props.level}</span>
-              <span>{totalScore}!</span>
             </div>
           )}
-          <Link
-            to="/songs"
-            onMouseOver={menuSound}
-            className="modal-play-button"
-            onClick={confirmSound}
-          >
-            PLAY AGAIN!
-          </Link>
         </div>
       </div>
     )
@@ -142,18 +137,3 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {addPlayerLeaderboard}
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(EndMenu))
-
-{
-  /*<div>
-  <button type="submit">Join the Leaderboard!</button>
-  <Link
-    to="/leaderboard"
-    onMouseOver={menuSound}
-    className="modal-play-button"
-    onClick={confirmSound}
-  >
-  See the Leaderboard
-  </Link>
-</div>
-*/
-}
