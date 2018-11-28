@@ -17,10 +17,6 @@ const Leaderboard = db.define('leaderboard', {
   song: {
     type: Sequelize.STRING,
     allowNull: false
-  },
-  rank: {
-    type: Sequelize.INTEGER,
-    allowNull: false
   }
 })
 

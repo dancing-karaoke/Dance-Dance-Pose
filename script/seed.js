@@ -15,38 +15,33 @@ async function seed() {
   const leaderboards = await Promise.all([
     Leaderboard.create({
       name: 'Paola',
-      score: 5100,
+      score: 27700,
       difficulty: 'chaos!',
-      song: 'Dancing Queen',
-      rank: 1
+      song: 'Dancing Queen'
     }),
     Leaderboard.create({
       name: 'Jimmy',
-      score: 4800,
+      score: 26800,
       difficulty: 'chaos!',
-      song: 'Beat It',
-      rank: 2
+      song: 'Beat It'
     }),
     Leaderboard.create({
       name: 'Sean',
-      score: 4600,
+      score: 25600,
       difficulty: 'medium',
-      song: 'Dancing Queen',
-      rank: 3
+      song: 'Dancing Queen'
     }),
     Leaderboard.create({
       name: 'Joe',
-      score: 4400,
+      score: 23300,
       difficulty: 'chaos!',
-      song: 'Dancing Queen',
-      rank: 4
+      song: 'Dancing Queen'
     }),
     Leaderboard.create({
       name: 'John',
-      score: 4200,
+      score: 24000,
       difficulty: 'medium',
-      song: 'Beat It',
-      rank: 5
+      song: 'Beat It'
     })
   ])
 

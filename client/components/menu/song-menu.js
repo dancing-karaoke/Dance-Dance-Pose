@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Navbar from '../home/navbar'
-import {Modal} from './Modal'
+import {SongModal} from './song-modal'
 import {SongSelect} from '../index.js'
 import {selectSong} from '../../store'
 
@@ -24,7 +24,7 @@ class SongMenu extends Component {
     }
   }
 
-  state = {show: false}
+  // state = {show: false}
 
   showModal = () => {
     this.setState({show: true})
@@ -53,7 +53,7 @@ class SongMenu extends Component {
           </button>
 
           {this.state.show && (
-            <Modal
+            <SongModal
               show={this.state.show}
               showModal={this.showModal}
               hideModal={this.hideModal}
@@ -74,7 +74,7 @@ class SongMenu extends Component {
             BEAT IT BY MICHAEL JACKSON
           </button>
           {this.state.show && (
-            <Modal
+            <SongModal
               show={this.state.show}
               showModal={this.showModal}
               hideModal={this.hideModal}

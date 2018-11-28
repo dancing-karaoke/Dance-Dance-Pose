@@ -3,6 +3,7 @@ import Wad from 'web-audio-daw'
 import {connect} from 'react-redux'
 import {getSingScore} from '../../store/bubble'
 import {Pointer} from './Pointer'
+import {EndModal} from '../menu/end-modal'
 
 class Sing extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class Sing extends Component {
       score: 0,
       userNote: 'waiting for song to start',
       currentTime: 0,
+      show: false,
       currentSongNotes: {
         0.5: 'no note',
         1: 'no note',
@@ -339,6 +341,14 @@ class Sing extends Component {
     updateLyricsSection()
   }
 
+  showModal = () => {
+    this.setState({show: true})
+  }
+
+  hideModal = () => {
+    this.setState({show: false})
+  }
+
   pitchLogger = () => {
     if (this.state.trackingPitch === true) {
       let voice = new Wad({source: 'mic'}) // also asks for microphone permission
@@ -397,7 +407,7 @@ class Sing extends Component {
             // track end
             if (
               (tuner.destination.context.currentTime - windowTime).toFixed(1) >
-              20
+              5
             ) {
               cancelAnimationFrame(pitchDetect)
               this.props.song.stop()
@@ -406,6 +416,8 @@ class Sing extends Component {
                 (tuner.destination.context.currentTime - windowTime).toFixed(1)
               )
               this.setState({trackingPitch: false})
+              this.setState({show: true})
+              this.showModal()
               return
             }
           }
@@ -442,6 +454,13 @@ class Sing extends Component {
             id="subtitles"
             dangerouslySetInnerHTML={{__html: this.state.displaySubtitle}}
           />
+          {this.state.show && (
+            <EndModal
+              show={this.state.show}
+              showModal={this.showModal}
+              hideModal={this.hideModal}
+            />
+          )}
         </div>
       </div>
     )
