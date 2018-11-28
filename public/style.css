@@ -210,6 +210,42 @@ form div {
   position: relative;
 }
 
+.form-content {
+  margin: 2.5%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  font-family: 'Sudbury', sans-serif;
+  font-weight: normal;
+  text-align: center;
+  line-height: 100%;
+  padding-bottom: 5px;
+  color: rgba(125, 125, 203);
+  z-index: 2;
+  position: relative;
+}
+
+.name-content {
+  margin: 2.5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  font-family: 'Sudbury', sans-serif;
+  font-weight: normal;
+  text-align: center;
+  line-height: 100%;
+  padding-bottom: 5px;
+  color: rgba(125, 125, 203);
+  z-index: 2;
+  position: relative;
+}
+
 .modal-content-selected {
   margin: 2.5%;
   display: flex;
@@ -249,6 +285,31 @@ form div {
 }
 
 .modal-content:hover {
+  color: cyan;
+  animation: bounce 1s infinite;
+}
+
+.modal-submit-confirm {
+  margin: 2.5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  font-family: 'Sudbury', sans-serif;
+  font-weight: normal;
+  text-align: center;
+  line-height: 100%;
+  padding: 10px;
+  color: rgb(45, 199, 56);
+  border: 2px solid;
+  border-color: rgb(45, 199, 56);
+  z-index: 2;
+  position: relative;
+}
+
+.modal-submit-confirm:hover {
   color: cyan;
   animation: bounce 1s infinite;
 }
