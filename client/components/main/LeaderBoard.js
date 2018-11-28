@@ -28,7 +28,7 @@ class LeaderBoard extends Component {
               <tr id="row0">
                 <td id="cell0-0">Score</td>
                 <td id="cell0-1">Name</td>
-                <td id="cell0-2">Name</td>
+                <td id="cell0-2">Song</td>
                 <td id="cell0-3">Difficulty</td>
               </tr>
               {this.props.leaderboard.reverse().map(leader => {
