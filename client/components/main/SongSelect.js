@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-
+import {Link} from 'react-router-dom'
 import anime from 'animejs'
 import Wad from 'web-audio-daw'
 import {SongModal} from '../menu/song-modal'
@@ -96,6 +96,11 @@ class SongSelection extends Component {
             hideModal={this.hideModal}
           />
         )}
+        <Link to="/">
+          <h5 className="backButton" onClick={this.confirmSound}>
+            Back
+          </h5>
+        </Link>
       </div>
     )
   }
