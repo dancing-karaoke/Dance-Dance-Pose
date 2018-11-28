@@ -39,8 +39,14 @@ class EndMenu extends Component {
   }
 
   handleSubmit(event) {
-    let totalScore = this.props.danceScore + this.props.singScore
-    let playerData = {
+    const multiplier =
+      this.props.level === 'easy'
+        ? 1
+        : this.props.level === 'medium' ? 1.25 : 1.5
+    const totalScore =
+      multiplier * (this.props.danceScore + this.props.singScore)
+
+    const playerData = {
       name: this.state.name,
       score: totalScore,
       difficulty: this.props.level,
@@ -53,7 +59,12 @@ class EndMenu extends Component {
   }
 
   render() {
-    let totalScore = this.props.danceScore + this.props.singScore
+    const multiplier =
+      this.props.level === 'easy'
+        ? 1
+        : this.props.level === 'medium' ? 1.25 : 1.5
+    const totalScore =
+      multiplier * (this.props.danceScore + this.props.singScore)
 
     const video = this.state.video ? (
       <video
