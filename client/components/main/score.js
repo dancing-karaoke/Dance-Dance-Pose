@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import Fire from '../../components/bubbles/Fire'
 
 class Score extends Component {
   constructor(props) {
@@ -8,11 +9,13 @@ class Score extends Component {
 
   render() {
     const totalScore = this.props.danceScore + this.props.singScore
-    // const fire = totalScore > 100 ? <Fire /> : <h2 />
+    const fire = totalScore % 5000 === 0 && totalScore > 0 ? <Fire /> : <h2 />
     return (
-      <div className="scoreCont">
-        {/* {fire} */}
-        <h2>SCORE: {totalScore}</h2>
+      <div>
+        {fire}
+        <div className="scoreCont">
+          <h2 className="sudbury">SCORE: {totalScore}</h2>
+        </div>
       </div>
     )
   }

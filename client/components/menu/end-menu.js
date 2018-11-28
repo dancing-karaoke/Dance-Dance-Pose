@@ -20,7 +20,8 @@ class EndMenu extends Component {
     this.state = {
       form: false,
       name: '',
-      redirect: false
+      redirect: false,
+      video: true
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -39,7 +40,7 @@ class EndMenu extends Component {
   // }
 
   showForm = () => {
-    this.setState({form: true})
+    this.setState({form: true, video: false})
   }
 
   hideForm = () => {
@@ -69,11 +70,24 @@ class EndMenu extends Component {
 
   render() {
     let totalScore = this.props.danceScore + this.props.singScore
+    const video = this.state.video ? (
+      <video
+        className="baby-video"
+        src="/assets/end-dance.mov"
+        autoPlay
+        muted
+        loop
+      />
+    ) : (
+      <h1 />
+    )
 
     return (
       <div className="modal-main">
         <div>
           <h1 className="homeLogo">Good Job!</h1>
+          <div>{video}</div>
+
           <span
             onClick={() => {
               confirmSound()
