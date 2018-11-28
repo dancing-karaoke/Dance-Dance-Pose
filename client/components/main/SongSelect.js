@@ -89,6 +89,13 @@ class SongSelection extends Component {
           />
           <span>ES 335 Cherry</span>
         </svg>
+        {!this.state.show && (
+          <Link to="/">
+            <h5 className="backButton" onClick={this.confirmSound}>
+              Back
+            </h5>
+          </Link>
+        )}
         {this.state.show && (
           <SongModal
             show={this.state.show}
@@ -96,11 +103,6 @@ class SongSelection extends Component {
             hideModal={this.hideModal}
           />
         )}
-        <Link to="/">
-          <h5 className="backButton" onClick={this.confirmSound}>
-            Back
-          </h5>
-        </Link>
       </div>
     )
   }

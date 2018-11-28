@@ -185,9 +185,9 @@ form div {
   transform: translate(-50%, -50%);
   /*background-color: rgba(94, 253, 254, 0.6);*/
   background-image: linear-gradient(
-    rgba(137, 205, 206, 0.7),
-    rgba(58, 106, 128, 0.7),
-    rgba(108, 35, 117, 0.7)
+    rgba(137, 205, 206, 1),
+    rgba(58, 106, 128, 1),
+    rgba(108, 35, 117, 1)
   );
   border-radius: 15px;
 }
