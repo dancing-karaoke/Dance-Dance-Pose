@@ -71,10 +71,9 @@ class EndMenu extends Component {
       <div className="modal-main">
         <div>
           <h1 className="homeLogo">Good Job!</h1>
-
+          <div>{video}</div>
           {!this.state.form && (
             <div>
-              {video}
               {totalScore > 100000 && (
                 <span
                   onClick={() => {
@@ -87,21 +86,21 @@ class EndMenu extends Component {
                   Enter your score into the leaderboard
                 </span>
               )}
+              
               <Link
                 to="/songs"
                 onMouseOver={menuSound}
                 className="modal-play-button"
                 onClick={confirmSound}
               >
-                <span className="modal-content-confirm">PLAY AGAIN!</span>
+                PLAY AGAIN!
               </Link>
             </div>
           )}
-
           {this.state.form && (
             <div>
-              <form onSubmit={this.handleSubmit} className="modal-form">
-                <label className="modal-form-input">
+              <form onSubmit={this.handleSubmit} className="form-content">
+                <label className="name-content">
                   Name:
                   <input
                     type="text"
@@ -111,7 +110,7 @@ class EndMenu extends Component {
                 </label>
                 <button
                   type="submit"
-                  className="modal-form-confirm"
+                  className="modal-submit-confirm"
                   onClick={confirmSound}
                 >
                   Submit
