@@ -28,7 +28,7 @@ const defaultParameters = {
   maxBubblex: 1050,
   minHandBubbley: 35,
   maxHandBubbley: 430,
-  minFootBubbley: 430,
+  minFootBubbley: 470,
   maxFootBubbley: 500,
   rangeSpectrum: 0.3,
   minConfidencePoints: 0.5
@@ -48,7 +48,7 @@ class PoseNet extends React.Component {
     maxPoseDetections: 2,
     nmsRadius: 20.0,
     outputStride: 32,
-    imageScaleFactor: 0.4,
+    imageScaleFactor: 0.3,
     skeletonColor: 'coral',
     skeletonLineWidth: 6,
     loadingText: 'Loading pose detector...'

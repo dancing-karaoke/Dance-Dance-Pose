@@ -30,8 +30,8 @@ const Instructions = () => {
             width="140"
             style={{
               position: 'fixed',
-              top: 200,
-              left: 455
+              top: 290,
+              left: 695
             }}
           />
         </div>
@@ -45,8 +45,8 @@ const Instructions = () => {
             width="140"
             style={{
               position: 'fixed',
-              top: 360,
-              left: 465
+              top: 450,
+              left: 705
             }}
           />
         </div>
