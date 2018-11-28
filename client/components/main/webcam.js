@@ -393,7 +393,7 @@ class PoseNet extends React.Component {
       <div>
         <div>{loading}</div>
         <div id="border">
-          <div className="sidenav" />
+          {/* <div className="sidenav" /> */}
           <div className="score">
             <Score />
           </div>
