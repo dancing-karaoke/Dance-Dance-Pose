@@ -32,6 +32,7 @@ class DancinQueenSelect extends Component {
 
   showModal = () => {
     this.setState({show: true})
+    // this.props.hideAlbums()
   }
 
   hideModal = () => {
@@ -62,15 +63,8 @@ class DancinQueenSelect extends Component {
             viewBox="0 0 128 128"
             className={this.state.expand ? 'hexagon' : 'albums'}
           >
-            <img width="275" height="150" src={this.props.image} />
-          </div>{' '}
-          {this.state.show && (
-            <SongModal
-              show={this.state.show}
-              showModal={this.showModal}
-              hideModal={this.hideModal}
-            />
-          )}
+            <img width="175" height="150" src={this.props.image} />
+          </div>
         </div>
         {this.state.show && (
           <SongModal

@@ -40,7 +40,7 @@ body {
 
 #justThePointer {
   flex: 1;
-  position: absolute; /* Fixed Sidebar (stay in place on scroll) */
+  position: relative; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 5; /* Stay on top */
   /* top: 15%;
   left: -20%; */
@@ -189,6 +189,7 @@ form div {
     rgba(108, 35, 117, 1)
   );
   border-radius: 15px;
+  z-index: 20;
 }
 
 .modal-content {

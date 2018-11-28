@@ -38,8 +38,10 @@ class SongMenu extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      show: false
+      show: false,
+      showAl: true
     }
+    // this.hideAlbums = this.hideAlbums.bind(this)
   }
 
   // state = {show: false}
@@ -51,6 +53,9 @@ class SongMenu extends Component {
   hideModal = () => {
     this.setState({show: false})
   }
+  // hideAlbums = () => {
+  //   this.setState({showAl: false})
+  // }
 
   render() {
     return (
@@ -66,11 +71,11 @@ class SongMenu extends Component {
                   id={album.id}
                   name={album.name}
                   preview={album.preview}
+                  // hideAlbums={this.hideAlbums}
                   image={album.image}
                 />
               )
             })}
-
             <video id="background-video" loop autoPlay>
               <source src="/assets/disco-lights.mp4" type="video/mp4" />
             </video>

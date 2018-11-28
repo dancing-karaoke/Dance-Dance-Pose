@@ -428,19 +428,19 @@ class Sing extends Component {
   render() {
     return (
       <div id="pointerAndLyrics">
-        <div id="justThePointer">
-          <Pointer
-            note={this.state.currentSongNotes[this.state.currentTime]}
-            userNote={this.state.userNote}
-            currentTime={this.state.currentTime}
-          />
-        </div>
         <div>
           <div
             id="subtitles"
             className="sudbury"
             dangerouslySetInnerHTML={{__html: this.state.displaySubtitle}}
           />
+          <div id="justThePointer">
+            <Pointer
+              note={this.state.currentSongNotes[this.state.currentTime]}
+              userNote={this.state.userNote}
+              currentTime={this.state.currentTime}
+            />
+          </div>
           {this.state.show && (
             <EndModal
               show={this.state.show}
