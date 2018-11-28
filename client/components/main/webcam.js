@@ -298,6 +298,7 @@ class PoseNet extends React.Component {
   async startTimer() {
     let startTime = new Date()
     const beatsToDisplay = setBeats()
+    console.log('HE', beatsToDisplay)
     await this.setState({
       time: startTime,
       windowTime: this.props.song.destination.context.currentTime
@@ -314,8 +315,9 @@ class PoseNet extends React.Component {
   handleTimer() {
     const beatsToDisplay = setBeats()
     const beatTime = beatsToDisplay[this.state.counterBeatInterval]
-    console.log('song beats', beatTime)
+    // console.log('song beats', beatTime)
     const level = setLevel()
+    // console.log('LEEVEL', level)
     if (
       this.props.song.destination.context.currentTime - this.state.windowTime >
       beatTime
