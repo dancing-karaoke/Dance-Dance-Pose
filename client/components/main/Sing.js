@@ -383,7 +383,6 @@ class Sing extends Component {
           let time =
             (tuner.destination.context.currentTime - windowTime).toFixed(1) ||
             (tuner.destination.context.currentTime - windowTime).toFixed(0)
-          // console.log(results)
           this.setState({currentTime: time})
 
           let note
@@ -407,7 +406,7 @@ class Sing extends Component {
             // track end
             if (
               (tuner.destination.context.currentTime - windowTime).toFixed(1) >
-              5
+              70
             ) {
               cancelAnimationFrame(pitchDetect)
               this.props.song.stop()
@@ -432,11 +431,14 @@ class Sing extends Component {
 
   render() {
     return (
-      <div>
-        {/* <Pointer
-          note={this.state.currentSongNotes[this.state.currentTime]}
-          userNote={this.state.userNote}
-        /> */}
+      <div id="pointerAndLyrics">
+        <div id="justThePointer">
+          <Pointer
+            note={this.state.currentSongNotes[this.state.currentTime]}
+            userNote={this.state.userNote}
+            currentTime={this.state.currentTime}
+          />
+        </div>
         <div
         // style={{
         //   position: 'absolute',

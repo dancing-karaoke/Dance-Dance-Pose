@@ -101,8 +101,13 @@ class PoseNet extends React.Component {
     } catch (e) {
       throw 'This browser does not support video capture, or this device does not have a camera'
     } finally {
-      this.setState({loading: false})
-      this.props.sendLoadingState(false)
+      setTimeout(() => {
+        this.setState({loading: false})
+        this.props.sendLoadingState(false)
+      }, 200)
+
+      // this.setState({loading: false})
+      // this.props.sendLoadingState(false)
     }
     this.detectPose()
     this.props.onRef(this)
@@ -298,6 +303,7 @@ class PoseNet extends React.Component {
   async startTimer() {
     let startTime = new Date()
     const beatsToDisplay = setBeats()
+    console.log('HE', beatsToDisplay)
     await this.setState({
       time: startTime,
       windowTime: this.props.song.destination.context.currentTime
@@ -316,6 +322,7 @@ class PoseNet extends React.Component {
     const beatTime = beatsToDisplay[this.state.counterBeatInterval]
     // console.log('song beats', beatTime)
     const level = setLevel()
+    // console.log('LEEVEL', level)
     if (
       this.props.song.destination.context.currentTime - this.state.windowTime >
       beatTime
@@ -341,7 +348,11 @@ class PoseNet extends React.Component {
   }
 
   render() {
-    const loading = this.state.loading ? <h1>LOADING...</h1> : <h1 />
+    const loading = this.state.loading ? (
+      <video className="loading" src="/assets/loading1.mov" autoPlay muted />
+    ) : (
+      <h1 />
+    )
     return (
       <div>
         <div>{loading}</div>
