@@ -4,7 +4,10 @@ const db = require('../db')
 const Leaderboard = db.define('leaderboard', {
   name: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
+    set(name) {
+      return this.setDataValue('name', name.slice(0, 3))
+    }
   },
   score: {
     type: Sequelize.INTEGER,
