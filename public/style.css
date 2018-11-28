@@ -1,10 +1,27 @@
+@font-face {
+  font-family: 'Sudbury';
+  src: url('assets/SudburyBasin3D.ttf');
+}
+
 html {
   height: 100%;
 }
 
 body {
   display: flex;
-  font-family: 'Sudbury Basin 3D', arial;
+  font-family: 'Sudbury', sans-serif;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  background: pink;
+}
+
+.instructions-body {
+  display: flex;
+  font-family: 'Sudbury', sans-serif;
   width: 100%;
   min-height: 100%;
   display: flex;
@@ -24,9 +41,9 @@ body {
 #justThePointer {
   flex: 1;
   position: absolute; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 15%;
-  left: -20%;
+  z-index: 5; /* Stay on top */
+  /* top: 15%;
+  left: -20%; */
   overflow-x: hidden; /* Disable horizontal scroll */
   opacity: 0.5;
 }
@@ -72,7 +89,7 @@ form div {
   /* padding: %; */
 }
 .logo h1 {
-  font-family: 'Sudbury Basin 3D', arial;
+  font-family: 'Sudbury', sans-serif;
   color: white;
   text-align: center;
   animation-name: logo;
@@ -147,6 +164,18 @@ form div {
   background: rgba(0, 0, 0, 0.1);
 }
 
+.instructions-main {
+  display: flex;
+  font-family: 'Sudbury', sans-serif;
+  top: 80%;
+  left: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  background: pink;
+}
+
 .modal-main {
   position: fixed;
   width: 40%;
@@ -154,25 +183,54 @@ form div {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /*background-color: rgba(94, 253, 254, 0.6);*/
   background-image: linear-gradient(
-    rgba(137, 205, 206, 0.7),
-    rgba(58, 106, 128, 0.7),
-    rgba(108, 35, 117, 0.7)
+    rgba(137, 205, 206, 1),
+    rgba(58, 106, 128, 1),
+    rgba(108, 35, 117, 1)
   );
   border-radius: 15px;
 }
 
 .modal-content {
-  /* display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: center;
-*/
   margin: 2.5%;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  font-family: 'Sudbury', sans-serif;
+  font-weight: normal;
+  text-align: center;
+  line-height: 100%;
+  padding-bottom: 5px;
+  color: rgba(125, 125, 203);
+  z-index: 2;
+  position: relative;
+}
+
+.form-content {
+  margin: 2.5%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  font-family: 'Sudbury', sans-serif;
+  font-weight: normal;
+  text-align: center;
+  line-height: 100%;
+  padding-bottom: 5px;
+  color: rgba(125, 125, 203);
+  z-index: 2;
+  position: relative;
+}
+
+.name-content {
+  margin: 2.5%;
+  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
@@ -212,6 +270,36 @@ form div {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  font-size: 35px;
+  font-family: 'Sudbury', sans-serif;
+  font-weight: normal;
+  text-align: center;
+  line-height: 100%;
+  padding: 15px;
+  color: rgb(45, 199, 56);
+  border: 2px solid;
+  border-color: rgb(45, 199, 56);
+  z-index: 2;
+  position: relative;
+}
+
+.modal-content-confirm:hover {
+  color: cyan;
+  animation: bounce 1s infinite;
+}
+
+.modal-content:hover {
+  color: cyan;
+  animation: bounce 1s infinite;
+}
+
+.modal-submit-confirm {
+  margin: 2.5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   font-size: 40px;
   font-family: 'Sudbury', sans-serif;
   font-weight: normal;
@@ -225,7 +313,7 @@ form div {
   position: relative;
 }
 
-.modal-content:hover {
+.modal-submit-confirm:hover {
   color: cyan;
   animation: bounce 1s infinite;
 }
@@ -269,6 +357,63 @@ form div {
   animation: bounce 1s infinite;
 }
 
+.modal-form {
+  margin: 2.5%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-form-input {
+  margin: 2.5%;
+  display: flex;
+  /*flex-direction: column;*/
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-family: 'Sudbury', sans-serif;
+  font-weight: normal;
+  text-align: center;
+  line-height: 100%;
+  padding-bottom: 5px;
+  color: rgba(125, 125, 203);
+  z-index: 2;
+  position: relative;
+}
+
+/*.modal-form-input:hover {
+  color: cyan;
+  animation: bounce 1s infinite;
+}*/
+
+.modal-form-confirm {
+  margin: 2.5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px;
+  font-family: 'Sudbury', sans-serif;
+  font-weight: normal;
+  text-align: center;
+  line-height: 100%;
+  padding: 15px;
+  color: rgb(45, 199, 56);
+  border: 2px solid;
+  border-color: rgb(45, 199, 56);
+  z-index: 2;
+  position: relative;
+}
+
+.modal-form-confirm:hover {
+  color: cyan;
+  animation: bounce 1s infinite;
+}
+
 .display-block {
   display: block;
 }
@@ -290,11 +435,6 @@ form div {
   z-index: 99;
 }
 
-@font-face {
-  font-family: 'Sudbury';
-  src: url('assets/SudburyBasin3D.ttf');
-}
-
 .sudbury {
   font-family: 'Sudbury', sans-serif;
   font-size: 30px;
@@ -312,12 +452,61 @@ form div {
   animation: bounce 1s infinite;
 }
 
+.sudbury-instructions {
+  font-family: 'Sudbury', sans-serif;
+  font-size: 30px;
+  font-weight: normal;
+  text-align: center;
+  line-height: 400%;
+  padding-bottom: 5px;
+  color: rgba(125, 125, 203);
+  z-index: 2;
+  position: relative;
+}
+
+.sudbury-instructions:hover {
+  color: cyan;
+  animation: bounce 1s infinite;
+}
+
 .homeLogo {
   font-family: 'Sudbury', sans-serif;
   font-size: 70px;
   font-weight: normal;
   text-align: center;
   line-height: 100%;
+  padding-bottom: 10px;
+  z-index: 2;
+  position: relative;
+  /* width: 300px;
+  margin: auto; */
+  /* text-shadow: 0em 0em 0.1em red, 0em 0em 0.1em red; */
+
+  /* Color Changing */
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #647687,
+    #00ced1,
+    #20b2aa,
+    #008080,
+    #a20025,
+    #8b00ff
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 300% 300%;
+  -webkit-animation: rainbowanim 5s ease infinite;
+  -moz-animation: rainbowanim 5s ease infinite;
+  animation: rainbowanim 5s ease infinite;
+}
+
+.instruction-logo {
+  font-family: 'Sudbury', sans-serif;
+  font-size: 70px;
+  font-weight: normal;
+  text-align: center;
+  line-height: 150%;
   padding-bottom: 10px;
   z-index: 2;
   position: relative;
@@ -565,6 +754,9 @@ tr > td:first-child {
 
 .fire {
   position: absolute;
+}
+
+.fire i {
   z-index: 10;
 }
 

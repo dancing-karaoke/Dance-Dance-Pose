@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import anime from 'animejs'
 import Wad from 'web-audio-daw'
 import {SongModal} from '../menu/song-modal'
@@ -87,6 +88,13 @@ class BeatItSelect extends Component {
             clipPath="url(#clip)"
           />
         </svg>
+        {!this.state.show && (
+          <Link to="/">
+            <h5 className="backButton" onClick={this.confirmSound}>
+              Back
+            </h5>
+          </Link>
+        )}
         {this.state.show && (
           <SongModal
             show={this.state.show}
