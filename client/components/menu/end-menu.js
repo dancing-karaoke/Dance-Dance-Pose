@@ -116,6 +116,7 @@ class EndMenu extends Component {
                   <input
                     type="text"
                     placeholder="3 Characters Limit"
+                    maxLength="3"
                     value={this.state.name}
                     onChange={this.handleChange}
                   />
