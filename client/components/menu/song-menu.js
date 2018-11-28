@@ -3,9 +3,27 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Navbar from '../home/navbar'
 import {SongModal} from './song-modal'
-import {SongSelect} from '../index.js'
+import {DancingQueenSelect, BeatItSelect, JustDanceSelect} from '../index.js'
 import {selectSong} from '../../store'
-
+const albums = [
+  {
+    name: 'dancing-queen',
+    preview: '/songs/dancingqueen-preview.m4a',
+    image:
+      'https://www.ft.com/__origami/service/image/v2/images/raw/ftcms%3A68cb1de8-cbdd-11e8-8d0b-a6539b949662?source=ig'
+  },
+  {
+    name: 'beat-it',
+    preview: '/songs/beatIt.m4a',
+    image:
+      'https://www.billboard.com/files/styles/article_main_image/public/media/michael-jackson-1986-performance-jkal-kevin-billboard-1548.jpg'
+  },
+  {
+    name: 'gaga',
+    preview: '/songs/justdance.m4a',
+    image: 'https://blushmagfit.com/wp-content/uploads/2018/04/Portrait.jpg'
+  }
+]
 function menuSound() {
   const menuSound = new Audio('/assets/menu-select.mp3')
   menuSound.play()
@@ -37,32 +55,26 @@ class SongMenu extends Component {
   render() {
     return (
       <div>
-        {/*  {!this.state.show && (
-          <h1>PICK YOUR SONG!</h1>
-        )}*/}
-        <h1>PICK YOUR SONG!</h1>
-        <div>
-          <SongSelect />
-          {this.state.show && (
-            <SongModal
-              show={this.state.show}
-              showModal={this.showModal}
-              hideModal={this.hideModal}
-            />
-          )}
+        <div id="titleWrapper">
+          <h1 className="sudbury">PICK YOUR SONG!</h1>
         </div>
+        <div className="songSelect">
+          <div className="albumContainer">
+            {albums.map(album => {
+              return (
+                <DancingQueenSelect
+                  id={album.id}
+                  name={album.name}
+                  preview={album.preview}
+                  image={album.image}
+                />
+              )
+            })}
 
-        <div>
-          {this.state.show && (
-            <SongModal
-              show={this.state.show}
-              showModal={this.showModal}
-              hideModal={this.hideModal}
-            />
-          )}
-          <video id="background-video" loop autoPlay>
-            <source src="/assets/disco-lights.mp4" type="video/mp4" />
-          </video>
+            <video id="background-video" loop autoPlay>
+              <source src="/assets/disco-lights.mp4" type="video/mp4" />
+            </video>
+          </div>
         </div>
       </div>
     )
