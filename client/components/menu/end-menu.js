@@ -97,7 +97,7 @@ class EndMenu extends Component {
                   Enter your score into the leaderboard
                 </span>
               )}
-              
+
               <Link
                 to="/songs"
                 onMouseOver={menuSound}

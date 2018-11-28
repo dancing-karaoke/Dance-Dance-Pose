@@ -406,7 +406,7 @@ class Sing extends Component {
             // track end
             if (
               (tuner.destination.context.currentTime - windowTime).toFixed(1) >
-              7
+              60
             ) {
               cancelAnimationFrame(pitchDetect)
               this.props.song.stop()
