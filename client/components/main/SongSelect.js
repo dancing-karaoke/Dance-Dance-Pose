@@ -65,7 +65,7 @@ class SongSelection extends Component {
           onMouseLeave={this.exitPoly}
           onClick={() => {
             this.showModal()
-            this.props.selectSong('beat-it')
+            this.props.selectSong('dancing-queen')
             this.confirmSound()
           }}
         >
