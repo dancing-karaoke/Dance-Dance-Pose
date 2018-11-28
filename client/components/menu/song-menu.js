@@ -38,20 +38,9 @@ class SongMenu extends Component {
     return (
       <div>
         <h1>PICK YOUR SONG!</h1>
+
         <div>
           <SongSelect />
-          <button
-            type="button"
-            onMouseOver={menuSound}
-            onClick={() => {
-              this.showModal()
-              this.props.selectSong('dancing-queen')
-              confirmSound()
-            }}
-          >
-            DANCING QUEEN BY ABBA
-          </button>
-
           {this.state.show && (
             <SongModal
               show={this.state.show}
@@ -62,17 +51,6 @@ class SongMenu extends Component {
         </div>
 
         <div>
-          <button
-            type="button"
-            onMouseOver={menuSound}
-            onClick={() => {
-              this.showModal()
-              confirmSound()
-              this.props.selectSong('beat-it')
-            }}
-          >
-            BEAT IT BY MICHAEL JACKSON
-          </button>
           {this.state.show && (
             <SongModal
               show={this.state.show}

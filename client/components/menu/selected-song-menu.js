@@ -13,64 +13,88 @@ function confirmSound() {
   confirmSound.play()
 }
 
-const SelectedSongMenu = props => {
-  return (
-    <div className="modal-main">
-      <div id="modal-exit-button">
-        <button
-          onClick={() => {
-            props.hideModal()
-            confirmSound()
-          }}
-        >
-          X
-        </button>
+class SelectedSongMenu extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      selected: 'easy'
+    }
+  }
+
+  render() {
+    return (
+      <div className="modal-main">
+        <div id="modal-exit-button">
+          <button
+            onClick={() => {
+              this.props.hideModal()
+              confirmSound()
+            }}
+          >
+            X
+          </button>
+        </div>
+        <div>
+          <h1 className="homeLogo">CHOOSE YOUR Level:</h1>
+          <span
+            onClick={() => {
+              this.props.selectLevel('easy')
+              this.setState({selected: 'easy'})
+              confirmSound()
+            }}
+            className={
+              this.state.selected === 'easy'
+                ? 'modal-content-selected'
+                : 'modal-content'
+            }
+            onMouseOver={menuSound}
+          >
+            EASY (1.0x)
+          </span>
+          <span
+            onClick={() => {
+              this.props.selectLevel('medium')
+              this.setState({selected: 'medium'})
+              confirmSound()
+            }}
+            className={
+              this.state.selected === 'medium'
+                ? 'modal-content-selected'
+                : 'modal-content'
+            }
+            onMouseOver={menuSound}
+          >
+            MEDIUM (1.2x)
+          </span>
+          <span
+            onClick={() => {
+              this.props.selectLevel('chaos')
+              this.setState({selected: 'chaos'})
+              confirmSound()
+            }}
+            className={
+              this.state.selected === 'chaos'
+                ? 'modal-content-selected'
+                : 'modal-content'
+            }
+            onMouseOver={menuSound}
+          >
+            CHAOS! (1.5x)
+          </span>
+        </div>
+        <div>
+          <Link
+            to="/main"
+            onMouseOver={menuSound}
+            className="modal-play-button"
+            onClick={confirmSound}
+          >
+            <span className="modal-content-confirm">PLAY!</span>
+          </Link>
+        </div>
       </div>
-      <div>
-        <h1 className="homeLogo">CHOOSE YOUR Level:</h1>
-        <span
-          onClick={() => {
-            props.selectLevel('easy')
-            confirmSound()
-          }}
-          className="modal-content"
-          onMouseOver={menuSound}
-        >
-          EASY
-        </span>
-        <span
-          onClick={() => {
-            props.selectLevel('medium')
-            confirmSound()
-          }}
-          className="modal-content"
-          onMouseOver={menuSound}
-        >
-          MEDIUM
-        </span>
-        <span
-          onClick={() => {
-            props.selectLevel('chaos')
-            confirmSound()
-          }}
-          className="modal-content"
-          onMouseOver={menuSound}
-        >
-          CHAOS!
-        </span>
-      </div>
-      <div>
-        <Link
-          to="/main"
-          onMouseOver={menuSound}
-          className="modal-play-button"
-          onClick={confirmSound}
-        >
-          PLAY!
-        </Link>
-      </div>
-    </div>
-  )
+    )
+  }
 }
 
 const mapDispatchToProps = dispatch => {
