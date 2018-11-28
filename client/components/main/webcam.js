@@ -29,7 +29,7 @@ const defaultParameters = {
   minHandBubbley: 35,
   maxHandBubbley: 430,
   minFootBubbley: 430,
-  maxFootBubbley: 580,
+  maxFootBubbley: 500,
   rangeSpectrum: 0.3,
   minConfidencePoints: 0.5
 }
@@ -73,7 +73,9 @@ class PoseNet extends React.Component {
       windowTime: this.props.song.destination.context.currentTime,
       time: '',
       counterBeatInterval: 0,
-      BubblePace: 0
+      BubblePace: 2,
+      style: false,
+      style2: false
     }
     this.generateRandomCoordinates = this.generateRandomCoordinates.bind(this)
     this.generateRandomCoordinates2 = this.generateRandomCoordinates2.bind(this)
@@ -287,7 +289,7 @@ class PoseNet extends React.Component {
           //   this.eliminateBubble2()
           //   this.props.addScore(counter)
           // }
-
+          
           poses.push(pose)
           break
       }
@@ -328,6 +330,8 @@ class PoseNet extends React.Component {
   }
 
   generateRandomCoordinates() {
+    this.setState({style: false})
+
     const {
       minBubblex,
       maxBubblex,
@@ -342,6 +346,8 @@ class PoseNet extends React.Component {
   }
   //manages coordinates for second bubble
   generateRandomCoordinates2() {
+    this.setState({style2: false})
+
     const {
       minFootBubbley,
       maxFootBubbley,
@@ -364,9 +370,11 @@ class PoseNet extends React.Component {
       windowTime: this.props.song.destination.context.currentTime
     })
     const bumpingBeats = setInterval(() => {
-      if (this.state.counterBeatInterval < beatsToDisplay.length) {
+      if (beatsToDisplay[this.state.counterBeatInterval] < 60) {
         this.handleTimer()
       } else {
+        this.eliminateBubble()
+        this.eliminateBubble2()
         clearInterval(bumpingBeats)
       }
     }, 100)
@@ -404,6 +412,7 @@ class PoseNet extends React.Component {
   }
 
   eliminateBubble() {
+    this.setState({style2: false})
     this.setState({
       xMin: null,
       xMax: null,
@@ -449,10 +458,12 @@ class PoseNet extends React.Component {
                   <Bubble
                     yBubble={this.props.yBubble}
                     xBubble={this.props.xBubble}
+                    className={this.state.style ? 'bounceOut' : null}
                   />
                   <Bubble2
                     yBubble={this.props.yBubble2}
                     xBubble={this.props.xBubble2}
+                    className={this.state.style2 ? 'bounceOut' : null}
                   />
                 </div>
               )}
