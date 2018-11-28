@@ -12,8 +12,8 @@ class Score extends Component {
     const fire = totalScore % 5000 === 0 && totalScore > 0 ? <Fire /> : <h2 />
     return (
       <div>
-        {fire}
         <div className="scoreCont">
+          {fire}
           <h2 className="sudbury">SCORE: {totalScore}</h2>
         </div>
       </div>

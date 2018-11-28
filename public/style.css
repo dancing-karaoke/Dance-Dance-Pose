@@ -620,5 +620,8 @@ tr > td:first-child {
 
 .fire {
   position: absolute;
+}
+
+.fire i {
   z-index: 10;
 }
