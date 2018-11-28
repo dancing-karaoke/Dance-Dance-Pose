@@ -5,6 +5,7 @@ import Webcam from './webcam'
 import Logo from '.././home/logo'
 import {connect} from 'react-redux'
 import {selectSong, getSingScore} from '../../store/song'
+import {setSong} from './utils'
 
 class Main extends Component {
   constructor(props) {
@@ -13,6 +14,13 @@ class Main extends Component {
       song: new Wad({source: '/songs/dancingqueen.m4a'})
     }
     this.danceDancePoseTime = this.danceDancePoseTime.bind(this)
+  }
+
+  componentDidMount() {
+    let selectedSong = setSong()
+    this.setState({
+      song: new Wad({source: selectedSong})
+    })
   }
 
   danceDancePoseTime = () => {

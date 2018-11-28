@@ -1,5 +1,13 @@
 import * as posenet from '@tensorflow-models/posenet'
 import {drakeBeats, abbaBeats, jacksonBeats, gagaBeats} from '../../../beats'
+import {
+  abbaLyrics,
+  abbaPitch,
+  jacksonPitch,
+  jacksonLyrics,
+  gagaPitch,
+  gagaLyrics
+} from '../../../lyrics'
 import redux from 'redux'
 import {connect} from 'react-redux'
 import react from 'react'
@@ -158,6 +166,50 @@ export const setLevel = () => {
         case 'chaos':
           return gagaChaos
       }
+  }
+}
+
+export const setLyrics = () => {
+  console.log('HIT LYRICS')
+  const song = store.getState().song.selectedSong
+  switch (song) {
+    default:
+      return abbaLyrics
+    case 'dancing-queen':
+      console.log('aba', abbaLyrics)
+      return abbaLyrics
+    case 'beat-it':
+      return jacksonLyrics
+    case 'gaga':
+      return gagaLyrics
+  }
+}
+
+export const setPitch = () => {
+  const song = store.getState().song.selectedSong
+  switch (song) {
+    default:
+      return abbaPitch
+    case 'dancing-queen':
+      return abbaPitch
+    case 'beat-it':
+      return jacksonPitch
+    case 'gaga':
+      return gagaPitch
+  }
+}
+
+export const setSong = () => {
+  const song = store.getState().song.selectedSong
+  switch (song) {
+    default:
+      return '/songs/dancingqueen.m4a'
+    case 'dancing-queen':
+      return '/songs/dancingqueen.m4a'
+    case 'beat-it':
+      return '/songs/beatit.m4a'
+    case 'gaga':
+      return '/songs/justdance.m4a'
   }
 }
 

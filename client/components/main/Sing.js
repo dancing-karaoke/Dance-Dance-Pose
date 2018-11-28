@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {getSingScore} from '../../store/bubble'
 import Pointer from './Pointer'
 import {EndModal} from '../menu/end-modal'
+import {setLyrics, setPitch} from './utils'
 
 class Sing extends Component {
   constructor(props) {
@@ -266,6 +267,13 @@ class Sing extends Component {
   }
 
   handlePitchLogger() {
+    const lyrics = setLyrics()
+    const pitch = setPitch()
+    this.setState({
+      currentSongNotes: pitch,
+      lyricsData: lyrics
+    })
+
     this.setState({trackingPitch: true}, function() {
       this.pitchLogger()
     })
