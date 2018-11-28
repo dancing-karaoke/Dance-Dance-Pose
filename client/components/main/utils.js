@@ -4,6 +4,7 @@ import redux from 'redux'
 import {connect} from 'react-redux'
 import react from 'react'
 import store from '../../store'
+import axios from 'axios'
 
 function isAndroid() {
   return /Android/i.test(navigator.userAgent)
@@ -73,10 +74,25 @@ export function drawSkeleton(
   })
 }
 
+// const fetchDancingQueen = async () => {
+//   let res = await axios.get('api/songs/1')
+//   let song = res.data
+//   return song;
+// }
+
+// let res = axios.get('api/songs')
+// let song = res.data
+
+// const fetchBeatIt = async () => {
+//   let res = await axios.get('api/songs/2')
+//   let song = res.data
+//   return song;
+// }
+
+// const dancingQueen = fetchDancingQueen()
+
 function beatsToBubble(array) {
-  // let output = []
   return array.map(x => x.start)
-  // return output
 }
 
 export const setBeats = () => {
@@ -108,6 +124,8 @@ export const setLevel = () => {
     case 'dancing-queen':
       switch (level) {
         default:
+          return abbaEasy
+        case 'easy':
           return abbaEasy
         case 'medium':
           return abbaMedium
