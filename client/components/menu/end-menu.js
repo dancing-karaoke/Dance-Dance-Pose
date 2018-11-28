@@ -85,7 +85,7 @@ class EndMenu extends Component {
           <div>{video}</div>
           {!this.state.form && (
             <div>
-              {totalScore > 100000 && (
+              {totalScore > 80000 && (
                 <span
                   onClick={() => {
                     confirmSound()
@@ -115,6 +115,8 @@ class EndMenu extends Component {
                   Name:
                   <input
                     type="text"
+                    placeholder="3 Characters Limit"
+                    maxLength="3"
                     value={this.state.name}
                     onChange={this.handleChange}
                   />

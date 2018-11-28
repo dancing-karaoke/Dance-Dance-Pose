@@ -21,8 +21,8 @@ const Instructions = () => {
       </video>
       <div>
         <h2 onMouseOver={menuSound} className="sudbury-instructions">
-          Touch &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; with your wrist for 1000
-          points!
+          Dance: Touch &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; with your wrists for
+          1000 points!
         </h2>
         <div className="bubble">
           <img
@@ -30,13 +30,13 @@ const Instructions = () => {
             width="140"
             style={{
               position: 'fixed',
-              top: 260,
-              left: 397
+              top: 200,
+              left: 455
             }}
           />
         </div>
         <h2 onMouseOver={menuSound} className="sudbury-instructions">
-          Bump &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; with your hips for 5000
+          Dance: Bump &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; with your hips for 5000
           points!
         </h2>
         <div className="bubble">
@@ -45,11 +45,14 @@ const Instructions = () => {
             width="140"
             style={{
               position: 'fixed',
-              top: 440,
-              left: 399
+              top: 360,
+              left: 465
             }}
           />
         </div>
+        <h2 onMouseOver={menuSound} className="sudbury-instructions">
+          Sing: Match the pitch of the singer for 1000 points!
+        </h2>
       </div>
       <Link to="/">
         <h5 className="backButton" onClick={confirmSound}>
