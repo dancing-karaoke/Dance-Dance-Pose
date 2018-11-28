@@ -29,7 +29,7 @@ const defaultParameters = {
   minHandBubbley: 35,
   maxHandBubbley: 430,
   minFootBubbley: 430,
-  maxFootBubbley: 580,
+  maxFootBubbley: 500,
   rangeSpectrum: 0.3,
   minConfidencePoints: 0.5
 }
@@ -39,7 +39,7 @@ class PoseNet extends React.Component {
     videoWidth: window.screen.width * 0.95,
     videoHeight: window.screen.height * 0.65,
     flipHorizontal: true,
-    algorithm: 'single-pose',
+    algorithm: 'multi-pose',
     showVideo: true,
     showSkeleton: true,
     showPoints: true,
@@ -73,7 +73,9 @@ class PoseNet extends React.Component {
       windowTime: this.props.song.destination.context.currentTime,
       time: '',
       counterBeatInterval: 0,
-      BubblePace: 0
+      BubblePace: 2,
+      style: false,
+      style2: false
     }
     this.generateRandomCoordinates = this.generateRandomCoordinates.bind(this)
     this.generateRandomCoordinates2 = this.generateRandomCoordinates2.bind(this)
@@ -153,6 +155,10 @@ class PoseNet extends React.Component {
     this.poseDetectionFrame(ctx)
   }
 
+  // detectPosesAndCoordinates(array) {
+  //   array.map( )
+  // }
+
   poseDetectionFrame(ctx) {
     const {
       algorithm,
@@ -190,14 +196,6 @@ class PoseNet extends React.Component {
             nmsRadius
           )
 
-          break
-        case 'single-pose':
-          const pose = await net.estimateSinglePose(
-            video,
-            imageScaleFactor,
-            flipHorizontal,
-            outputStride
-          )
           // index 10 is rightWrist
           // index 9 is left Wrist
           //index 13 is right knee
@@ -212,40 +210,86 @@ class PoseNet extends React.Component {
             yMin2: this.props.yBubble * (1 - rangeSpectrum),
             yMax2: this.props.yBubble * (1 + rangeSpectrum)
           })
-          if (
-            (this.state.xMin < pose.keypoints[10].position.x &&
-              pose.keypoints[10].position.x < this.state.xMax &&
-              this.state.yMin < pose.keypoints[10].position.y &&
-              pose.keypoints[10].position.y < this.state.yMax &&
-              pose.keypoints[10].score > minConfidencePoints) ||
-            (this.state.xMin < pose.keypoints[9].position.x &&
-              pose.keypoints[9].position.x < this.state.xMax &&
-              this.state.yMin < pose.keypoints[9].position.y &&
-              pose.keypoints[9].position.y < this.state.yMax &&
-              pose.keypoints[9].score > minConfidencePoints)
-          ) {
-            counter = counter + 1000
-            this.eliminateBubble()
-            this.props.addScore(counter)
-          }
 
-          if (
-            (this.state.xMin2 < pose.keypoints[11].position.x &&
-              pose.keypoints[11].position.x < this.state.xMax2 &&
-              this.state.yMin2 < pose.keypoints[11].position.y &&
-              pose.keypoints[11].position.y < this.state.yMax2 &&
-              pose.keypoints[11].score > minConfidencePoints) ||
-            (this.state.xMin2 < pose.keypoints[12].position.x &&
-              pose.keypoints[12].position.x < this.state.xMax2 &&
-              this.state.yMin2 < pose.keypoints[12].position.y &&
-              pose.keypoints[12].position.y < this.state.yMax2 &&
-              pose.keypoints[12].score > minConfidencePoints)
-          ) {
-            counter = counter + 5000
-            this.eliminateBubble2()
-            this.props.addScore(counter)
-          }
+          poses.forEach(pose => {
+            if (
+              (this.state.xMin < pose.keypoints[10].position.x &&
+                pose.keypoints[10].position.x < this.state.xMax &&
+                this.state.yMin < pose.keypoints[10].position.y &&
+                pose.keypoints[10].position.y < this.state.yMax &&
+                pose.keypoints[10].score > minConfidencePoints) ||
+              (this.state.xMin < pose.keypoints[9].position.x &&
+                pose.keypoints[9].position.x < this.state.xMax &&
+                this.state.yMin < pose.keypoints[9].position.y &&
+                pose.keypoints[9].position.y < this.state.yMax &&
+                pose.keypoints[9].score > minConfidencePoints)
+            ) {
+              counter = counter + 1000
+              this.eliminateBubble()
+              this.props.addScore(counter)
+            }
 
+            if (
+              (this.state.xMin2 < pose.keypoints[11].position.x &&
+                pose.keypoints[11].position.x < this.state.xMax2 &&
+                this.state.yMin2 < pose.keypoints[11].position.y &&
+                pose.keypoints[11].position.y < this.state.yMax2 &&
+                pose.keypoints[11].score > minConfidencePoints) ||
+              (this.state.xMin2 < pose.keypoints[12].position.x &&
+                pose.keypoints[12].position.x < this.state.xMax2 &&
+                this.state.yMin2 < pose.keypoints[12].position.y &&
+                pose.keypoints[12].position.y < this.state.yMax2 &&
+                pose.keypoints[12].score > minConfidencePoints)
+            ) {
+              counter = counter + 5000
+              this.eliminateBubble2()
+              this.props.addScore(counter)
+            }
+          })
+
+          break
+        case 'single-pose':
+          const pose = await net.estimateSinglePose(
+            video,
+            imageScaleFactor,
+            flipHorizontal,
+            outputStride
+          )
+
+          // if (
+          //   (this.state.xMin < pose.keypoints[10].position.x &&
+          //     pose.keypoints[10].position.x < this.state.xMax &&
+          //     this.state.yMin < pose.keypoints[10].position.y &&
+          //     pose.keypoints[10].position.y < this.state.yMax &&
+          //     pose.keypoints[10].score > minConfidencePoints) ||
+          //   (this.state.xMin < pose.keypoints[9].position.x &&
+          //     pose.keypoints[9].position.x < this.state.xMax &&
+          //     this.state.yMin < pose.keypoints[9].position.y &&
+          //     pose.keypoints[9].position.y < this.state.yMax &&
+          //     pose.keypoints[9].score > minConfidencePoints)
+          // ) {
+          //   counter = counter + 1000
+          //   this.eliminateBubble()
+          //   this.props.addScore(counter)
+          // }
+
+          // if (
+          //   (this.state.xMin2 < pose.keypoints[11].position.x &&
+          //     pose.keypoints[11].position.x < this.state.xMax2 &&
+          //     this.state.yMin2 < pose.keypoints[11].position.y &&
+          //     pose.keypoints[11].position.y < this.state.yMax2 &&
+          //     pose.keypoints[11].score > minConfidencePoints) ||
+          //   (this.state.xMin2 < pose.keypoints[12].position.x &&
+          //     pose.keypoints[12].position.x < this.state.xMax2 &&
+          //     this.state.yMin2 < pose.keypoints[12].position.y &&
+          //     pose.keypoints[12].position.y < this.state.yMax2 &&
+          //     pose.keypoints[12].score > minConfidencePoints)
+          // ) {
+          //   counter = counter + 5000
+          //   this.eliminateBubble2()
+          //   this.props.addScore(counter)
+          // }
+          
           poses.push(pose)
           break
       }
@@ -286,6 +330,8 @@ class PoseNet extends React.Component {
   }
 
   generateRandomCoordinates() {
+    this.setState({style: false})
+
     const {
       minBubblex,
       maxBubblex,
@@ -300,6 +346,8 @@ class PoseNet extends React.Component {
   }
   //manages coordinates for second bubble
   generateRandomCoordinates2() {
+    this.setState({style2: false})
+
     const {
       minFootBubbley,
       maxFootBubbley,
@@ -322,9 +370,11 @@ class PoseNet extends React.Component {
       windowTime: this.props.song.destination.context.currentTime
     })
     const bumpingBeats = setInterval(() => {
-      if (this.state.counterBeatInterval < beatsToDisplay.length) {
+      if (beatsToDisplay[this.state.counterBeatInterval] < 60) {
         this.handleTimer()
       } else {
+        this.eliminateBubble()
+        this.eliminateBubble2()
         clearInterval(bumpingBeats)
       }
     }, 100)
@@ -362,6 +412,7 @@ class PoseNet extends React.Component {
   }
 
   eliminateBubble() {
+    this.setState({style2: false})
     this.setState({
       xMin: null,
       xMax: null,
@@ -407,10 +458,12 @@ class PoseNet extends React.Component {
                   <Bubble
                     yBubble={this.props.yBubble}
                     xBubble={this.props.xBubble}
+                    className={this.state.style ? 'bounceOut' : null}
                   />
                   <Bubble2
                     yBubble={this.props.yBubble2}
                     xBubble={this.props.xBubble2}
+                    className={this.state.style2 ? 'bounceOut' : null}
                   />
                 </div>
               )}
