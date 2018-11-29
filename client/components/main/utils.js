@@ -113,7 +113,8 @@ export const setBeats = () => {
     case 'beat-it':
       const tempBeats = beatsToBubble(jacksonBeats)
       const filteredBeats = tempBeats.filter(beat => beat >= 30)
-      return filteredBeats
+      const newBeats = filteredBeats.map(beat => beat - 30)
+      return newBeats
     case 'gaga':
       return beatsToBubble(gagaBeats)
   }
