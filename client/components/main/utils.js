@@ -33,7 +33,7 @@ export function drawKeypoints(
   ctx,
   scale = 1
 ) {
-  keypoints.forEach(keypoigint => {
+  keypoints.forEach(keypoint => {
     if (keypoint.score >= minConfidence) {
       const {y, x} = keypoint.position
       ctx.beginPath()
