@@ -304,7 +304,7 @@ class Sing extends Component {
           this.props.song.destination.context.currentTime - windowTime <=
             ele.end
         ) {
-          subtitles.children[index].style.color = 'green'
+          subtitles.children[index].style.color = '#00ced1'
           if (ele.finalWord) {
             currentSection++
             // break if on last section of lyrics

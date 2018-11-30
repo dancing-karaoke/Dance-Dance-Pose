@@ -82,7 +82,7 @@ class EndMenu extends Component {
       <div className="modal-main">
         <div>
           <h1 className="homeLogo">Good Job!</h1>
-          <div>{video}</div>
+          <div className="babyContainer">{video}</div>
           {!this.state.form && (
             <div>
               {totalScore > 80000 && (
