@@ -36,28 +36,38 @@ body {
   flex: 1;
   flex-direction: row;
   align-items: center;
+  height: 400px;
+  width: 1600px;
+  left: 50%;
+  margin-left: 200px;
+  vertical-align: top;
+  top: 0;
 }
 
 #justThePointer {
   flex: 1;
-  top: 11%;
-  position: absolute; /* Fixed Sidebar (stay in place on scroll) */
+  top: 14%;
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 5; /* Stay on top */
-  /* top: 15%;
-  left: -20%; */
+  /* top: 15%; */
+  left: 3%;
   overflow-x: hidden; /* Disable horizontal scroll */
-  margin-right: 60px;
+  /* margin-right: 60px; */
   /* margin-top: 10px; */
-  left: -8%;
+  margin-right: 300px;
   opacity: 0.5;
+  vertical-align: top;
 }
 
 #subtitles {
   /* margin-left: 5em; */
-  /* position: absolute; */
+  position: fixed;
+
   font-size: 2.5em;
   flex: 7;
+  vertical-align: top;
   /* opacity: 1; */
+  top: 14%;
 }
 
 #notShow {
@@ -85,7 +95,7 @@ form div {
 
 .logo {
   position: absolute;
-  top: -2%;
+  top: 0%;
   left: 38%;
   justify-content: center;
   margin-left: auto;
@@ -94,7 +104,16 @@ form div {
 }
 .logo h1 {
   font-family: 'Sudbury', sans-serif;
-  color: white;
+  color: linear-gradient(
+    45deg,
+    #ff0000,
+    #647687,
+    #00ced1,
+    #20b2aa,
+    #008080,
+    #a20025,
+    #8b00ff
+  );
   text-align: center;
   animation-name: logo;
   animation-duration: 500ms;
@@ -103,20 +122,20 @@ form div {
 
 @keyframes logo {
   0% {
-    color: #ee7752;
-    font-size: 2em;
+    font-size: 3em;
+    color: #bc7c7c;
   }
   25% {
-    color: #e73c7e;
-    font-size: 2.2em;
+    font-size: 2.9em;
+    color: #00ced1;
   }
   75% {
-    color: #23a6d5;
-    font-size: 2em;
+    font-size: 3em;
+    color: #b56477;
   }
   100% {
-    color: #23d5ab;
-    font-size: 2.2em;
+    font-size: 2.9em;
+    color: #9955d0;
   }
 }
 
@@ -156,6 +175,8 @@ form div {
   margin-left: auto;
   margin-right: auto;
   padding: 6px;
+  /* background: white; */
+
   /* opacity: 1; */
 }
 
@@ -430,10 +451,11 @@ form div {
 .Lyrics {
   display: flex;
   position: absolute;
-  text-align: center;
+  text-align: top;
   top: 70px;
   left: 160px;
   z-index: 99;
+  vertical-align: top;
 }
 
 #bubble-container {
@@ -756,6 +778,7 @@ tr > td:first-child {
 .baby-video {
   width: 25vw;
   height: 25vh;
+  margin-left: 20%;
 }
 
 .fire {
@@ -815,3 +838,11 @@ tr > td:first-child {
   flex-direction: 'row';
   transition: all ease 3.5s ease-in;
 }
+
+.babyContainer {
+  margin-left: auto;
+  margin-right: auto;
+}
+/* .mainComponent {
+  background-color: lightblue
+} */
