@@ -187,6 +187,7 @@ form div {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.1);
+  z-index: 3;
 }
 
 .instructions-main {
@@ -648,7 +649,7 @@ form div {
   line-height: 100%;
   padding-bottom: 5px;
   color: lightgreen;
-  z-index: 2;
+  z-index: -1;
   position: relative;
 }
 
@@ -661,6 +662,7 @@ form div {
 div.tableContainer {
   width: 98%;
   margin: 1%;
+  z-index: 2;
 }
 table#table1 {
   text-align: center;
@@ -825,6 +827,7 @@ tr > td:first-child {
     50% 50%
   );
   transition: all ease 3.5s;
+  z-index: 0;
 }
 
 .albumContainer {
@@ -837,6 +840,7 @@ tr > td:first-child {
   display: flex;
   flex-direction: 'row';
   transition: all ease 3.5s ease-in;
+  z-index: -1;
 }
 
 .babyContainer {

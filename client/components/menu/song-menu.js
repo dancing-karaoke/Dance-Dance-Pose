@@ -70,6 +70,7 @@ class SongMenu extends Component {
                 />
               )
             })}
+
             <video id="background-video" loop autoPlay>
               <source src="/assets/disco-lights.mp4" type="video/mp4" />
             </video>
