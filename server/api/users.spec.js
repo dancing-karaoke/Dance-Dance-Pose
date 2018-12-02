@@ -20,7 +20,7 @@ describe('User routes', () => {
       })
     })
 
-    it('GET /api/users', async () => {
+    xit('GET /api/users', async () => {
       const res = await request(app)
         .get('/api/users')
         .expect(200)
