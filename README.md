@@ -2,7 +2,7 @@
 
 [Watch our Presentation](https://youtu.be/PJRBaXsnw8Y)
 
-Dance Dance Pose puts your singing and dancing skills to the test by utilizing motion capture and pitch detection inspired by popular games such as Dance Dance Revolution and Rockband. Users must sing on key and dance to their favorite songs in order to earn points. Utilizing both web audio detection and pose detection through Posenet by TensorFlow, the game allows users to experience their favorite songs in an entirely new format.
+Dance Dance Pose puts your singing and dancing skills to the test by using motion capture and pitch detection inspired by popular games such as Dance Dance Revolution and Rockband. Users must sing on key and dance to their favorite songs in order to earn points. Utilizing both web audio and pose detection through Posenet by TensorFlow, the game allows users to experience their favorite songs in an entirely new format.
 
 ### Features Included:
 
@@ -19,9 +19,9 @@ TBA (GIFS go here!)
 
 - TensorFlow's Posenet technology captures dancing motions of one or more players
 - Pitch detection is captured using a web audio API called Web Audio DAW (WAD)
-- User interfaces were built using React.js and Redux to store information in single source of truth
+- User interfaces is built using React.js and Redux to store information in single source of truth
 - Leaderboard information is stored in a backend database using PostGres and Sequelize
-- Heroku deployed the game and Travis CI's continuous integration updated our game throughout the building process
+- Heroku deployed the game and Travis CI's continuous integration updates our game throughout the building process
 
 ## Running Game Locally
 
