@@ -6,30 +6,45 @@ Dance Dance Pose puts your singing and dancing skills to the test by using motio
 
 ### Features Included:
 
-- Select a song and level of difficulty
-- Motion recognition to identify the player's dancing moves
-- Pitch detection to capture the player's singing pitch
-- Real-time multiplayer
-- Add your score to the leaderboard
+* Select a song and level of difficulty
+* Motion recognition to identify the player's dancing moves
+* Pitch detection to capture the player's singing pitch
+* Real-time multiplayer
+* Add your score to the leaderboard
 
 ## Gameplay
-TBA (GIFS go here!)
+
+### Homepage
+
+<img src="https://i.imgur.com/vrlgeSE.gif" width="50%" height="50%">
+
+### Instructions
+
+<img src="https://i.imgur.com/ALMXsDk.gif" width="50%" height="50%">
+
+### Songs
+
+<img src="https://i.imgur.com/58tCMRG.gif" width="50%" height="50%">
+
+### Dancing/Singing
+
+<img src="https://i.imgur.com/BXonBOF.gif" width="50%" height="50%">
 
 ## Build
 
 - TensorFlow's Posenet technology captures dancing motions of one or more players
 - Pitch detection is captured using a web audio API called Web Audio DAW (WAD)
 - User interfaces is built using React.js and Redux to store information in single source of truth
-- Leaderboard information is stored in a backend database using PostGres and Sequelize
+- Leaderboard information is stored in a backend database using PostgreSQL and Sequelize
 - Heroku deployed the game and Travis CI's continuous integration updates our game throughout the building process
 
 ## Running Game Locally
 
 To play this game, please follow these steps:
-1. Fork or clone this repository
-2. Run the following command `npm install npm run start-dev`
+
+1.  Fork or clone this repository
+2.  Run the following command `npm install npm run start-dev`
 
 ## Developers
 
 Paola Neira, Jimmy Huang, Joe Costa, and Sean Ryan
-
