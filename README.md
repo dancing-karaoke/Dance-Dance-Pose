@@ -16,19 +16,21 @@ Dance Dance Pose puts your singing and dancing skills to the test by utilizing m
 
 ### Homepage
 
-<img src="https://i.imgur.com/vrlgeSE.gif" width="50%" height="50%">
+<img src="https://imgur.com/YVkzyIi.gif" width="50%" height="50%">
 
 ### Instructions
 
-<img src="https://i.imgur.com/ALMXsDk.gif" width="50%" height="50%">
+<img src="https://imgur.com/GEwnkDO.gif" width="50%" height="50%">
 
 ### Songs
 
-<img src="https://i.imgur.com/58tCMRG.gif" width="50%" height="50%">
+<img src="https://imgur.com/imiSaLP.gif" width="50%" height="50%">
 
 ### Dancing/Singing
 
 <img src="https://i.imgur.com/BXonBOF.gif" width="50%" height="50%">
+
+<img src="https://i.imgur.com/oWo8J3R.gif" width="50%" height="50%">
 
 ## Build
 
